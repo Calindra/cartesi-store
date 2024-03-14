@@ -12,40 +12,18 @@ export class NFTMock implements NFT {
 }
 
 export class TransactionMock implements Transaction {
-  from: Address;
-  to: Address;
-  contract: Address;
-  tokenId: bigint;
-  coin: Address;
-  amount: bigint;
-  date: Date;
-  categoryId: number;
-  categoryName: string;
-  collectionName: string;
-
-  constructor(props: {
-    from: Address;
-    to: Address;
-    contract: Address;
-    tokenId: bigint;
-    coin: Address;
-    amount: bigint;
-    date: Date;
-    categoryId: number;
-    categoryName: string;
-    collectionName: string;
-  }) {
-    this.from = props.from;
-    this.to = props.to;
-    this.contract = props.contract;
-    this.tokenId = props.tokenId;
-    this.coin = props.coin;
-    this.amount = props.amount;
-    this.date = props.date;
-    this.categoryId = props.categoryId;
-    this.categoryName = props.categoryName;
-    this.collectionName = props.collectionName;
-  }
+  constructor(
+    public readonly from: Address,
+    public readonly to: Address,
+    public readonly contract: Address,
+    public readonly tokenId: bigint,
+    public readonly coin: Address,
+    public readonly amount: bigint,
+    public readonly date: Date,
+    public readonly categoryId: number,
+    public readonly categoryName: string,
+    public readonly collectionName: string
+  ) {}
 
   getNFT(): Promise<NFT> {
     throw new Error("Method not implemented.");

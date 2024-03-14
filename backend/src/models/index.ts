@@ -1,17 +1,17 @@
 import type { Address } from "viem";
 
 export interface Transaction {
-  from: Address;
-  to: Address;
-  contract: Address;
-  tokenId: bigint;
-  coin: Address;
-  amount: bigint;
+  readonly from: Address;
+  readonly to: Address;
+  readonly contract: Address;
+  readonly tokenId: bigint;
+  readonly coin: Address;
+  readonly amount: bigint;
   // or maybe string
-  date: Date;
-  categoryId: number;
-  categoryName: string;
-  collectionName: string;
+  readonly date: Date;
+  readonly categoryId: number;
+  readonly categoryName: string;
+  readonly collectionName: string;
 
   getNFT(): Promise<NFT>;
   getCoin(): Promise<Coin>;
