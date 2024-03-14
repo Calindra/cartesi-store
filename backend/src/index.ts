@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 // Cartesify REST bridge
-const { CartesifyBackend } = require("@calindra/cartesify-backend")
+import { CartesifyBackend } from "@calindra/cartesify-backend";
 
 
 CartesifyBackend.createDapp().then((dapp:any) => {
@@ -12,7 +12,7 @@ CartesifyBackend.createDapp().then((dapp:any) => {
 });
 
 // Normal nodejs application using express
-const express = require("express");
+import express from "express";
 
 const app = express();
 const port = 8383;
