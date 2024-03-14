@@ -7,6 +7,7 @@ classDiagram
     }
     class NFT {
         tokenId: BigInt
+        amount: BitInt
     }
     class Collection {
         address: address
@@ -33,6 +34,20 @@ classDiagram
     class Category {
         name: string
     }
+
+    class Auction {
+        status: CREATED | STARTED | FINISHED | MIN_BID_AMOUNT
+        erc20: address
+        startDate: Date
+        endDate: Date
+        minBidAmount: BigInt
+    }
+    class Bid {
+        author: address
+        amount: BigInt
+        timestamp: BigInt
+    }
+    Auction --> NFT
     NFT --> Collection
     Transaction --> NFT
     Transaction --> Coin
@@ -76,6 +91,8 @@ class Collection {
     name: string
     address: string
 }
+```
 
-{tx.getCollectionName()}
+```jsx
+<span>{tx.getCollectionName()}</span>
 ```
