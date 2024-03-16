@@ -42,17 +42,23 @@ describe("TransactionRepository", () => {
 
     it("should return the trending", async () => {
         for (let i = 0; i < 10; i++) {
-            const old = { ...nftTx, amount: BigInt(10 - i), date: '2023-01-01' }
-            await transactionRepository.create(old)
+            const oldTransaction = { ...nftTx, amount: BigInt(10 - i), date: '2023-01-01' }
+            await transactionRepository.create(oldTransaction)
+            const nonRelevant = { ...nftTx, collectionName: `NR ${i}`, amount: BigInt(1) }
+            await transactionRepository.create(nonRelevant)
             const nftBored = { ...nftTx, amount: BigInt(10 - i) }
             await transactionRepository.create(nftBored)
             const nftTxX = { ...nftTx, amount: BigInt(100 - i), collectionName: 'Cartesi Store' }
             await transactionRepository.create(nftTxX)
         }
-        const trending = await transactionRepository.findAllTrending('2024')
+        const trending = await transactionRepository.findAllTrending({
+            dateGt: '2024',
+            limit: 5
+        })
         expect(trending[0].volume).toBe(955)
         expect(+trending[0].floorPrice).toBe(91)
         expect(trending[1].volume).toBe(55)
         expect(+trending[1].floorPrice).toBe(1)
+        expect(trending.length).toBe(5)
     })
 })

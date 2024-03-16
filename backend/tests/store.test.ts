@@ -10,5 +10,9 @@ describe("Store", () => {
       expect(collections).toEqual([]);
     });
   });
-  describe("NFTs", () => {});
+  describe("NFTs", () => {
+    it("should have one test at least", async () => {
+
+    })
+  });
 });

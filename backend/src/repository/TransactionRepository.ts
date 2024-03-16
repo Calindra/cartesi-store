@@ -1,22 +1,28 @@
 import { Database } from "sqlite";
 import sqlite3 from 'sqlite3';
 
+export interface FindAllTrendingArgs {
+    dateGt: string,
+    limit?: number,
+}
+
 export class TransactionRepository {
 
     constructor(private db: Database<sqlite3.Database, sqlite3.Statement>) {
 
     }
 
-    async findAllTrending(dateGt: string) {
+    async findAllTrending({ dateGt, limit = 10 }: FindAllTrendingArgs) {
         const stmt = await this.db.prepare(`
             SELECT collectionName, collection, sum(amount) as volume, min(amount) as floorPrice 
                 FROM transactions
                 WHERE date > ?
                 GROUP BY collectionName, collection
                 ORDER BY volume DESC
-            `)
+                LIMIT ?
+                `)
         try {
-            return await stmt.all(dateGt)
+            return await stmt.all(dateGt, limit)
         } catch (e) {
             throw e
         } finally {
