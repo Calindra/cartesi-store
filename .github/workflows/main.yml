@@ -16,10 +16,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install pnpm
-      run: |
-        curl -fsSL https://get.pnpm.io/install.sh | sh
-        export PATH="$HOME/.pnpm/bin:$PATH"
+    - uses: pnpm/action-setup@v3
+      with:
+        version: 8
 
     - name: Install dependencies
       run: | 
