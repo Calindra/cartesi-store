@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# OpenSea UI Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Preview](./public/screenshot.png)
 
-Currently, two official plugins are available:
+This repository contains a clone of the OpenSea UI home page, built using Vite, React, Tailwind CSS, and Swiper. The clone aims to replicate the user interface of the OpenSea platform's home page.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Demo:** https://opensea-ui-clone.pages.dev/
 
-## Expanding the ESLint configuration
+## Table of Contents
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Responsive design that adapts to various screen sizes.
+- Utilizes Vite as the build tool for fast development and hot module replacement.
+- Built with React to efficiently manage UI components and state.
+- Uses Tailwind CSS for rapid UI styling and customization.
+- Implements Swiper for creating interactive and responsive carousels.
+- Dialog (Modal) windows will be added soon.
+
+## Installation
+
+To run the OpenSea UI Clone locally, follow these steps:
+
+1. Clone this repository to your local machine using the following command:
+
+```
+git clone https://github.com/MrHeyLey/opensea-ui-clone.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```
+cd opensea-ui-clone
+```
+
+3. Install the required dependencies using pnpm:
+
+```
+pnpm i
+```
+
+4. Start the development server:
+
+```
+pnpm run dev
+```
+
+5. Open your web browser and navigate to http://localhost:5173.
+
+## Usage
+
+The OpenSea UI Clone provides a visual representation of the OpenSea platform's home page. You can explore the design, layout, and UI elements implemented in the clone. However, please note that it does not include the actual functionality of the original OpenSea platform.
+
+Feel free to customize the codebase, add additional functionality, or integrate it with other projects as needed.
