@@ -3,6 +3,15 @@ import HeroSection from './components/HeroSection'
 import StatsTable from './components/StatsTable'
 import BaseLayout from './components/layouts/BaseLayout'
 
+type EthereumFromWindow = import("ethers").Eip1193Provider & import("ethers").AbstractProvider;
+declare global {
+  interface Window {
+    /** @link {https://docs.metamask.io/wallet/reference/provider-api/} */
+    ethereum?: // import("@ethersproject/providers").ExternalProvider &
+    EthereumFromWindow;
+  }
+}
+
 function App() {
   return (
     <BaseLayout>

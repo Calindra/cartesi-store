@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@calindra/cartesify": "^0.1.1",
+    "@cartesi/rollups": "^1.2.0",
     "ethers": "^6.11.1",
     "@heroicons/react": "^2.0.18",
     "clsx": "^1.2.1",

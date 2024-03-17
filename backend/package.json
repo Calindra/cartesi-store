@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@calindra/cartesify-backend": "^0.1.2",
+    "@deroll/wallet": "file:deroll-wallet-0.3.7.tgz",
     "express": "^4.18.2",
     "openapi-fetch": "^0.7",
     "sqlite": "^5.1.1",

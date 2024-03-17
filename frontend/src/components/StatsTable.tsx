@@ -1,10 +1,20 @@
 import { STATS_TABLE } from '@/consts'
-import { HTMLAttributes, ReactNode } from 'react'
+import { HTMLAttributes, ReactNode, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import Button from './Button'
 import Container from './Container'
+import { TrendingService } from '@/services/TrendingService'
 
 export default function StatsTable() {
+  const [trending, setTrending] = useState([])
+  async function init() {
+    const trending = await TrendingService.findAll()
+    setTrending(trending)
+  }
+  useEffect(() => {
+    init()
+  }, [])
+
   return (
     <Container className="pt-12">
       <div className="flex justify-between border-b">
@@ -28,8 +38,8 @@ export default function StatsTable() {
       </div>
       <div className="gg overflow-auto py-4">
         <div className="flex gap-x-8 md:gap-x-24">
-          <StatTable data={STATS_TABLE.slice(0, 5)} indexStart={1} />
-          <StatTable data={STATS_TABLE.slice(-5)} indexStart={6} />
+          <StatTable data={trending.slice(0, 5)} indexStart={1} />
+          <StatTable data={trending.slice(-5)} indexStart={6} />
         </div>
       </div>
     </Container>
@@ -59,13 +69,13 @@ function StatTable({ data, indexStart }: { data: typeof STATS_TABLE; indexStart:
                 <div>
                   <p>{item.name}</p>
                   <p className="text-xs font-normal text-slate-500 md:hidden">
-                    Floor: <span className="font-semibold">{item.floor} ETH</span>
+                    Floor: <span className="font-semibold">{item.floor}</span>
                   </p>
                 </div>
               </div>
             </td>
-            <td className="hidden md:table-cell">{item.floor} ETH</td>
-            <td className="text-right">{item.volume} ETH</td>
+            <td className="hidden md:table-cell">{item.floor}</td>
+            <td className="text-right">{item.volume}</td>
           </tr>
         ))}
       </tbody>
