@@ -59,6 +59,7 @@ export class NFTProductRepository {
             ?,
             ?,
             ?,
+            ?,
             ?
         )`);
         stmt.run(
@@ -71,6 +72,7 @@ export class NFTProductRepository {
             nftProduct.categoryId,
             nftProduct.categoryName,
             nftProduct.collectionName,
+            nftProduct.owner,
         );
         stmt.finalize();
     }
@@ -92,7 +94,9 @@ export class NFTProductRepository {
 
             categoryId INTEGER,
             categoryName TEXT,
-            collectionName TEXT
+            collectionName TEXT,
+
+            owner TEXT
         )`);
     }
 }
@@ -114,4 +118,6 @@ export interface NFTProduct {
     categoryId: number
     categoryName: string
     collectionName: string
+
+    owner: string
 }

@@ -23,9 +23,9 @@ describe("TransactionRepository", () => {
     }
 
     beforeEach(async () => {
-        await unlink('./data/sqlite3-test.db').catch(e => e)
+        // await unlink('./data/sqlite3-test.db').catch(e => e)
         db = await open({
-            filename: './data/sqlite3-test.db',
+            filename: ':memory:',
             driver: sqlite3.Database // Import from the sqlite3 package
         });
         transactionRepository = new TransactionRepository(db);
