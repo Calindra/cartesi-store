@@ -1,9 +1,7 @@
-import { unlink } from "node:fs/promises";
-import { it, describe, expect, beforeEach } from "vitest";
+import { it, describe, expect, beforeEach, afterEach } from "vitest";
 import sqlite3 from 'sqlite3';
 import { Database, open } from 'sqlite';
 import { NFTProduct } from "../../src/repository/NFTProductRepository";
-import { afterEach } from "node:test";
 import { NFTProductRepository } from "../../src/repository/NFTProductRepository";
 
 describe("NFTProductRepository", () => {
@@ -25,7 +23,6 @@ describe("NFTProductRepository", () => {
     }
 
     beforeEach(async () => {
-        // await unlink('./data/sqlite3-test.db').catch(e => e)
         db = await open({
             filename: ':memory:',
             driver: sqlite3.Database // Import from the sqlite3 package

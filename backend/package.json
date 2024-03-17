@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "TypeScript DApp",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@calindra/cartesify-backend": "^0.1.2",
     "express": "^4.18.2",
@@ -18,7 +17,7 @@
     "esbuild": "^0.19",
     "npm-run-all": "^4",
     "openapi-typescript": "^6",
-    "ts-node": "^10",
+    "ts-node": "^10.9.2",
     "typescript": "^5",
     "vitest": "^1.4.0"
   },

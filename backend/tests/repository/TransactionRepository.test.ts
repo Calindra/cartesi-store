@@ -1,9 +1,7 @@
-import { unlink } from "node:fs/promises";
-import { it, describe, expect, beforeEach } from "vitest";
+import { it, describe, expect, beforeEach, afterEach } from "vitest";
 import sqlite3 from 'sqlite3';
 import { Database, open } from 'sqlite';
 import { NFTTransaction, TransactionRepository } from "../../src/repository/TransactionRepository";
-import { afterEach } from "node:test";
 
 describe("TransactionRepository", () => {
     let db: Database<sqlite3.Database, sqlite3.Statement>
@@ -23,9 +21,9 @@ describe("TransactionRepository", () => {
     }
 
     beforeEach(async () => {
-        // await unlink('./data/sqlite3-test.db').catch(e => e)
         db = await open({
             filename: ':memory:',
+            // filename: './data/sqlite3-prod.db',
             driver: sqlite3.Database // Import from the sqlite3 package
         });
         transactionRepository = new TransactionRepository(db);
