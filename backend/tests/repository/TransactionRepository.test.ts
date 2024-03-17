@@ -42,11 +42,11 @@ describe("TransactionRepository", () => {
         for (let i = 0; i < 10; i++) {
             const oldTransaction = { ...nftTx, amount: BigInt(10 - i), date: '2023-01-01' }
             await transactionRepository.create(oldTransaction)
-            const nonRelevant = { ...nftTx, collectionName: `NR ${i}`, amount: BigInt(1) }
+            const nonRelevant = { ...nftTx, collectionName: `NR ${i}`, collection: `0xNonRelevant${i}`, amount: BigInt(1) }
             await transactionRepository.create(nonRelevant)
             const nftBored = { ...nftTx, amount: BigInt(10 - i) }
             await transactionRepository.create(nftBored)
-            const nftTxX = { ...nftTx, amount: BigInt(100 - i), collectionName: 'Cartesi Store' }
+            const nftTxX = { ...nftTx, amount: BigInt(100 - i), collectionName: 'Cartesi Store', collection: '0xCartesiStore' }
             await transactionRepository.create(nftTxX)
         }
         const trending = await transactionRepository.findAllTrending({

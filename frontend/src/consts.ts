@@ -16,16 +16,16 @@ export const CAROUSEL_ITEMS = [
 ]
 
 export const STATS_TABLE = [
-  { image: '1.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '2.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '3.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '4.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '5.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '6.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '7.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '8.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '9.png', name: 'Collection Name', floor: 0.03, volume: 25 },
-  { image: '10.jpg', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x1', image: '1.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x2', image: '2.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x3', image: '3.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x4', image: '4.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x5', image: '5.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x6', image: '6.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x7', image: '7.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x8', image: '8.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x9', image: '9.png', name: 'Collection Name', floor: 0.03, volume: 25 },
+  { collection: '0x10', image: '10.jpg', name: 'Collection Name', floor: 0.03, volume: 25 },
 ]
 
 export const FOOTER_MARKETPLACE = ['All NFTs', 'Art', 'Gaming', 'Memberships', 'PFPs', 'Photography']

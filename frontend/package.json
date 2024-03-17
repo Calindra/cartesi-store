@@ -12,11 +12,12 @@
   "dependencies": {
     "@calindra/cartesify": "^0.1.1",
     "@cartesi/rollups": "^1.2.0",
-    "ethers": "^6.11.1",
     "@heroicons/react": "^2.0.18",
     "clsx": "^1.2.1",
+    "ethers": "^6.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
     "react-social-icons": "^5.15.0",
     "swiper": "^9.3.2",
     "tailwind-merge": "^1.13.0"
