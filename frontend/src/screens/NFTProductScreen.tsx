@@ -2,24 +2,13 @@ import BaseLayout from "@/components/layouts/BaseLayout"
 import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 
-function CollectionScreen() {
-  const { collection } = useParams();
+function NFTProductScreen() {
+  const { collection, tokenId } = useParams();
   return (
     <BaseLayout>
       <HeaderSection bgImage={"1.png"} />
       <div className="grid grid-cols-3 gap-4 p-4">
-        <NFTProductView tokenId={'1'} collection={collection!} image={'1.png'} floor={1} name="Collection 1" volume={3} />
-        <NFTProductView tokenId={'2'} collection={collection!} image={'2.png'} floor={1} name="Collection 2" volume={3} />
-        <NFTProductView tokenId={'3'} collection={collection!} image={'3.png'} floor={1} name="Collection 3" volume={3} />
-        <NFTProductView tokenId={'4'} collection={collection!} image={'4.png'} floor={1} name="Collection 4" volume={3} />
-        <NFTProductView tokenId={'5'} collection={collection!} image={'5.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'6'} collection={collection!} image={'6.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'7'} collection={collection!} image={'7.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'8'} collection={collection!} image={'8.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'9'} collection={collection!} image={'9.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'10'} collection={collection!} image={'10.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'11'} collection={collection!} image={'11.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'12'} collection={collection!} image={'12.png'} floor={1} name="Collection 5" volume={3} />
+        <NFTProductView tokenId={tokenId!} collection={collection!} image={`${tokenId}.png`} floor={1} name="Collection 1" volume={3} />
       </div>
     </BaseLayout>
   )
@@ -75,4 +64,4 @@ function NFTProductView(item: { image: any; tokenId: string, collection: string,
 }
 
 
-export default CollectionScreen
+export default NFTProductScreen
