@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import BaseLayout from "@/components/layouts/BaseLayout"
 import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,9 +7,15 @@ function NFTProductScreen() {
   const { collection, tokenId } = useParams();
   return (
     <BaseLayout>
-      <HeaderSection bgImage={"1.png"} />
+      <HeaderSection bgImage={`${tokenId}.png`} />
       <div className="grid grid-cols-3 gap-4 p-4">
-        <NFTProductView tokenId={tokenId!} collection={collection!} image={`${tokenId}.png`} floor={1} name="Collection 1" volume={3} />
+        <div>
+          <img src={`/carousel/${tokenId}.png`} className="w-full h-auto" />
+        </div>
+        {/* <NFTProductView tokenId={tokenId!} collection={collection!} image={`${tokenId}.png`} floor={1} name="Collection 1" volume={3} /> */}
+        <div>
+          <Button>Buy now</Button>
+        </div>
       </div>
     </BaseLayout>
   )
