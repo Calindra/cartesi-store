@@ -47,7 +47,7 @@ classDiagram
         amount: BigInt
         timestamp: BigInt
     }
-    Auction --> NFT
+    Auction <--> NFT
     NFT --> Collection
     Transaction --> NFT
     Transaction --> Coin
