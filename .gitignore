@@ -1,4 +1,5 @@
 .sunodo
 /dist
-/node_modules
+node_modules/
 src/schema.d.ts
+.DS_Store

@@ -1,13 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import App from './App.tsx'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import './index.css'
+import CollectionScreen from './screens/CollectionScreen.tsx';
+import NFTProductScreen from './screens/NFTProductScreen.tsx';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/collection/:collection",
+    element: <CollectionScreen />,
+  },
+  {
+    path: "/collection/:collection/:tokenId",
+    element: <NFTProductScreen />,
+  }
+]);
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-     <ChakraProvider>
-        <App />
-    </ChakraProvider>
-  </React.StrictMode>,
+    <RouterProvider router={router} />
+  </React.StrictMode>
 )
