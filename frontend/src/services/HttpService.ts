@@ -1,11 +1,9 @@
 import { Cartesify } from "@calindra/cartesify";
-
-// you could check this address by executing `sunodo address-book`
-const DAPP_ADDRESS = '0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C'
+import { ConfigService } from "./ConfigService";
 
 // replace with the content of your dapp address (it could be found on dapp.json)
 const _fetch = Cartesify.createFetch({
-  dappAddress: DAPP_ADDRESS,
+  dappAddress: ConfigService.getDappAddress(),
   endpoints: {
     graphQL: new URL("http://localhost:8080/graphql"),
     inspect: new URL("http://localhost:8080/inspect"),
@@ -25,5 +23,9 @@ export class HttpService {
         return {
             data: json
         }
+    }
+
+    static getRawCartesifyFetch() {
+        return _fetch
     }
 }

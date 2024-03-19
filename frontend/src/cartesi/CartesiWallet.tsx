@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import { SignerService } from "@/services/SignerService"
 import { FormatService } from "@/services/FormatService"
+import { HttpService } from "@/services/HttpService"
 
 export function CartesiWallet() {
     const [balanceL1, setBalanceL1] = useState('0')
     const [balanceL2, setBalanceL2] = useState('0')
-
+    const fetch = HttpService.getRawCartesifyFetch()
+    
     async function init() {
         const signer = await SignerService.getSigner()
         const balanceL1 = await BaseLayerWalletService.balanceEther(signer)

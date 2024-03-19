@@ -11,6 +11,7 @@ import 'swiper/css/navigation'
 import './index.css'
 import CollectionScreen from './screens/CollectionScreen.tsx';
 import NFTProductScreen from './screens/NFTProductScreen.tsx';
+import WalletScreen from './screens/WalletScreen.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/collection/:collection/:tokenId",
     element: <NFTProductScreen />,
-  }
+  },
+  {
+    path: "/wallet",
+    element: <WalletScreen />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
