@@ -4,6 +4,11 @@ import { JsonRpcSigner } from "ethers";
 
 export class BaseLayerWalletService {
 
+    static async balanceEther(signer: JsonRpcSigner) {
+        const balance = await signer.provider.getBalance(signer.address)
+        return balance
+    }
+
     static async balanceERC20(erc20address: string, signer: JsonRpcSigner) {
         const contract = IERC20__factory.connect(erc20address, signer)
         const balance = await contract.balanceOf(signer.address)

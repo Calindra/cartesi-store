@@ -44,6 +44,24 @@ app.get("/trending", async (req: Request, res: Response) => {
     res.send(json)
 })
 
+app.get("/wallet/:address/listed", async (req, res) => {
+    console.log(`Checking balance ${req.params.address}`)
+    const userWallet = await wallet.getWalletOrNew(`${req.params.address}:list`)
+    const json = JSON.stringify(userWallet, (_key, value) => {
+        if (typeof value === 'bigint') {
+            return value.toString()
+        } else if (typeof value === 'object' && value instanceof Map) {
+            return Object.fromEntries(value)
+        } else if (typeof value === 'object' && value instanceof Set) {
+            return [...value]
+        } else {
+            return value
+        }
+    })
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    res.send(json)
+})
+
 app.post("/erc-721/list", async (req: Request, res: Response) => {
     const senderAddress = req.header("x-msg_sender") as Address;
     await wallet.transferERC721(

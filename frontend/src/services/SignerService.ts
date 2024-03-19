@@ -1,7 +1,7 @@
 import { BrowserProvider } from 'ethers';
 
 export class SignerService {
-    async getSigner() {
+    static async getSigner() {
         try {
             if (!window.ethereum) {
                 alert("Connecting to metamask failed.");
