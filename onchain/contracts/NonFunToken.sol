@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract NonFunToken is ERC721, Ownable {
 
@@ -38,7 +39,7 @@ contract NonFunToken is ERC721, Ownable {
         return string(
             abi.encodePacked(
                 _tokenURIs[tokenId],
-                tokenId,
+                Strings.toString(tokenId),
                 '.json'
             )
         );
