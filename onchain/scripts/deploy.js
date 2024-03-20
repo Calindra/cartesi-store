@@ -12,17 +12,17 @@ async function main() {
   const nonFunToken = await ethers.getContractAt('NonFunToken', token.address);
 
   const address = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-  let tx = await nonFunToken.mintCollectionNFT(address, '0');
+  let tx = await nonFunToken.mintNFT(address, '0', "https://xxx.com");
   await tx.wait();
-  let tx1 = await nonFunToken.mintCollectionNFT(address, '1');
+  let tx1 = await nonFunToken.mintNFT(address, '1', "https://xxx.com");
   await tx1.wait();
-  let tx2 = await nonFunToken.mintCollectionNFT(address, '2');
+  let tx2 = await nonFunToken.mintNFT(address, '2', "https://xxx.com");
   await tx2.wait();
-  let tx3 = await nonFunToken.mintCollectionNFT(address, '3');
+  let tx3 = await nonFunToken.mintNFT(address, '3', "https://xxx.com");
   await tx3.wait();
-  let tx4 = await nonFunToken.mintCollectionNFT(address, '4');
+  let tx4 = await nonFunToken.mintNFT(address, '4', "https://xxx.com");
   await tx4.wait();
-  let tx5 = await nonFunToken.mintCollectionNFT(address, '5');
+  let tx5 = await nonFunToken.mintNFT(address, '5', "https://xxx.com");
   await tx5.wait();
   console.log(`Mint NFT to ${address}`)
 }
