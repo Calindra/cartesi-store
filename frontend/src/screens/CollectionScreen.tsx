@@ -1,13 +1,38 @@
 import BaseLayout from "@/components/layouts/BaseLayout"
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
+import { HttpService } from "@/services/HttpService";
+import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 
 function CollectionScreen() {
+  const [items, setItems] = useState([])
+  const fetch = HttpService.getRawCartesifyFetch();
   const { collection } = useParams();
+  
+
+  async function init(collection: string) {
+    const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed`)
+    if (!res.ok) {
+        console.log(res.status, res.text())
+        return
+    }
+    const json = await res.json()
+    console.log('Success!', JSON.stringify(json, null, 4))
+    setItems(json.rows)
+  }
+
+  useEffect(() => {
+    if (collection) {
+      init(collection)
+    }
+  }, [collection])
+
   return (
     <BaseLayout>
       <HeaderSection bgImage={"1.png"} />
       <div className="grid grid-cols-3 gap-4 p-4">
+        {items.map((item: any) => {
+          return <NFTProductView key={`${item.collection}-${item.tokenId}`} tokenId={item.tokenId} collection={collection!} image={item.tokenId + '.png'} floor={1} name="Collection 1" volume={3} />
+        })}
         <NFTProductView tokenId={'1'} collection={collection!} image={'1.png'} floor={1} name="Collection 1" volume={3} />
         <NFTProductView tokenId={'2'} collection={collection!} image={'2.png'} floor={1} name="Collection 2" volume={3} />
         <NFTProductView tokenId={'3'} collection={collection!} image={'3.png'} floor={1} name="Collection 3" volume={3} />
@@ -60,7 +85,7 @@ function NFTProductView(item: { image: any; tokenId: string, collection: string,
             <p className="font-semibold text-slate-900">{item.name}</p>
           </div>
           <div>
-            <p className="text-sm absolute top-0 right-0">#12312</p>
+            <p className="text-sm absolute top-0 right-0">#{item.tokenId}</p>
           </div>
         </div>
         <div className="mt-4 flex gap-x-8">

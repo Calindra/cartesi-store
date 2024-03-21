@@ -92,6 +92,20 @@ app.post("/erc-721/list", async (req: Request, res: Response) => {
     }
 });
 
+app.get("/erc-721/:collection/listed", async (req: Request, res: Response) => {
+    const nftProductRepository = await container.getNFTProductRepository()
+    const collection = await nftProductRepository.findAllByCollection(req.params.collection ?? '')
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    res.send(toJSON({ rows: collection }))
+})
+
+app.get("/erc-721/:collection/listed/:tokenId", async (req: Request, res: Response) => {
+    const nftProductRepository = await container.getNFTProductRepository()
+    const nftProduct = await nftProductRepository.findByCollectionAddressAndTokenId(req.params.collection ?? '', BigInt(req.params.tokenId ?? '0'))
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    res.send(toJSON(nftProduct))
+})
+
 bootstrap().catch((e) => {
     console.error(e);
     process.exit(1);
