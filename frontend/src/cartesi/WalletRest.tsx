@@ -26,6 +26,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
     const [erc721balanceL2, setErc721balanceL2] = useState('0')
     const [erc721address, setErc721Address] = useState(localStorage.getItem('erc721address') ?? '0x3Aa5ebB10DC797CAC828524e59A333d0A371443c')
     const [erc721id, setErc721id] = useState('1')
+    const [erc721Price, setErc721Price] = useState('1')
 
 
     useEffect(() => {
@@ -183,6 +184,40 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
         console.log('Success!')
     }
 
+    async function listErc721() {
+        console.log('listErc721', { erc721address, erc721id, erc721Price })
+        const signer = await getSigner()
+        const res = await fetch(`http://127.0.0.1:8383/erc-721/list`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                token: erc721address,
+                tokenId: erc721id,
+                price: erc721Price,
+            }),
+            signer,
+        })
+        if (!res.ok) {
+            console.log(res.status, res.text())
+            return
+        }
+        console.log('Success!')
+    }
+
+    async function listedErc721() {
+        // /wallet/:address/listed
+        const signer = await getSigner()
+        const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}/listed`)
+        if (!res.ok) {
+            console.log(res.status, res.text())
+            return
+        }
+        const json = await res.json()
+        console.log('Success!', JSON.stringify(json, null, 4))
+    }
+
     async function depositErc721() {
         const signer = await getSigner()
         // await Cartesify.depositERC721({
@@ -294,8 +329,17 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
             }} />
             <Button onClick={transferErc721}>L2 Transfer</Button>
             <br />
+            Price:
+            <input value={erc721Price} onChange={(e) => {
+                setErc721Price(e.target.value)
+            }} />
+            <Button onClick={listErc721}>L2 List</Button>
+            <Button onClick={listedErc721}>L2 Listed</Button>
+            <br />
             L1 Balance: {erc721balanceL1}<br />
             L2 Balance: {erc721balanceL2}<br />
+
+
         </div>
     )
 }
