@@ -1,6 +1,7 @@
 
 export class FormatService {
     static formatEther(amount: any) {
+        if (!amount) return
         amount = BigInt(amount)
         const etherInWei = BigInt(10) ** BigInt(16); // may 18
         if (amount >= etherInWei) {

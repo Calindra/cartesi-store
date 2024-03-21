@@ -1,4 +1,5 @@
 import BaseLayout from "@/components/layouts/BaseLayout"
+import { FormatService } from "@/services/FormatService";
 import { HttpService } from "@/services/HttpService";
 import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,13 +8,13 @@ function CollectionScreen() {
   const [items, setItems] = useState([])
   const fetch = HttpService.getRawCartesifyFetch();
   const { collection } = useParams();
-  
+
 
   async function init(collection: string) {
     const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed`)
     if (!res.ok) {
-        console.log(res.status, res.text())
-        return
+      console.log(res.status, res.text())
+      return
     }
     const json = await res.json()
     console.log('Success!', JSON.stringify(json, null, 4))
@@ -31,20 +32,8 @@ function CollectionScreen() {
       <HeaderSection bgImage={"1.png"} />
       <div className="grid grid-cols-3 gap-4 p-4">
         {items.map((item: any) => {
-          return <NFTProductView key={`${item.collection}-${item.tokenId}`} tokenId={item.tokenId} collection={collection!} image={item.tokenId + '.png'} floor={1} name="Collection 1" volume={3} />
+          return <NFTProductView key={`${item.collection}-${item.tokenId}`} item={item} />
         })}
-        <NFTProductView tokenId={'1'} collection={collection!} image={'1.png'} floor={1} name="Collection 1" volume={3} />
-        <NFTProductView tokenId={'2'} collection={collection!} image={'2.png'} floor={1} name="Collection 2" volume={3} />
-        <NFTProductView tokenId={'3'} collection={collection!} image={'3.png'} floor={1} name="Collection 3" volume={3} />
-        <NFTProductView tokenId={'4'} collection={collection!} image={'4.png'} floor={1} name="Collection 4" volume={3} />
-        <NFTProductView tokenId={'5'} collection={collection!} image={'5.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'6'} collection={collection!} image={'6.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'7'} collection={collection!} image={'7.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'8'} collection={collection!} image={'8.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'9'} collection={collection!} image={'9.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'10'} collection={collection!} image={'10.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'11'} collection={collection!} image={'11.png'} floor={1} name="Collection 5" volume={3} />
-        <NFTProductView tokenId={'12'} collection={collection!} image={'12.png'} floor={1} name="Collection 5" volume={3} />
       </div>
     </BaseLayout>
   )
@@ -67,7 +56,7 @@ function HeaderSection({ bgImage }: { bgImage: string }) {
   )
 }
 
-function NFTProductView(item: { image: any; tokenId: string, collection: string, name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; floor: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; volume: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }) {
+function NFTProductView({ item }: any) {
   const navigate = useNavigate();
   return <>
     <div
@@ -77,12 +66,12 @@ function NFTProductView(item: { image: any; tokenId: string, collection: string,
       }}
     >
       <div className="relative aspect-square">
-        <img src={`/carousel/${item.image}`} className="absolute inset-0 h-full w-full object-cover object-top" />
+        <img src={`/carousel/${item.tokenId}.png`} className="absolute inset-0 h-full w-full object-cover object-top" />
       </div>
       <div className="p-4">
         <div className="mt-1 flex gap-x-8 relative">
           <div>
-            <p className="font-semibold text-slate-900">{item.name}</p>
+            <p className="font-semibold text-slate-900">{item.collection.substring(0, 10)}</p>
           </div>
           <div>
             <p className="text-sm absolute top-0 right-0">#{item.tokenId}</p>
@@ -90,8 +79,8 @@ function NFTProductView(item: { image: any; tokenId: string, collection: string,
         </div>
         <div className="mt-4 flex gap-x-8">
           <div>
-            <p className="font-semibold text-slate-900">{item.floor} ETH</p>
-            <p className="text-sm">Last sale: 0.53 ETH</p>
+            <p className="font-semibold text-slate-900">{FormatService.formatEther(item.currentPrice)}</p>
+            <p className="text-sm">Last sale: {FormatService.formatEther(item.lastSale)}</p>
           </div>
         </div>
       </div>

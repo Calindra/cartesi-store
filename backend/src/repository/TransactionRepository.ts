@@ -14,7 +14,7 @@ export class TransactionRepository {
 
     async findAllTrending({ dateGt, limit = 10 }: FindAllTrendingArgs) {
         const stmt = await this.db.prepare(`
-            SELECT collectionName, collection, sum(amount) as volume, min(amount) as floorPrice 
+            SELECT collectionName, min(tokenId) as tokenId, collection, sum(amount) as volume, min(amount) as floorPrice 
                 FROM transactions
                 WHERE date > ?
                 GROUP BY collectionName, collection
@@ -26,7 +26,7 @@ export class TransactionRepository {
         } catch (e) {
             throw e
         } finally {
-            stmt.finalize()
+            await stmt.finalize()
         }
     }
 
@@ -47,7 +47,7 @@ export class TransactionRepository {
             transaction.from,
             transaction.to,
             transaction.collection,
-            transaction.tokenId,
+            transaction.tokenId.toString(),
             transaction.coin,
             transaction.amount.toString().padStart(78, '0'),
             transaction.date,
@@ -55,7 +55,7 @@ export class TransactionRepository {
             transaction.categoryName,
             transaction.collectionName,
         );
-        stmt.finalize();
+        await stmt.finalize();
     }
 
     async createTable() {

@@ -60,14 +60,7 @@ app.post("/erc-721/list", async (req: Request, res: Response) => {
     try {
         const senderAddress = req.header("x-msg_sender") as Address;
         console.log('receiving', { ...req.body, senderAddress })
-        await wallet.transferERC721(
-            req.body.token,
-            senderAddress,
-            `${senderAddress}:list`.toLowerCase(),
-            BigInt(req.body.tokenId),
-        )
         console.log(toJSON(wallet))
-        const nftProductRepository = await container.getNFTProductRepository()
         const nftProduct: NFTProduct = {
             lastSale: BigInt(0),
             currentPrice: BigInt(req.body.price),
@@ -78,9 +71,11 @@ app.post("/erc-721/list", async (req: Request, res: Response) => {
             categoryId: 0,
             categoryName: req.body.categoryName,
             collectionName: req.body.collectionName,
-            owner: senderAddress
+            owner: senderAddress,
+            status: 'LISTED',
         }
-        await nftProductRepository.create(nftProduct)
+        const nftProductService = await container.getNFTProductService()
+        await nftProductService.list(nftProduct, wallet)
         res.send({ ok: 1 });
     } catch (e) {
         console.error(e)
@@ -104,6 +99,27 @@ app.get("/erc-721/:collection/listed/:tokenId", async (req: Request, res: Respon
     const nftProduct = await nftProductRepository.findByCollectionAddressAndTokenId(req.params.collection ?? '', BigInt(req.params.tokenId ?? '0'))
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
     res.send(toJSON(nftProduct))
+})
+
+app.post("/erc-721/:collection/listed/:tokenId/buy", async (req: Request, res: Response) => {
+    try {
+        const nftProductService = await container.getNFTProductService()
+        const nftProduct = await nftProductService.findByCollectionAddressAndTokenId(req.params.collection ?? '', BigInt(req.params.tokenId ?? '0'))
+        if (!nftProduct) {
+            res.status(404).send({ message: 'Not found' })
+            return
+        }
+        await nftProductService.buyNFT(nftProduct, req.get('x-msg_sender') as Address, wallet)
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.send(toJSON(nftProduct))
+    } catch (e) {
+        console.error(e)
+        if (e instanceof Error) {
+            res.status(500).send({ message: e.message });
+        } else {
+            res.status(500).send({ message: 'Unexpected error' })
+        }
+    }
 })
 
 bootstrap().catch((e) => {

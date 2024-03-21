@@ -25,7 +25,7 @@ export class NFTProductRepository {
         } catch (e) {
             throw e
         } finally {
-            stmt.finalize()
+            await stmt.finalize()
         }
     }
 
@@ -36,6 +36,9 @@ export class NFTProductRepository {
             `)
         try {
             const raw = await stmt.get(collection, tokenId.toString())
+            if (!raw) {
+                return null
+            }
             return {
                 ...raw,
                 currentPrice: BigInt(raw.currentPrice),
@@ -45,12 +48,13 @@ export class NFTProductRepository {
         } catch (e) {
             throw e
         } finally {
-            stmt.finalize()
+            await stmt.finalize()
         }
     }
 
     async create(nftProduct: NFTProduct) {
         const stmt = await this.db.prepare(`INSERT INTO nft_product VALUES (
+            ?,
             ?,
             ?,
             ?,
@@ -73,8 +77,40 @@ export class NFTProductRepository {
             nftProduct.categoryName,
             nftProduct.collectionName,
             nftProduct.owner,
+            nftProduct.status,
         );
-        stmt.finalize();
+        await stmt.finalize();
+    }
+
+    async update(nftProduct: NFTProduct) {
+        const stmt = await this.db.prepare(`UPDATE nft_product
+            SET
+                lastSale = ?,
+                currentPrice = ?,
+                coin = ?,
+                endDate = ?,
+                categoryId = ?,
+                categoryName = ?,
+                collectionName = ?,
+                owner = ?,
+                status = ?
+            WHERE collection = ? and tokenId = ?
+        `);
+        stmt.run(
+            nftProduct.lastSale.toString().padStart(78, '0'),
+            nftProduct.currentPrice.toString().padStart(78, '0'),
+            nftProduct.coin,
+            nftProduct.endDate,
+            nftProduct.categoryId,
+            nftProduct.categoryName,
+            nftProduct.collectionName,
+            nftProduct.owner,
+            nftProduct.status,
+
+            nftProduct.collection,
+            nftProduct.tokenId.toString(),
+        );
+        await stmt.finalize();
     }
 
     async createTable() {
@@ -96,7 +132,9 @@ export class NFTProductRepository {
             categoryName TEXT,
             collectionName TEXT,
 
-            owner TEXT
+            owner TEXT,
+
+            status TEXT
         )`);
     }
 }
@@ -120,4 +158,6 @@ export interface NFTProduct {
     collectionName: string
 
     owner: string
+
+    status: 'LISTED' | 'UNLISTED'
 }

@@ -2,6 +2,7 @@ import { Database, open } from 'sqlite';
 import sqlite3 from 'sqlite3';
 import { TransactionRepository } from './repository/TransactionRepository';
 import { NFTProductRepository } from './repository/NFTProductRepository';
+import { NFTProductService } from './services/NFTProductService';
 
 /**
  * manual inversify
@@ -36,6 +37,12 @@ class Container {
             this.nftProductRepository = new NFTProductRepository(await this.getDb())
         }
         return this.nftProductRepository
+    }
+
+    async getNFTProductService() {
+        const nftProductRepository = await this.getNFTProductRepository()
+        const transactionRepository = await this.getTransactionRepository()
+        return new NFTProductService(nftProductRepository, transactionRepository)
     }
 }
 

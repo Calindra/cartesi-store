@@ -19,7 +19,8 @@ describe("NFTProductRepository", () => {
         categoryId: 0,
         categoryName: "",
         collectionName: "Bored",
-        owner: "0xOwner"
+        owner: "0xOwner",
+        status: 'LISTED',
     }
 
     beforeEach(async () => {
@@ -48,6 +49,15 @@ describe("NFTProductRepository", () => {
 
         expect(products.length).toEqual(1)
         expect(products[0]).toEqual(nftProduct)
+    })
+
+    it("should update a NFTProduct", async () => {
+        nftProduct.owner = 'OxBruno'
+        await nftProductRepository.create(nftProduct)
+        await nftProductRepository.update({...nftProduct, owner: "0xOshiro"})
+        const updated = await nftProductRepository.findByCollectionAddressAndTokenId(nftProduct.collection, nftProduct.tokenId)
+        
+        expect(updated.owner).toEqual("0xOshiro")
     })
 
 })

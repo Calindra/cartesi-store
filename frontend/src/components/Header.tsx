@@ -5,8 +5,10 @@ import { WalletIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import Container from './Container'
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate()
   const ref = useRef(null)
   const [isSticked, setIsSticked] = useState(false)
 
@@ -34,7 +36,9 @@ export default function Header() {
           <button className="h-full px-1 xl:hidden">
             <Bars3Icon className="h-8 w-8" />
           </button>
-          <div className="flex h-full items-center">
+          <div className="flex h-full items-center" onClick={() => {
+            navigate('/')
+          }}>
             <div className="relative w-40">
               <img
                 src={isSticked ? logo_dark : logo_light}

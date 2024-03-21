@@ -2,11 +2,53 @@ import { CartesiWallet } from "@/cartesi/CartesiWallet";
 import Button from "@/components/Button";
 import BaseLayout from "@/components/layouts/BaseLayout"
 import { FormatService } from "@/services/FormatService";
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { HttpService } from "@/services/HttpService";
+import { SignerService } from "@/services/SignerService";
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom";
 
 function NFTProductScreen() {
   const { collection, tokenId } = useParams();
+  const [price, setPrice] = useState(0);
+  const [nftProduct, setNFTProduct] = useState({} as any);
+  const fetch = HttpService.getRawCartesifyFetch();
+
+  async function init(collection: string, tokenId: string) {
+    const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed/${tokenId}`)
+    if (!res.ok) {
+      console.log(res.status, res.text())
+      return
+    }
+    const json = await res.json()
+    setNFTProduct(json)
+    setPrice(json.currentPrice)
+    console.log('Success!', JSON.stringify(json, null, 4))
+  }
+
+  async function buyNFT() {
+    const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed/${tokenId}/buy`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+        signer: await SignerService.getSigner(),
+      })
+    if (!res.ok) {
+      console.log(res.status, res.text())
+      return
+    }
+    const json = await res.json()
+    console.log('Success!', JSON.stringify(json, null, 4))
+  }
+
+  useEffect(() => {
+    if (collection && tokenId) {
+      init(collection, tokenId)
+    }
+  }, [collection, tokenId])
+
   return (
     <BaseLayout>
       <HeaderSection bgImage={`${tokenId}.png`} />
@@ -16,8 +58,16 @@ function NFTProductScreen() {
         </div>
         <div>
           <CartesiWallet />
-          <div>Price: {FormatService.formatEther(1)}</div>
-          <Button>Buy now</Button>
+          <div>Price: {FormatService.formatEther(nftProduct?.currentPrice ?? '0')}</div>
+          {nftProduct?.status === 'LISTED' ? (
+            <div>
+              <Button onClick={buyNFT}>Buy now</Button>
+            </div>
+          ) : (
+            <div>
+              <Button disabled={true}>Sold</Button>
+            </div>
+          )}
         </div>
       </div>
     </BaseLayout>

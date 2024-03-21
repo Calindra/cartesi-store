@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function Button({ className, onClick, ...rest }: ButtonProps) {
+export default function Button({ className, disabled: _disabled, onClick, ...rest }: ButtonProps) {
   const [disabled, setDisabled] = useState(false)
   async function _onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     try {
@@ -25,7 +25,7 @@ export default function Button({ className, onClick, ...rest }: ButtonProps) {
       )}
       {...rest}
       onClick={(e) => _onClick(e)}
-      disabled={disabled}
+      disabled={_disabled === true ? true : disabled}
     />
   )
 }

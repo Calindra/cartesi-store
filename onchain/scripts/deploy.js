@@ -12,18 +12,10 @@ async function main() {
   const nonFunToken = await ethers.getContractAt('NonFunToken', token.address);
 
   const address = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-  let tx = await nonFunToken.mintNFT(address, '0', "http://localhost:5173/carousel/");
-  await tx.wait();
-  let tx1 = await nonFunToken.mintNFT(address, '1', "http://localhost:5173/carousel/");
-  await tx1.wait();
-  let tx2 = await nonFunToken.mintNFT(address, '2', "http://localhost:5173/carousel/");
-  await tx2.wait();
-  let tx3 = await nonFunToken.mintNFT(address, '3', "http://localhost:5173/carousel/");
-  await tx3.wait();
-  let tx4 = await nonFunToken.mintNFT(address, '4', "http://localhost:5173/carousel/");
-  await tx4.wait();
-  let tx5 = await nonFunToken.mintNFT(address, '5', "http://localhost:5173/carousel/");
-  await tx5.wait();
+  for (let i = 0; i < 10; i++) {
+    let tx = await nonFunToken.mintNFT(address, `${i}`, "http://localhost:5173/carousel/");
+    await tx.wait();
+  }
   console.log(`Mint NFT to ${address}`)
 
   const url = await nonFunToken.tokenURI("0")
