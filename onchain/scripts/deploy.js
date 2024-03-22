@@ -48,9 +48,11 @@ async function main() {
     console.log(url)
 
     const erc721address = token.address
+    let promises = []
     for (let i = 0; i < 10; i++) {
       console.log('Listando', i)
-      const res = await _fetch(`http://127.0.0.1:8383/erc-721/list`, {
+
+      const res = _fetch(`http://127.0.0.1:8383/erc-721/list`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -61,11 +63,14 @@ async function main() {
           price: 200 + i,
         }),
       })
+      await new Promise(resolve => setTimeout(resolve, 200))
+      promises.push(res)
+    }
+    (await Promise.all(promises)).forEach(res => {
       if (!res.ok) {
         console.log(res.status, res.text())
-        return
       }
-    }
+    })
 
     console.log('Buying', collectionIndex)
     const res = await _fetch(`http://127.0.0.1:8383/erc-721/${erc721address}/listed/${collectionIndex}/buy`,

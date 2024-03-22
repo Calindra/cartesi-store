@@ -41,7 +41,7 @@ export class NFTProductService {
             if (dbNft.owner !== nft.owner) {
                 throw new Error(`Forbidden`)
             }
-            await this.nftProductRepository.update({ ...nft, status: 'LISTED' })
+            await this.nftProductRepository.update({ ...nft, lastSale: dbNft.lastSale, status: 'LISTED' })
         } else {
             await this.nftProductRepository.create(nft)
         }

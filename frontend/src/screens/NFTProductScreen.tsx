@@ -9,11 +9,14 @@ import { useParams } from "react-router-dom";
 
 function NFTProductScreen() {
   const { collection, tokenId } = useParams();
-  const [price, setPrice] = useState(0);
   const [nftProduct, setNFTProduct] = useState({} as any);
+  const [userAddress, setUserAddress] = useState('');
+  const [erc721Price, setErc721Price] = useState('0');
   const fetch = HttpService.getRawCartesifyFetch();
 
   async function init(collection: string, tokenId: string) {
+    const signer = await SignerService.getSigner()
+    setUserAddress(signer?.address ?? '')
     const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed/${tokenId}`)
     if (!res.ok) {
       console.log(res.status, res.text())
@@ -21,7 +24,7 @@ function NFTProductScreen() {
     }
     const json = await res.json()
     setNFTProduct(json)
-    setPrice(json.currentPrice)
+    setErc721Price(json.currentPrice ?? '0')
     console.log('Success!', JSON.stringify(json, null, 4))
   }
 
@@ -41,6 +44,32 @@ function NFTProductScreen() {
     }
     const json = await res.json()
     console.log('Success!', JSON.stringify(json, null, 4))
+    if (collection && tokenId) {
+      init(collection, tokenId)
+    }
+  }
+
+  async function listNFT() {
+    const res = await fetch(`http://127.0.0.1:8383/erc-721/list`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: collection,
+        tokenId: tokenId,
+        price: erc721Price,
+      }),
+      signer: await SignerService.getSigner(),
+    })
+    if (!res.ok) {
+      console.log(res.status, res.text())
+      return
+    }
+    console.log('Success!')
+    if (collection && tokenId) {
+      init(collection, tokenId)
+    }
   }
 
   useEffect(() => {
@@ -58,16 +87,34 @@ function NFTProductScreen() {
         </div>
         <div>
           <CartesiWallet />
-          <div>Price: {FormatService.formatEther(nftProduct?.currentPrice ?? '0')}</div>
+          {nftProduct?.owner?.toLowerCase() === userAddress.toLowerCase() && nftProduct?.status === 'UNLISTED' ? (
+            <div>
+              <div>Price: <input value={erc721Price} onChange={e => setErc721Price(e.target.value)}/></div>
+            </div>
+          ) : (
+            <div>
+              <div>Price: {FormatService.formatEther(nftProduct?.currentPrice ?? '0')}</div>
+            </div>
+          )}
+          
           {nftProduct?.status === 'LISTED' ? (
             <div>
               <Button onClick={buyNFT}>Buy now</Button>
             </div>
           ) : (
             <div>
-              <Button disabled={true}>Sold</Button>
+              {nftProduct?.owner?.toLowerCase() === userAddress.toLowerCase() ? (
+                <div>
+                  <Button onClick={listNFT}>List</Button>
+                </div>
+              ) : (
+                <div>
+                  <Button disabled={true}>Sold</Button>
+                </div>
+              )}
             </div>
           )}
+
         </div>
       </div>
     </BaseLayout>
