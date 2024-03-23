@@ -43,7 +43,7 @@ export class TransactionRepository {
             ?,
             ?
         )`);
-        stmt.run(
+        await stmt.run(
             transaction.from,
             transaction.to,
             transaction.collection,

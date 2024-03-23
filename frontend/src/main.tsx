@@ -12,6 +12,7 @@ import './index.css'
 import CollectionScreen from './screens/CollectionScreen.tsx';
 import NFTProductScreen from './screens/NFTProductScreen.tsx';
 import WalletScreen from './screens/WalletScreen.tsx';
+import { SnackbarProvider } from 'notistack';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SnackbarProvider preventDuplicate >
+      <RouterProvider router={router} />
+    </SnackbarProvider>
   </React.StrictMode>
 )

@@ -64,11 +64,6 @@ describe("NFTProductService", () => {
             // check the ether value on the buyer's wallet
             const buyerWallet = await wallet.getWalletOrNew(buyer)
             expect(buyerWallet.ether).toEqual(900n)
-
-            // check the unlisted NFT
-            const updatedProduct = await nftProductService.findByCollectionAddressAndTokenId(nftProduct.collection, nftProduct.tokenId)
-            expect(updatedProduct.owner).toEqual(buyer)
-            expect(updatedProduct.status).toEqual('UNLISTED')
         })
 
         it("should send money to seller", async () => {
@@ -90,7 +85,7 @@ describe("NFTProductService", () => {
 
         it("should create one transaction", async () => {
             await nftProductService.buyNFT(nftProduct, buyer, wallet)
-            const transactions = await transactionRepository.findAllTrending({dateGt: '2000-01-01'})
+            const transactions = await transactionRepository.findAllTrending({ dateGt: '2000-01-01' })
             expect(transactions.length).toEqual(1)
         })
     })

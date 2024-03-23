@@ -6,11 +6,23 @@
 # If any needed dependencies rely on native binaries, you must use 
 # a riscv64 image such as cartesi/node:20-jammy for the build stage,
 # to ensure that the appropriate binaries will be generated.
-FROM node:20.8.0-bookworm as build-stage
+# FROM node:20.8.0-bookworm as build-stage
+FROM --platform=linux/riscv64 cartesi/node:20.8.0-jammy-slim as build-stage
+
+RUN <<EOF
+set -e
+apt-get update
+apt-get install -y --no-install-recommends python3 libsqlite3-dev build-essential 
+EOF
+
 
 WORKDIR /opt/cartesi/dapp
+RUN npm init -y && npm uninstall sqlite3 && npm install --build-from-source sqlite3
+RUN rm package.json
+RUN cp -r ./node_modules/sqlite3/build . && ls -la ./build
 COPY . .
-RUN yarn install && yarn build
+
+RUN npm i && npm run build
 
 # runtime stage: produces final image that will be executed
 
@@ -35,9 +47,10 @@ EOF
 ENV PATH="/opt/cartesi/bin:${PATH}"
 
 WORKDIR /opt/cartesi/dapp
-COPY --from=build-stage /opt/cartesi/dapp/dist .
+COPY --from=build-stage /opt/cartesi/dapp .
 
 ENV ROLLUP_HTTP_SERVER_URL="http://127.0.0.1:5004"
 
 ENTRYPOINT ["rollup-init"]
-CMD ["node", "index.js"]
+
+CMD ["node", "dist/index.js"]
