@@ -17,7 +17,7 @@ function CollectionScreen() {
       return
     }
     const json = await res.json()
-    console.log('Success!', JSON.stringify(json, null, 4))
+    // console.log('Success!', JSON.stringify(json, null, 4))
     setItems(json.rows)
   }
 

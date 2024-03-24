@@ -26,7 +26,7 @@ export function CartesiWallet() {
     }, [])
 
     return <>
-        <div>Ethereum balance: {balanceL1}</div>
+        <div>BaseLayer balance: {balanceL1}</div>
         <div>Cartesi balance: {balanceL2}</div>
         <div>Voucher balance: ?</div>
     </>

@@ -4,6 +4,7 @@ import { JsonRpcSigner } from "ethers"
 import { useEffect, useState } from "react"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import Button from "../components/Button"
+import { FormatService } from "@/services/FormatService"
 
 type WalletRestProps = {
     fetch: FetchFun
@@ -240,11 +241,11 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     return (
         <div style={{ textAlign: 'left' }}>
-            <h2>Wallet + REST</h2>
+            <h2 className="text-4xl font-bold mb-4">Wallet</h2>
             <p>Some wallet operations require you to first provide the dappAddress.</p>
             <Button onClick={callDAppAddressRelay}>Inform DApp Address</Button>
 
-            <h3>JSON Wallet</h3>
+            <h3 className="text-3xl font-semibold mb-3">JSON Wallet</h3>
             <pre>GET http://127.0.0.1:8383/wallet/:address</pre>
             <Button onClick={async () => {
                 const signer = await getSigner()
@@ -256,14 +257,14 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                 Backend wallet response: <pre>{backendWalletResponse}</pre>
             </div>
 
-            <h3>Ether</h3>
+            <h3 className="text-3xl font-semibold mb-3">Ether</h3>
             <Button onClick={async () => {
                 const signer = await getSigner()
                 const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
                 const json = await res.json()
-                setEtherBalanceL2(json.ether)
+                setEtherBalanceL2(FormatService.formatEther(json.ether))
                 const balance = await signer.provider.getBalance(signer.address)
-                setEtherBalanceL1(balance.toString())
+                setEtherBalanceL1(FormatService.formatEther(balance.toString()))
                 console.log('Success!')
             }}>GET Balance</Button><br />
             <input value={etherValue} onChange={(e) => {
@@ -280,7 +281,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                 L2 Balance: {etherBalanceL2}
             </div>
 
-            <h3>ERC-20</h3>
+            <h3 className="text-3xl font-semibold mb-3">ERC-20</h3>
             <input value={erc20address} onChange={(e) => {
                 localStorage.setItem('erc20address', e.target.value)
                 setErc20Address(e.target.value)
@@ -305,7 +306,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
             L1 Balance: {erc20balanceL1}<br />
             L2 Balance: {erc20balanceL2}<br />
 
-            <h3>ERC-721</h3>
+            <h3 className="text-3xl font-semibold mb-3">ERC-721</h3>
             <input value={erc721address} onChange={(e) => {
                 localStorage.setItem('erc721address', e.target.value)
                 setErc721Address(e.target.value)

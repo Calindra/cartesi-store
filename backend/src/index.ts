@@ -14,7 +14,7 @@ CartesifyBackend.createDapp().then((initDapp: any) => {
         process.exit(1);
     });
     wallet = createWallet()
-    dapp.addAdvanceHandler(wallet.handler);
+    dapp.addAdvanceHandler(wallet.handler); // this handles the deposits
     WalletRouter.addWalletRoutes(app, wallet, dapp);
 });
 

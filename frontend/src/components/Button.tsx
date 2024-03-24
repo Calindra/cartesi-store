@@ -1,9 +1,11 @@
+import { useSnackbar } from 'notistack';
 import { ButtonHTMLAttributes, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
 export default function Button({ className, disabled: _disabled, onClick, ...rest }: ButtonProps) {
+  const { enqueueSnackbar } = useSnackbar();
   const [disabled, setDisabled] = useState(false)
   async function _onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     try {
@@ -13,6 +15,9 @@ export default function Button({ className, disabled: _disabled, onClick, ...res
       }
     } catch (e) {
       console.error(e)
+      if (e instanceof Error) {
+        enqueueSnackbar(e.message, { variant: 'error' })
+      }
     } finally {
       setDisabled(false)
     }

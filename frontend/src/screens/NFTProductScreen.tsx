@@ -6,6 +6,7 @@ import { HttpService } from "@/services/HttpService";
 import { SignerService } from "@/services/SignerService";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
+import { useSnackbar } from 'notistack';
 
 function NFTProductScreen() {
   const { collection, tokenId } = useParams();
@@ -14,18 +15,19 @@ function NFTProductScreen() {
   const [erc721Price, setErc721Price] = useState('0');
   const fetch = HttpService.getRawCartesifyFetch();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   async function init(collection: string, tokenId: string) {
     const signer = await SignerService.getSigner()
     setUserAddress(signer?.address ?? '')
     const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed/${tokenId}`)
     if (!res.ok) {
-      console.log(res.status, res.text())
+      enqueueSnackbar("Error", { variant: 'error' })
       return
     }
     const json = await res.json()
     setNFTProduct(json)
     setErc721Price(json.currentPrice ?? '0')
-    console.log('Success!', JSON.stringify(json, null, 4))
   }
 
   async function buyNFT() {
@@ -39,11 +41,10 @@ function NFTProductScreen() {
         signer: await SignerService.getSigner(),
       })
     if (!res.ok) {
-      console.log(res.status, res.text())
-      return
+      throw new Error(await res.text())
     }
-    const json = await res.json()
-    console.log('Success!', JSON.stringify(json, null, 4))
+    await res.json()
+    enqueueSnackbar("Success!", { variant: 'success' })
     if (collection && tokenId) {
       init(collection, tokenId)
     }
@@ -89,14 +90,14 @@ function NFTProductScreen() {
           <CartesiWallet />
           {nftProduct?.owner?.toLowerCase() === userAddress.toLowerCase() && nftProduct?.status === 'UNLISTED' ? (
             <div>
-              <div>Price: <input value={erc721Price} onChange={e => setErc721Price(e.target.value)}/></div>
+              <div>Price: <input value={erc721Price} onChange={e => setErc721Price(e.target.value)} /></div>
             </div>
           ) : (
             <div>
               <div>Price: {FormatService.formatEther(nftProduct?.currentPrice ?? '0')}</div>
             </div>
           )}
-          
+
           {nftProduct?.status === 'LISTED' ? (
             <div>
               <Button onClick={buyNFT}>Buy now</Button>

@@ -66,7 +66,7 @@ export class NFTProductRepository {
             ?,
             ?
         )`);
-        stmt.run(
+        await stmt.run(
             nftProduct.lastSale.toString().padStart(78, '0'),
             nftProduct.currentPrice.toString().padStart(78, '0'),
             nftProduct.collection,
@@ -96,7 +96,7 @@ export class NFTProductRepository {
                 status = ?
             WHERE collection = ? and tokenId = ?
         `);
-        stmt.run(
+        await stmt.run(
             nftProduct.lastSale.toString().padStart(78, '0'),
             nftProduct.currentPrice.toString().padStart(78, '0'),
             nftProduct.coin,

@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@calindra/cartesify':
-    specifier: ^0.1.2
-    version: 0.1.2
+    specifier: ^0.1.3
+    version: 0.1.3
   '@cartesi/rollups':
     specifier: ^1.2.0
     version: 1.2.0
@@ -30,8 +30,8 @@ packages:
     resolution: {integrity: sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==}
     dev: false
 
-  /@calindra/cartesify@0.1.2:
-    resolution: {integrity: sha512-BW62b7SGpNrLYRLyby5i9O+uzUNxXizNd770YdnCAlLJ+J7Lhd5YU8/TxD4sGE8pJrOFNBdPWYhoCzZcSJwqfw==}
+  /@calindra/cartesify@0.1.3:
+    resolution: {integrity: sha512-J+hisjD23aQ6VsIzEiqs5O6IgEmrLCFMo6T9kcBnYKej2Z9uzsIp8thSCbVq0B/n/XaKw6v1VgC7DsIQXVEoBg==}
     engines: {node: '>=20.0.0'}
     dependencies:
       '@cartesi/rollups': 1.2.0
@@ -1348,7 +1348,6 @@ packages:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
     dev: false
-    bundledDependencies: false
 
   /evp_bytestokey@1.0.3:
     resolution: {integrity: sha512-/f2Go4TognH/KvCISP7OUsHn85hT9nUkxxA9BEWxFn+Oj9o8ZNLm/40hdlgSLyuOimsrTKLUMEorQexp/aPQeA==}

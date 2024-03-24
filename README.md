@@ -1,17 +1,36 @@
-# TypeScript Cartesify DApp Template
+# Cartesi Store
 
-**Cartesify requires TypeScript 5**
+Exploring use cases to discover missing functionalities.
 
-**Creating the frontend with create-react-app script is discouraged as it will create a project with Typescript 4**
+## How to run
 
-This is a Sunodo template for Typescript Cartesi DApps.
-It uses node to execute the backend application. The application entrypoint is the `src/index.ts` file. It is bundled with [esbuild](https://esbuild.github.io), but any bundler can be used.
+Start the nonodo
 
+```shell
+nonodo
+```
 
-For documentation on how to develop Cartesi applications refer to https://docs.cartesi.io
+Start the backend
 
-For documentation on how to use Sunodo refer to https://docs.sunodo.io
+```shell
+cd backend
+pnpm start
+```
 
-For documentation on how to use Cartesify refer to https://github.com/Calindra/cartesify
+Fill the database as needed
 
-This is a template for TypeScript Cartesi DApps.
+```shell
+cd onchain
+pnpm run deploy
+```
+
+Start the frontend
+
+```shell
+cd frontend
+pnpm run dev
+```
+
+Access http://localhost:5173/
+
+Currently, only the links on the trending section are functional on the first page. You can navigate to the collection, select an NFT, and purchase it. Additionally, you have the option to list the NFT.
