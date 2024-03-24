@@ -3,6 +3,7 @@ import sqlite3 from 'sqlite3';
 import { TransactionRepository } from './repository/TransactionRepository';
 import { NFTProductRepository } from './repository/NFTProductRepository';
 import { NFTProductService } from './services/NFTProductService';
+import { WalletRepository } from './repository/WalletRepository';
 
 /**
  * manual inversify
@@ -25,6 +26,10 @@ class Container {
         return this.db
     }
 
+    async getWalletRepository() {
+        return new WalletRepository()
+    }
+
     async getTransactionRepository() {
         if (!this.transactionRepository) {
             this.transactionRepository = new TransactionRepository(await this.getDb())
@@ -40,9 +45,10 @@ class Container {
     }
 
     async getNFTProductService() {
+        const walletRepository = await this.getWalletRepository()
         const nftProductRepository = await this.getNFTProductRepository()
         const transactionRepository = await this.getTransactionRepository()
-        return new NFTProductService(nftProductRepository, transactionRepository)
+        return new NFTProductService(nftProductRepository, walletRepository, transactionRepository)
     }
 }
 

@@ -7,13 +7,17 @@ import { WalletApp, createWallet } from "@deroll/wallet";
 let wallet: WalletApp
 let dapp: any
 
-CartesifyBackend.createDapp().then((initDapp: any) => {
+CartesifyBackend.createDapp().then(async (initDapp: any) => {
     dapp = initDapp
     dapp.start().catch((e: any) => {
         console.error(e);
         process.exit(1);
     });
     wallet = createWallet()
+    await bootstrap(wallet).catch((e) => {
+        console.error(e);
+        process.exit(1);
+    })
     dapp.addAdvanceHandler(wallet.handler); // this handles the deposits
     WalletRouter.addWalletRoutes(app, wallet, dapp);
 });
@@ -25,6 +29,7 @@ import { WalletRouter } from './WalletRouter';
 import { Address } from 'viem';
 import { NFTProduct } from './repository/NFTProductRepository';
 import { bootstrap } from './bootstrap';
+import { toJSON } from './JSONSerializer';
 
 const app = express();
 const port = 8383;
@@ -122,28 +127,6 @@ app.post("/erc-721/:collection/listed/:tokenId/buy", async (req: Request, res: R
     }
 })
 
-bootstrap().catch((e) => {
-    console.error(e);
-    process.exit(1);
-})
-
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-
-
-// aux
-function toJSON(obj: object) {
-    const json = JSON.stringify(obj, (_key, value) => {
-        if (typeof value === 'bigint') {
-            return value.toString()
-        } else if (typeof value === 'object' && value instanceof Map) {
-            return Object.fromEntries(value)
-        } else if (typeof value === 'object' && value instanceof Set) {
-            return [...value]
-        } else {
-            return value
-        }
-    })
-    return json
-}

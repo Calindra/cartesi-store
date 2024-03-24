@@ -4,6 +4,16 @@ Exploring use cases to discover missing functionalities.
 
 ## How to run
 
+### Backend
+
+#### Brunodo
+
+```shell
+pnpm run dev
+```
+
+#### Classic nonodo way
+
 Start the nonodo
 
 ```shell
@@ -17,12 +27,16 @@ cd backend
 pnpm start
 ```
 
+### Database
+
 Fill the database as needed
 
 ```shell
 cd onchain
 pnpm run deploy
 ```
+
+### Frontend
 
 Start the frontend
 

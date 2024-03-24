@@ -2,6 +2,7 @@ import { WalletApp } from "@deroll/wallet";
 import { NFTProduct, NFTProductRepository } from "../repository/NFTProductRepository";
 import { Address } from "viem";
 import { NFTTransaction, TransactionRepository } from "../repository/TransactionRepository";
+import { WalletRepository } from "../repository/WalletRepository";
 
 
 export interface TrendingArgs {
@@ -10,7 +11,9 @@ export interface TrendingArgs {
 
 export class NFTProductService {
 
-    constructor(private nftProductRepository: NFTProductRepository, private transactionRepository: TransactionRepository) {
+    constructor(private nftProductRepository: NFTProductRepository, 
+        private walletRepository: WalletRepository,
+        private transactionRepository: TransactionRepository) {
 
     }
 
@@ -45,6 +48,7 @@ export class NFTProductService {
         } else {
             await this.nftProductRepository.create(nft)
         }
+        await this.walletRepository.update(wallet)
     }
 
     async buyNFT(nft: NFTProduct, buyer: string, wallet: WalletApp) {
@@ -77,5 +81,6 @@ export class NFTProductService {
             collectionName: nft.categoryName
         }
         await this.transactionRepository.create(nftTx)
+        await this.walletRepository.update(wallet)
     }
 }

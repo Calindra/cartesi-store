@@ -131,3 +131,4 @@ dist
 
 # the test database
 sqlite3-test.db
+wallet-test.json

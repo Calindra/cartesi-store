@@ -5,6 +5,7 @@ import { it, describe, expect, beforeEach, afterEach } from "vitest";
 import { NFTProductService } from "../../src/services/NFTProductService";
 import { NFTProduct, NFTProductRepository } from "../../src/repository/NFTProductRepository";
 import { TransactionRepository } from "../../src/repository/TransactionRepository";
+import { WalletRepository } from "../../src/repository/WalletRepository";
 
 describe("NFTProductService", () => {
     let db: Database<sqlite3.Database, sqlite3.Statement>
@@ -20,8 +21,9 @@ describe("NFTProductService", () => {
         transactionRepository = new TransactionRepository(db);
         await transactionRepository.createTable()
         nftProductRepository = new NFTProductRepository(db);
+        const walletRepository = new WalletRepository();
         await nftProductRepository.createTable()
-        nftProductService = new NFTProductService(nftProductRepository, transactionRepository)
+        nftProductService = new NFTProductService(nftProductRepository, walletRepository, transactionRepository)
     })
 
     afterEach(async () => {
