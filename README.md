@@ -6,9 +6,17 @@ Exploring use cases to discover missing functionalities.
 
 ### Backend
 
+Install all dependencies
+
+```shell
+cd backend
+pnpm i
+```
+
 #### Brunodo
 
 ```shell
+cd backend
 pnpm run dev
 ```
 
