@@ -1,8 +1,9 @@
 import { WalletApp } from "@deroll/wallet";
 import { NFTProduct, NFTProductRepository } from "../repository/NFTProductRepository";
-import { Address } from "viem";
+import { Address, getAddress } from "viem";
 import { NFTTransaction, TransactionRepository } from "../repository/TransactionRepository";
 import { WalletRepository } from "../repository/WalletRepository";
+import { toJSON } from "../JSONSerializer";
 
 
 export interface TrendingArgs {
@@ -55,9 +56,13 @@ export class NFTProductService {
         if (!nft) {
             throw new Error(`Missing NFT`)
         }
+        const tokenAddress = getAddress(nft.collection.toString())
+        const escrow = `${nft.owner}:list`.toLowerCase() as Address
+        const listWallet = await wallet.getWalletOrNew(escrow)
+        console.log(toJSON(listWallet.erc721.get(tokenAddress) || {}))
         await wallet.transferERC721(
-            nft.collection.toString() as Address,
-            `${nft.owner}:list`.toLowerCase() as Address,
+            tokenAddress,
+            escrow,
             buyer,
             BigInt(nft.tokenId.toString())
         )

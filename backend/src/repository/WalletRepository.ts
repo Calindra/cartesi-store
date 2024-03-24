@@ -8,9 +8,17 @@ export class WalletRepository {
 
     jsonFilePath: string = path.join('data', 'wallets.json')
 
+    async readWalletJsonFile() {
+        try {
+            const content = await readFile(this.jsonFilePath, 'utf-8')
+            return JSON.parse(content)
+        } catch (e) {
+            return '{}'
+        }
+    }
+
     async load(derollWallet: WalletApp) {
-        const content = await readFile(this.jsonFilePath, 'utf-8')
-        const json = JSON.parse(content)
+        const json = await this.readWalletJsonFile()
         for (const walletAddress in json.wallets) {
             const userWallet = derollWallet.getWalletOrNew(walletAddress)
             const jsonWallet = json.wallets[walletAddress] as JSONWallet

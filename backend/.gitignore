@@ -129,6 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# the test database
-sqlite3-test.db
-wallet-test.json
+# database and wallets
+data/sqlite3-*.db
+data/wallet*.json

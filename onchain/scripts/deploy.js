@@ -53,7 +53,7 @@ async function main() {
     const erc721address = token.address
     let promises = []
     for (let i = 0; i < 10; i++) {
-      console.log('Listando', i)
+      console.log('Listing', i)
 
       const res = _fetch(`http://127.0.0.1:8383/erc-721/list`, {
         method: 'POST',

@@ -26,6 +26,7 @@ function NFTProductScreen() {
       return
     }
     const json = await res.json()
+    console.log(json)
     setNFTProduct(json)
     setErc721Price(json.currentPrice ?? '0')
   }
@@ -87,6 +88,7 @@ function NFTProductScreen() {
           <img src={`/carousel/${tokenId}.png`} className="w-full h-auto" />
         </div>
         <div>
+          <div>Owner: {nftProduct?.owner}</div>
           <CartesiWallet />
           {nftProduct?.owner?.toLowerCase() === userAddress.toLowerCase() && nftProduct?.status === 'UNLISTED' ? (
             <div>
