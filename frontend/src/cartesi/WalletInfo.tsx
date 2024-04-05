@@ -1,12 +1,30 @@
 import { Box, Button, Chip, Grid, Divider, Typography, Card, CardContent } from '@mui/material';
 import { DAppAddressRelay__factory } from "@cartesi/rollups"
 import { JsonRpcSigner } from 'ethers';
+import { useEffect, useState } from 'react';
 
 interface WalletInfoProps {
     dappAddress: string
     getSigner: () => Promise<JsonRpcSigner>
+    wallet: string
 }
-const WalletInfo = ({ getSigner, dappAddress }: WalletInfoProps) => {
+const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
+
+    const [walletInfo, setWalletInfo] = useState({ ether: ""})
+    const [totalCollections, setTotalCollections] = useState(0)
+    const [totalNfts, setTotalNfts] = useState(0)
+
+    useEffect(() => {
+        if (wallet) {
+            const jsonWallet = JSON.parse(wallet)
+            const totalCollections = Object.keys(jsonWallet.erc721).length;
+            const totalNfts: number = Object.values(jsonWallet.erc721).reduce((acc, curr: any) => acc + curr.length, 0) as number;
+            setTotalCollections(totalCollections)
+            setTotalNfts(totalNfts)
+            setWalletInfo(jsonWallet)
+        }
+    }, [wallet])
+
     async function callDAppAddressRelay() {
         const signer = await getSigner()
         const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
@@ -69,7 +87,7 @@ const WalletInfo = ({ getSigner, dappAddress }: WalletInfoProps) => {
                                 Ether
                             </Typography>
                             <Typography variant="subtitle2" fontWeight="500">
-                                100000000
+                                {walletInfo.ether}
                             </Typography>
                         </Grid>
                         <Grid
@@ -86,7 +104,7 @@ const WalletInfo = ({ getSigner, dappAddress }: WalletInfoProps) => {
                                 Collections
                             </Typography>
                             <Typography variant="subtitle2" fontWeight="500">
-                                10
+                                {totalCollections}
                             </Typography>
                         </Grid>
                         <Grid
@@ -102,7 +120,7 @@ const WalletInfo = ({ getSigner, dappAddress }: WalletInfoProps) => {
                                 NFTs
                             </Typography>
                             <Typography variant="subtitle2" fontWeight="500">
-                                11
+                                {totalNfts}
                             </Typography>
                         </Grid>
                     </Grid>

@@ -260,7 +260,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     return (
         <>
-            <WalletInfo getSigner={getSigner} dappAddress={dappAddress} />
+            <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
             <Collections collections={backendWalletResponse} />
 
             <div style={{ textAlign: 'left' }}>
