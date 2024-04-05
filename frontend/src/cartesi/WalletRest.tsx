@@ -5,6 +5,9 @@ import { useEffect, useState } from "react"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import Button from "../components/Button"
 import { FormatService } from "@/services/FormatService"
+import Collections from "./Collections"
+import WalletInfo from "./WalletInfo"
+
 
 type WalletRestProps = {
     fetch: FetchFun
@@ -29,6 +32,22 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
     const [erc721id, setErc721id] = useState('1')
     const [erc721Price, setErc721Price] = useState('1')
 
+    const [isEffectExecuted, setIsEffectExecuted] = useState(false);
+
+    useEffect(() => {
+        if (!isEffectExecuted) {
+            getWallet();
+            setIsEffectExecuted(true);
+        }
+    }, [isEffectExecuted]);
+
+    async function getWallet() {
+        const signer = await getSigner()
+        const res = await fetch(`http://127.0.0.1:8383/wallet/${signer?.address}`)
+        const json = await res.json()
+        const strResp = JSON.stringify(json, null, 4)
+        setBackendWalletResponse(strResp)
+    }
 
     useEffect(() => {
         loadErc20balance()
@@ -231,21 +250,26 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
         console.log('Success!')
     }
 
-    async function callDAppAddressRelay() {
-        const signer = await getSigner()
-        const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
-        const tx = await relay.relayDAppAddress(dappAddress)
-        const res = await (tx as any).wait()
-        console.log('Executed!', res)
-    }
+    // async function callDAppAddressRelay() {
+    //     const signer = await getSigner()
+    //     const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
+    //     const tx = await relay.relayDAppAddress(dappAddress)
+    //     const res = await (tx as any).wait()
+    //     console.log('Executed!', res)
+    // }
 
     return (
-        <div style={{ textAlign: 'left' }}>
-            <h2 className="text-4xl font-bold mb-4">Wallet</h2>
-            <p>Some wallet operations require you to first provide the dappAddress.</p>
-            <Button onClick={callDAppAddressRelay}>Inform DApp Address</Button>
+        <>
+            <WalletInfo getSigner={getSigner} dappAddress={dappAddress} />
+            <Collections collections={backendWalletResponse} />
 
-            <h3 className="text-3xl font-semibold mb-3">JSON Wallet</h3>
+            <div style={{ textAlign: 'left' }}>
+                {/* <h2 className="text-4xl font-bold mb-4">Wallet</h2>
+            <p>Some wallet operations require you to first provide the dappAddress.</p>
+            <Button onClick={callDAppAddressRelay}>Inform DApp Address</Button> */}
+
+
+                {/* <h3 className="text-3xl font-semibold mb-3">JSON Wallet</h3>
             <pre>GET http://127.0.0.1:8383/wallet/:address</pre>
             <Button onClick={async () => {
                 const signer = await getSigner()
@@ -254,93 +278,94 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                 setBackendWalletResponse(JSON.stringify(json, null, 4))
             }}>GET Wallet</Button><br />
             <div style={{ textAlign: 'left', paddingTop: '20px' }}>
+
                 Backend wallet response: <pre>{backendWalletResponse}</pre>
+            </div> */}
+                <h3 className="text-3xl font-semibold mb-3">Ether</h3>
+                <Button onClick={async () => {
+                    const signer = await getSigner()
+                    const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
+                    const json = await res.json()
+                    setEtherBalanceL2(FormatService.formatEther(json.ether))
+                    const balance = await signer.provider.getBalance(signer.address)
+                    setEtherBalanceL1(FormatService.formatEther(balance.toString()))
+                    console.log('Success!')
+                }}>GET Balance</Button><br />
+                <input value={etherValue} onChange={(e) => {
+                    setEtherValue(e.target.value)
+                }} />
+                <Button onClick={depositEther}>Deposit</Button>
+                <Button onClick={withdrawEther}>Voucher Withdraw</Button><br />
+                <input value={toAddress} onChange={(e) => {
+                    setToAddress(e.target.value)
+                }} />
+                <Button onClick={transferEther}>L2 Transfer</Button><br />
+                <div style={{ textAlign: 'left', paddingTop: '20px' }}>
+                    L1 Balance: {etherBalanceL1}<br />
+                    L2 Balance: {etherBalanceL2}
+                </div>
+
+                <h3 className="text-3xl font-semibold mb-3">ERC-20</h3>
+                <input value={erc20address} onChange={(e) => {
+                    localStorage.setItem('erc20address', e.target.value)
+                    setErc20Address(e.target.value)
+                }} />
+                <Button onClick={async () => {
+                    const signer = await getSigner()
+                    const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
+                    const json = await res.json()
+                    setErc20balanceL2(json.erc20[erc20address] ?? '0')
+                    loadErc20balance()
+                    console.log('Success!')
+                }}>GET Balance</Button><br />
+                <input value={erc20value} onChange={(e) => {
+                    setErc20value(e.target.value)
+                }} />
+                <Button onClick={depositErc20}>Deposit</Button>
+                <Button onClick={withdrawErc20}>Voucher Withdraw</Button><br />
+                <input value={toAddress} onChange={(e) => {
+                    setToAddress(e.target.value)
+                }} />
+                <Button onClick={transferErc20}>L2 Transfer</Button><br />
+                L1 Balance: {erc20balanceL1}<br />
+                L2 Balance: {erc20balanceL2}<br />
+
+                <h3 className="text-3xl font-semibold mb-3">ERC-721</h3>
+                <input value={erc721address} onChange={(e) => {
+                    localStorage.setItem('erc721address', e.target.value)
+                    setErc721Address(e.target.value)
+                }} />
+                <Button onClick={async () => {
+                    const signer = await getSigner()
+                    const url = `http://127.0.0.1:8383/wallet/${signer.address}`
+                    const res = await fetch(url)
+                    const json = await res.json()
+                    setErc721balanceL2(json.erc721[erc721address]?.length ?? '0')
+                    loadErc721balance()
+                    console.log('Success!')
+                }}>GET Balance</Button><br />
+                <input value={erc721id} onChange={(e) => {
+                    setErc721id(e.target.value)
+                }} />
+                <Button onClick={depositErc721}>Deposit</Button>
+                <Button onClick={withdrawErc721}>Voucher Withdraw</Button><br />
+                <input value={toAddress} onChange={(e) => {
+                    setToAddress(e.target.value)
+                }} />
+                <Button onClick={transferErc721}>L2 Transfer</Button>
+                <br />
+                Price:
+                <input value={erc721Price} onChange={(e) => {
+                    setErc721Price(e.target.value)
+                }} />
+                <Button onClick={listErc721}>L2 List</Button>
+                <Button onClick={listedErc721}>L2 Listed</Button>
+                <br />
+                L1 Balance: {erc721balanceL1}<br />
+                L2 Balance: {erc721balanceL2}<br />
+
+
             </div>
-
-            <h3 className="text-3xl font-semibold mb-3">Ether</h3>
-            <Button onClick={async () => {
-                const signer = await getSigner()
-                const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
-                const json = await res.json()
-                setEtherBalanceL2(FormatService.formatEther(json.ether))
-                const balance = await signer.provider.getBalance(signer.address)
-                setEtherBalanceL1(FormatService.formatEther(balance.toString()))
-                console.log('Success!')
-            }}>GET Balance</Button><br />
-            <input value={etherValue} onChange={(e) => {
-                setEtherValue(e.target.value)
-            }} />
-            <Button onClick={depositEther}>Deposit</Button>
-            <Button onClick={withdrawEther}>Voucher Withdraw</Button><br />
-            <input value={toAddress} onChange={(e) => {
-                setToAddress(e.target.value)
-            }} />
-            <Button onClick={transferEther}>L2 Transfer</Button><br />
-            <div style={{ textAlign: 'left', paddingTop: '20px' }}>
-                L1 Balance: {etherBalanceL1}<br />
-                L2 Balance: {etherBalanceL2}
-            </div>
-
-            <h3 className="text-3xl font-semibold mb-3">ERC-20</h3>
-            <input value={erc20address} onChange={(e) => {
-                localStorage.setItem('erc20address', e.target.value)
-                setErc20Address(e.target.value)
-            }} />
-            <Button onClick={async () => {
-                const signer = await getSigner()
-                const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
-                const json = await res.json()
-                setErc20balanceL2(json.erc20[erc20address] ?? '0')
-                loadErc20balance()
-                console.log('Success!')
-            }}>GET Balance</Button><br />
-            <input value={erc20value} onChange={(e) => {
-                setErc20value(e.target.value)
-            }} />
-            <Button onClick={depositErc20}>Deposit</Button>
-            <Button onClick={withdrawErc20}>Voucher Withdraw</Button><br />
-            <input value={toAddress} onChange={(e) => {
-                setToAddress(e.target.value)
-            }} />
-            <Button onClick={transferErc20}>L2 Transfer</Button><br />
-            L1 Balance: {erc20balanceL1}<br />
-            L2 Balance: {erc20balanceL2}<br />
-
-            <h3 className="text-3xl font-semibold mb-3">ERC-721</h3>
-            <input value={erc721address} onChange={(e) => {
-                localStorage.setItem('erc721address', e.target.value)
-                setErc721Address(e.target.value)
-            }} />
-            <Button onClick={async () => {
-                const signer = await getSigner()
-                const url = `http://127.0.0.1:8383/wallet/${signer.address}`
-                const res = await fetch(url)
-                const json = await res.json()
-                setErc721balanceL2(json.erc721[erc721address]?.length ?? '0')
-                loadErc721balance()
-                console.log('Success!')
-            }}>GET Balance</Button><br />
-            <input value={erc721id} onChange={(e) => {
-                setErc721id(e.target.value)
-            }} />
-            <Button onClick={depositErc721}>Deposit</Button>
-            <Button onClick={withdrawErc721}>Voucher Withdraw</Button><br />
-            <input value={toAddress} onChange={(e) => {
-                setToAddress(e.target.value)
-            }} />
-            <Button onClick={transferErc721}>L2 Transfer</Button>
-            <br />
-            Price:
-            <input value={erc721Price} onChange={(e) => {
-                setErc721Price(e.target.value)
-            }} />
-            <Button onClick={listErc721}>L2 List</Button>
-            <Button onClick={listedErc721}>L2 Listed</Button>
-            <br />
-            L1 Balance: {erc721balanceL1}<br />
-            L2 Balance: {erc721balanceL2}<br />
-
-
-        </div>
+        </>
     )
 }
