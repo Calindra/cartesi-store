@@ -291,19 +291,31 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
         console.log('Success!')
     }
 
-    // async function callDAppAddressRelay() {
-    //     const signer = await getSigner()
-    //     const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
-    //     const tx = await relay.relayDAppAddress(dappAddress)
-    //     const res = await (tx as any).wait()
-    //     console.log('Executed!', res)
-    // }
-
     return (
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12} lg={3}>
                     <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
+                    <TokenErc721Card
+                        cardTitle={"ERC-721"}
+                        setCurrentInputAddress={changeErc721address}
+                        currentInputAddress={erc721address}
+                        getBalance={getErc721Balance}
+                        balanceL1={erc721balanceL1}
+                        balanceL2={erc721balanceL2}
+                        setIdValue={setErc721id}
+                        idValue={erc721id}
+                        deposit={depositErc721}
+                        withdraw={withdrawErc721}
+                        setDestinyAddress={setToAddress}
+                        transfer={transferErc721}
+                        addressToTransfer={toAddress}
+                        price={erc721Price}
+                        setPrice={setErc721Price}
+                        toList={listErc721}
+                        toListed={listedErc721}
+                    />
+
                 </Grid>
                 <Grid item xs={12} lg={9}>
                     <Collections collections={backendWalletResponse} />
@@ -321,7 +333,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                                 etherBalanceL2={etherBalanceL2}
                                 setDestinyAddress={setToAddress}
                                 addressToTransfer={toAddress}
-                                 />
+                            />
                         </Grid>
                         <Grid item xs={12} lg={4}>
                             <TokenErc20Card
@@ -338,27 +350,6 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                                 setDestinyAddress={setToAddress}
                                 transfer={transferErc20}
                                 addressToTransfer={toAddress}
-                            />
-                        </Grid>
-                        <Grid item xs={12} lg={4}>
-                            <TokenErc721Card
-                                cardTitle={"ERC-721"}
-                                setCurrentInputAddress={changeErc721address}
-                                currentInputAddress={erc721address}
-                                getBalance={getErc721Balance}
-                                balanceL1={erc721balanceL1}
-                                balanceL2={erc721balanceL2}
-                                setIdValue={setErc721id}
-                                idValue={erc721id}
-                                deposit={depositErc721}
-                                withdraw={withdrawErc721}
-                                setDestinyAddress={setToAddress}
-                                transfer={transferErc721}
-                                addressToTransfer={toAddress}
-                                price={erc721Price}
-                                setPrice={setErc721Price}
-                                toList={listErc721}
-                                toListed={listedErc721}
                             />
                         </Grid>
                     </Grid>
