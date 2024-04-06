@@ -4,17 +4,23 @@ import SavingsIcon from '@mui/icons-material/Savings';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import CustomTextField from '@/components/CustomTextField';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import CustomFormLabel from '@/components/CustomFormLabel';
+import { ChangeEvent } from 'react';
 
 interface EtherCardProps {
     getEtherBalance: () => Promise<any>
     depositEther: () => Promise<any>
     withdrawEther: () => Promise<any>
     transferEther: () => Promise<any>
+    setIdValue: (str: string) => void
+    setDestinyAddress: (str: string) => void
+    idValue: string
     cardTitle: string
     etherBalanceL1: string
     etherBalanceL2: string
+    addressToTransfer: string
 }
-const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther, etherBalanceL1, etherBalanceL2, cardTitle }: EtherCardProps) => {
+const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther, setIdValue, idValue, addressToTransfer, etherBalanceL1, etherBalanceL2, cardTitle }: EtherCardProps) => {
 
     return (
         <Card
@@ -105,70 +111,84 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                     </Box>
                 </Box>
 
-                <Box>
-                    <CustomTextField
-                        id="id-nft"
-                        placeholder="Enter NFT ID"
-                        variant="outlined"
-                        fullWidth
-                        size="small" />
 
+
+                <Box
+                    sx={{
+                        pb: 1
+                    }}>
+                    <CustomFormLabel htmlFor="id-nft">NFT ID</CustomFormLabel>
                     <Box
                         display="flex"
-                        alignItems="space-between"
-                        justifyContent="flex-end"
-                        sx={{
-                            pt: 2,
-                        }}
+                        justifyContent="space-between"
                     >
-                        <Tooltip title={"Deposit"}>
+
+                        <CustomTextField
+                            id="id-nft"
+                            variant="outlined"
+                            fullWidth
+                            value={idValue}
+                            sx={{ width: "100px" }}
+                            size="small" 
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setIdValue(e.target.value)}
+
+                            />
+
+                        <Box display="flex">
+                            <Tooltip title={"Deposit"}>
+                                <IconButton
+                                    onClick={() => depositEther()}
+                                    sx={{ backgroundColor: '#1976d2', color: "#FFF", marginRight: "10px" }}
+                                >
+                                    <SavingsIcon />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title={" Voucher withdraw"}>
+                                <IconButton
+                                    onClick={() => withdrawEther()}
+                                    sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
+                                >
+                                    <CurrencyExchangeIcon />
+                                </IconButton>
+                            </Tooltip>
+                        </Box>
+                    </Box>
+
+                </Box>
+                <Divider />
+
+                <Box
+                    sx={{
+                        pb: 1
+                    }}>
+                    <CustomFormLabel htmlFor="to-address">Destiny Collection Address</CustomFormLabel>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                    >
+
+                        <CustomTextField
+                            id="id-nft"
+                            placeholder="Address to transfer"
+                            variant="outlined"
+                            fullWidth
+                            size="small"
+                            sx={{ width: "350px" }}
+                            value={addressToTransfer}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setDestinyAddress(e.target.value)}
+                        />
+
+                        <Tooltip title={"L2 Transfer"}>
                             <IconButton
-                                onClick={() => depositEther()}
-                                sx={{ backgroundColor: '#1976d2', color: "#FFF", marginRight: "10px" }}
-                            >
-                                <SavingsIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title={" Voucher withdraw"}>
-                            <IconButton
-                                onClick={() => withdrawEther()}
+                                onClick={() => transferEther()}
                                 sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
                             >
-                                <CurrencyExchangeIcon />
+                                <MoveUpIcon />
                             </IconButton>
                         </Tooltip>
                     </Box>
                 </Box>
-                <Box
-                    sx={{
-                        mt: 3,
-                    }}
-                >
 
-                    <CustomTextField
-                        id="id-nft"
-                        placeholder="Address to transfer"
-                        variant="outlined"
-                        fullWidth
-                        size="small" />
-                </Box>
-
-                <Box
-                    display="flex"
-                    justifyContent="flex-end"
-                    sx={{
-                        pt: 2,
-                    }}
-                >
-                    <Tooltip title={"L2 Transfer"}>
-                        <IconButton
-                            onClick={() => transferEther()}
-                            sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
-                        >
-                            <MoveUpIcon />
-                        </IconButton>
-                    </Tooltip>
-                </Box>
             </CardContent>
         </Card >
     )

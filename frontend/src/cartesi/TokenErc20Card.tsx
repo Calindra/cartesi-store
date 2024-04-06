@@ -7,7 +7,7 @@ import CustomTextField from '@/components/CustomTextField';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import CustomFormLabel from '@/components/CustomFormLabel';
 
-interface TokenCardProps {
+interface TokenErc20Card {
     setCurrentInputAddress: (e: ChangeEvent<any>) => void
     getBalance: () => void
     setIdValue: (str: string) => void
@@ -22,7 +22,7 @@ interface TokenCardProps {
     idValue: string
     addressToTransfer: string
 }
-const TokenCard = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer }: TokenCardProps) => {
+const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer }: TokenErc20Card) => {
 
     return (
         <Card
@@ -215,4 +215,4 @@ const TokenCard = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, wi
         </Card >
     )
 };
-export default TokenCard;
+export default TokenErc20Card;

@@ -22,10 +22,11 @@ interface TokenErc721CardProps {
     idValue: string
     addressToTransfer: string
     price: string
+    setPrice: (str: string) => void
     toList: () => void
     toListed: () => void
 }
-const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer, price, toList, toListed }: TokenErc721CardProps) => {
+const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer, price, toList, toListed, setPrice }: TokenErc721CardProps) => {
 
     return (
         <Card
@@ -236,7 +237,7 @@ const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, depos
                             size="small"
                             value={price}
                             sx={{ width: "100px" }}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => setIdValue(e.target.value)}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setPrice(e.target.value)}
                         />
 
                         <Box display="flex">

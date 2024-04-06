@@ -3,11 +3,10 @@ import { Grid } from "@mui/material"
 import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
 import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
-import Button from "../components/Button"
 import { FormatService } from "@/services/FormatService"
 import Collections from "./Collections"
 import WalletInfo from "./WalletInfo"
-import TokenCard from "./TokenCard"
+import TokenErc20Card from "./TokenErc20Card"
 import EtherCard from "./EtherCard"
 import TokenErc721Card from "./TokenErc721Card"
 
@@ -313,14 +312,19 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                             <EtherCard
                                 cardTitle={"Ether"}
                                 getEtherBalance={getEtherBalance}
+                                idValue={etherValue}
+                                setIdValue={setEtherValue}
                                 depositEther={depositEther}
                                 withdrawEther={withdrawEther}
                                 transferEther={transferEther}
                                 etherBalanceL1={etherBalanceL1}
-                                etherBalanceL2={etherBalanceL2} />
+                                etherBalanceL2={etherBalanceL2}
+                                setDestinyAddress={setToAddress}
+                                addressToTransfer={toAddress}
+                                 />
                         </Grid>
                         <Grid item xs={12} lg={4}>
-                            <TokenCard
+                            <TokenErc20Card
                                 cardTitle={"ERC-20"}
                                 setCurrentInputAddress={changeErc20Address}
                                 currentInputAddress={erc20address}
@@ -349,9 +353,10 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                                 deposit={depositErc721}
                                 withdraw={withdrawErc721}
                                 setDestinyAddress={setToAddress}
-                                transfer={transferErc20}
+                                transfer={transferErc721}
                                 addressToTransfer={toAddress}
                                 price={erc721Price}
+                                setPrice={setErc721Price}
                                 toList={listErc721}
                                 toListed={listedErc721}
                             />
@@ -360,47 +365,6 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                 </Grid>
 
             </Grid>
-
-
-
-            <div style={{ textAlign: 'left' }}>
-
-                {/* <h3 className="text-3xl font-semibold mb-3">ERC-721</h3>
-                <input value={erc721address} onChange={(e) => {
-                    localStorage.setItem('erc721address', e.target.value)
-                    setErc721Address(e.target.value)
-                }} /> */}
-                {/* <Button onClick={async () => {
-                    const signer = await getSigner()
-                    const url = `http://127.0.0.1:8383/wallet/${signer.address}`
-                    const res = await fetch(url)
-                    const json = await res.json()
-                    setErc721balanceL2(json.erc721[erc721address]?.length ?? '0')
-                    loadErc721balance()
-                    console.log('Success!')
-                }}>GET Balance</Button><br /> */}
-                {/* <input value={erc721id} onChange={(e) => {
-                    setErc721id(e.target.value)
-                }} />
-                <Button onClick={depositErc721}>Deposit</Button>
-                <Button onClick={withdrawErc721}>Voucher Withdraw</Button><br />
-                <input value={toAddress} onChange={(e) => {
-                    setToAddress(e.target.value)
-                }} /> */}
-                {/* <Button onClick={transferErc721}>L2 Transfer</Button>
-                <br /> */}
-                Price:
-                <input value={erc721Price} onChange={(e) => {
-                    setErc721Price(e.target.value)
-                }} />
-                <Button onClick={listErc721}>L2 List</Button>
-                <Button onClick={listedErc721}>L2 Listed</Button>
-                {/* <br />
-                L1 Balance: {erc721balanceL1}<br />
-                L2 Balance: {erc721balanceL2}<br /> */}
-
-
-            </div>
         </>
     )
 }
