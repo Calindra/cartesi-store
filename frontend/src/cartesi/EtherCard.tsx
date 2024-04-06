@@ -1,11 +1,12 @@
-import { Box, Grid, Divider, Typography, Card, CardContent, Tooltip, IconButton, Button } from '@mui/material';
+import { Box, Grid, Divider, Typography, Card, CardContent, Tooltip, IconButton, Button, SvgIcon } from '@mui/material';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SavingsIcon from '@mui/icons-material/Savings';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import CustomTextField from '@/components/CustomTextField';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CustomFormLabel from '@/components/CustomFormLabel';
 import { ChangeEvent } from 'react';
+import ethereum from "../assets/ethereum.svg";
 
 interface EtherCardProps {
     getEtherBalance: () => Promise<any>
@@ -39,7 +40,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                     height: "100%",
                 }}
             >
-                <Box>
+                {/* <Box>
                     <Typography
                         variant="h4"
                         sx={{
@@ -48,6 +49,21 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                     >
                         {cardTitle}
                     </Typography>
+                </Box> */}
+                <Box display="flex" alignItems={"center"} justifyContent={"flex-start"}>
+                    {/* <SvgIcon sx={{ fontSize: "140px" }} > */}
+                    <img src={ethereum} alt="ethereum icon" width={25} />
+                    {/* </SvgIcon> */}
+                    <Box>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                pl: 2,
+                            }}
+                        >
+                            {cardTitle}
+                        </Typography>
+                    </Box>
                 </Box>
                 <Box
                     sx={{
@@ -57,7 +73,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                         onClick={() => getEtherBalance()}
                         variant="contained"
                         color="primary"
-                        startIcon={<AccountBalanceWalletIcon />}
+                        startIcon={<AccountBalanceIcon />}
                         sx={{ width: "100%" }}>
                         Get Balance
                     </Button>
@@ -129,10 +145,10 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                             fullWidth
                             value={idValue}
                             sx={{ width: "100px" }}
-                            size="small" 
+                            size="small"
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setIdValue(e.target.value)}
 
-                            />
+                        />
 
                         <Box display="flex">
                             <Tooltip title={"Deposit"}>

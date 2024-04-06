@@ -2,7 +2,7 @@ import { Box, Button, Grid, Divider, Typography, Card, CardContent, Tooltip } fr
 import { DAppAddressRelay__factory } from "@cartesi/rollups"
 import { JsonRpcSigner } from 'ethers';
 import { useEffect, useState } from 'react';
-
+import WalletIcon from '@mui/icons-material/Wallet';
 interface WalletInfoProps {
     dappAddress: string
     getSigner: () => Promise<JsonRpcSigner>
@@ -50,28 +50,19 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                     height: "100%",
                 }}
             >
-                <Box>
-                    <Typography
-                        variant="h4"
-                        sx={{
-                            mb: 2,
-                        }}
-                    >
-                        Wallet
-                    </Typography>
+                <Box display="flex" alignItems={"center"} justifyContent={"flex-start"}>
+                    <WalletIcon sx={{ fontSize: "40px" }} />
+                    <Box>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                pl: 2,
+                            }}
+                        >
+                            Wallet
+                        </Typography>
+                    </Box>
                 </Box>
-
-                {/* <Chip
-                    size="small"
-                    label="16 APR, 2021"
-                    sx={{
-                        // backgroundColor: (theme) => theme.palette.secondary.light,
-                        // color: (theme) => theme.palette.secondary.main,
-                        borderRadius: '6px',
-                        pl: 1,
-                        pr: 1,
-                    }}
-                /> */}
 
                 <Box
                     sx={{

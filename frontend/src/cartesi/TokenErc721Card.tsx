@@ -4,8 +4,9 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SavingsIcon from '@mui/icons-material/Savings';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import CustomTextField from '@/components/CustomTextField';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import CustomFormLabel from '@/components/CustomFormLabel';
+import TokenIcon from '@mui/icons-material/Token';
 
 interface TokenErc721CardProps {
     setCurrentInputAddress: (e: ChangeEvent<any>) => void
@@ -45,12 +46,18 @@ const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, depos
                     height: "100%",
                 }}
             >
-                <Box>
-                    <Typography
-                        variant="h4"
-                    >
-                        {cardTitle}
-                    </Typography>
+                <Box display="flex" alignItems={"center"} justifyContent={"flex-start"}>
+                    <TokenIcon sx={{ fontSize: "40px" }} />
+                    <Box>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                pl: 2,
+                            }}
+                        >
+                            {cardTitle}
+                        </Typography>
+                    </Box>
                 </Box>
                 <Box>
                     <CustomFormLabel htmlFor="collection">Collection Address</CustomFormLabel>
@@ -75,7 +82,7 @@ const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, depos
                                 onClick={() => getBalance()}
                                 sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
                             >
-                                <AccountBalanceWalletIcon />
+                                <AccountBalanceIcon />
                             </IconButton>
                         </Tooltip>
 

@@ -4,8 +4,11 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SavingsIcon from '@mui/icons-material/Savings';
 import MoveUpIcon from '@mui/icons-material/MoveUp';
 import CustomTextField from '@/components/CustomTextField';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+
 import CustomFormLabel from '@/components/CustomFormLabel';
+import TokenIcon from '@mui/icons-material/Token';
+
 
 interface TokenErc20Card {
     setCurrentInputAddress: (e: ChangeEvent<any>) => void
@@ -41,13 +44,20 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                     height: "100%",
                 }}
             >
-                <Box>
-                    <Typography
-                        variant="h4"
-                    >
-                        {cardTitle}
-                    </Typography>
+                <Box display="flex" alignItems={"center"} justifyContent={"flex-start"}>
+                    <TokenIcon sx={{ fontSize: "40px" }} />
+                    <Box>
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                pl: 2,
+                            }}
+                        >
+                            {cardTitle}
+                        </Typography>
+                    </Box>
                 </Box>
+
                 <Box>
                     <CustomFormLabel htmlFor="collection">Collection Address</CustomFormLabel>
                     <Box
@@ -71,7 +81,7 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                                 onClick={() => getBalance()}
                                 sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
                             >
-                                <AccountBalanceWalletIcon />
+                                <AccountBalanceIcon />
                             </IconButton>
                         </Tooltip>
 
@@ -177,8 +187,6 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
 
                 </Box>
                 <Divider />
-
-                {/* ///////////////////////////// */}
 
                 <Box
                     sx={{
