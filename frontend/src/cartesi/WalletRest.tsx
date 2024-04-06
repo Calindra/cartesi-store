@@ -1,12 +1,14 @@
-import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
-import { DAppAddressRelay__factory } from "@cartesi/rollups"
-import { JsonRpcSigner } from "ethers"
 import { useEffect, useState } from "react"
+import { Grid } from "@mui/material"
+import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
+import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import Button from "../components/Button"
 import { FormatService } from "@/services/FormatService"
 import Collections from "./Collections"
 import WalletInfo from "./WalletInfo"
+import TokenCard from "./TokenCard"
+import EtherCard from "./EtherCard"
 
 
 type WalletRestProps = {
@@ -250,6 +252,17 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
         console.log('Success!')
     }
 
+    async function getEtherBalance() {
+        console.log("clicou")
+        const signer = await getSigner()
+        const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
+        const json = await res.json()
+        setEtherBalanceL2(FormatService.formatEther(json.ether))
+        const balance = await signer.provider.getBalance(signer.address)
+        setEtherBalanceL1(FormatService.formatEther(balance.toString()))
+        console.log('Success!')
+    }
+
     // async function callDAppAddressRelay() {
     //     const signer = await getSigner()
     //     const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
@@ -260,8 +273,35 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     return (
         <>
-            <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
-            <Collections collections={backendWalletResponse} />
+            <Grid container spacing={2}>
+                <Grid item xs={12} lg={3}>
+                    <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
+                </Grid>
+                <Grid item xs={12} lg={9}>
+                    <Collections collections={backendWalletResponse} />
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} lg={4}>
+                            <EtherCard
+                                cardTitle={"Ether"}
+                                getEtherBalance={getEtherBalance}
+                                depositEther={depositEther}
+                                withdrawEther={withdrawEther}
+                                transferEther={transferEther}
+                                etherBalanceL1={etherBalanceL1}
+                                etherBalanceL2={etherBalanceL2} />
+                        </Grid>
+                        <Grid item xs={12} lg={4}>
+                            <TokenCard cardTitle={"ERC-20"} getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
+                        </Grid>
+                        <Grid item xs={12} lg={4}>
+                            <TokenCard cardTitle={"ERC-721"} getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+
+
 
             <div style={{ textAlign: 'left' }}>
                 {/* <h2 className="text-4xl font-bold mb-4">Wallet</h2>
@@ -281,29 +321,21 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
                 Backend wallet response: <pre>{backendWalletResponse}</pre>
             </div> */}
-                <h3 className="text-3xl font-semibold mb-3">Ether</h3>
-                <Button onClick={async () => {
-                    const signer = await getSigner()
-                    const res = await fetch(`http://127.0.0.1:8383/wallet/${signer.address}`)
-                    const json = await res.json()
-                    setEtherBalanceL2(FormatService.formatEther(json.ether))
-                    const balance = await signer.provider.getBalance(signer.address)
-                    setEtherBalanceL1(FormatService.formatEther(balance.toString()))
-                    console.log('Success!')
-                }}>GET Balance</Button><br />
-                <input value={etherValue} onChange={(e) => {
+                {/* <h3 className="text-3xl font-semibold mb-3">Ether</h3> */}
+                {/* <Button onClick={getEtherBalance}>GET Balance</Button><br /> */}
+                {/* <input value={etherValue} onChange={(e) => {
                     setEtherValue(e.target.value)
-                }} />
-                <Button onClick={depositEther}>Deposit</Button>
+                }} /> */}
+                {/* <Button onClick={depositEther}>Deposit</Button>
                 <Button onClick={withdrawEther}>Voucher Withdraw</Button><br />
                 <input value={toAddress} onChange={(e) => {
                     setToAddress(e.target.value)
-                }} />
-                <Button onClick={transferEther}>L2 Transfer</Button><br />
+                }} /> */}
+                {/* <Button onClick={transferEther}>L2 Transfer</Button><br />
                 <div style={{ textAlign: 'left', paddingTop: '20px' }}>
                     L1 Balance: {etherBalanceL1}<br />
                     L2 Balance: {etherBalanceL2}
-                </div>
+                </div> */}
 
                 <h3 className="text-3xl font-semibold mb-3">ERC-20</h3>
                 <input value={erc20address} onChange={(e) => {

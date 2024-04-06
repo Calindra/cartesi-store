@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Grid, Divider, Typography, Card, CardContent } from '@mui/material';
+import { Box, Button, Grid, Divider, Typography, Card, CardContent, Tooltip } from '@mui/material';
 import { DAppAddressRelay__factory } from "@cartesi/rollups"
 import { JsonRpcSigner } from 'ethers';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ interface WalletInfoProps {
 }
 const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
 
-    const [walletInfo, setWalletInfo] = useState({ ether: ""})
+    const [walletInfo, setWalletInfo] = useState({ ether: "" })
     const [totalCollections, setTotalCollections] = useState(0)
     const [totalNfts, setTotalNfts] = useState(0)
 
@@ -38,11 +38,16 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
             sx={{
                 pb: 0,
                 mb: 4,
+                height: '400px'
             }}
         >
             <CardContent
                 sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
                     pb: 0,
+                    height: "100%",
                 }}
             >
                 <Box>
@@ -56,7 +61,7 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                     </Typography>
                 </Box>
 
-                <Chip
+                {/* <Chip
                     size="small"
                     label="16 APR, 2021"
                     sx={{
@@ -66,7 +71,7 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                         pl: 1,
                         pr: 1,
                     }}
-                />
+                /> */}
 
                 <Box
                     sx={{
@@ -86,8 +91,15 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                             <Typography color="textSecondary" variant="h6" fontWeight="400">
                                 Ether
                             </Typography>
-                            <Typography variant="subtitle2" fontWeight="500">
-                                {walletInfo.ether}
+                            <Typography variant="subtitle2" fontWeight="500" sx={{
+                                pr: 1,
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis"
+                            }}>
+                                <Tooltip title={walletInfo.ether}>
+                                    <span>{walletInfo.ether}</span>
+                                </Tooltip>
                             </Typography>
                         </Grid>
                         <Grid
@@ -125,18 +137,19 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                         </Grid>
                     </Grid>
                     <Divider />
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        sx={{
-                            pt: 2,
-                        }}
-                    >
-                        <Button onClick={callDAppAddressRelay} variant="contained" color="primary">
-                            Provide DApp Address
-                        </Button>
+                </Box>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="flex-end"
+                    sx={{
+                        pt: 2,
+                    }}
+                >
+                    <Button onClick={callDAppAddressRelay} variant="contained" color="primary">
+                        Provide DApp Address
+                    </Button>
 
-                    </Box>
                 </Box>
             </CardContent>
         </Card>

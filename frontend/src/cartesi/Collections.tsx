@@ -62,7 +62,12 @@ const Collections = ({ collections }: any) => {
 
 
     return (
-        < Card >
+        < Card sx={{
+            pb: 0,
+            mb: 4,
+            height: '500px',
+            overflow: "auto"
+        }}>
             <CardContent>
                 <Box
                     sx={{
