@@ -21,7 +21,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
             sx={{
                 pb: 0,
                 mb: 4,
-                height: '480px'
+                height: '500px'
             }}
         >
             <CardContent

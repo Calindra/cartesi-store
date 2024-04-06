@@ -1,4 +1,4 @@
-import { Box, Grid, Divider, Typography, Card, CardContent, Tooltip, IconButton } from '@mui/material';
+import { Box, Grid, Divider, Typography, Card, CardContent, Tooltip, IconButton, Button } from '@mui/material';
 import { ChangeEvent } from 'react';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import SavingsIcon from '@mui/icons-material/Savings';
@@ -7,7 +7,7 @@ import CustomTextField from '@/components/CustomTextField';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import CustomFormLabel from '@/components/CustomFormLabel';
 
-interface TokenCardProps {
+interface TokenErc721CardProps {
     setCurrentInputAddress: (e: ChangeEvent<any>) => void
     getBalance: () => void
     setIdValue: (str: string) => void
@@ -21,15 +21,18 @@ interface TokenCardProps {
     currentInputAddress: string
     idValue: string
     addressToTransfer: string
+    price: string
+    toList: () => void
+    toListed: () => void
 }
-const TokenCard = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer }: TokenCardProps) => {
+const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer, price, toList, toListed }: TokenErc721CardProps) => {
 
     return (
         <Card
             sx={{
                 pb: 0,
                 mb: 4,
-                height: '500px'
+                height: '650px'
             }}
         >
             <CardContent
@@ -210,9 +213,55 @@ const TokenCard = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, wi
                             </IconButton>
                         </Tooltip>
                     </Box>
+
+                </Box>
+
+                {/* //////////////////////////// */}
+                <Divider />
+                <Box
+                    sx={{
+                        pb: 1
+                    }}>
+                    <CustomFormLabel htmlFor="price">Price</CustomFormLabel>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                    >
+
+                        <CustomTextField
+                            id="price"
+                            placeholder="Enter NFT ID"
+                            variant="outlined"
+                            fullWidth
+                            size="small"
+                            value={price}
+                            sx={{ width: "100px" }}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setIdValue(e.target.value)}
+                        />
+
+                        <Box display="flex">
+                            <Button
+                                onClick={() => toList()}
+                                sx={{ backgroundColor: '#1976d2', color: "#FFF", marginRight: "10px" }}
+                            >
+                                L2 List
+                            </Button>
+
+
+                            <Button
+                                onClick={() => toListed()}
+                                sx={{ backgroundColor: '#1976d2', color: "#FFF" }}
+                            >
+                                L2 Listed
+                            </Button>
+
+                        </Box>
+                    </Box>
+
                 </Box>
             </CardContent>
         </Card >
     )
 };
-export default TokenCard;
+
+export default TokenErc721Card;
