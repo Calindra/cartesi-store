@@ -9,7 +9,16 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    Avatar,
 } from '@mui/material';
+import img1 from "../assets/1.jpg"
+import img2 from "../assets/2.jpg"
+import img3 from "../assets/3.jpg"
+import img4 from "../assets/4.jpg"
+import img5 from "../assets/5.jpg"
+import img6 from "../assets/6.jpg"
+import img7 from "../assets/7.jpg"
+import img8 from "../assets/8.jpg"
 
 const bodyBuilding = (element: any) => {
     if (!element || Object.keys(element).length === 0) {
@@ -17,6 +26,7 @@ const bodyBuilding = (element: any) => {
     }
 
     const rows = [];
+    const imgs = [img1, img2, img3, img4, img5, img6, img7, img8]
     let id = 0
     for (let key in element) {
         const item = element[key]; // Acessando cada propriedade do objeto
@@ -24,6 +34,15 @@ const bodyBuilding = (element: any) => {
             <TableRow key={item.id}>
                 <TableCell>
                     <Box display="flex" alignItems="center">
+                        <Avatar
+                            src={imgs[id]}
+                            // alt={img4}
+                            sx={{
+                                borderRadius: "100%",
+                                width: 60,
+                                height: 60
+                            }}
+                        />
                         <Box
                             sx={{
                                 ml: 2,
