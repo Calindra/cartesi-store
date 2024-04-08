@@ -144,7 +144,7 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                 </Box>
 
 
-                <Box
+                {/* <Box
                     sx={{
                         pb: 1
                     }}>
@@ -186,13 +186,13 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                     </Box>
 
                 </Box>
-                <Divider />
+                <Divider /> */}
 
                 <Box
                     sx={{
                         pb: 1
                     }}>
-                    <CustomFormLabel htmlFor="to-address">Destiny Collection Address</CustomFormLabel>
+                    <CustomFormLabel htmlFor="to-address">Transfer Destiny Address</CustomFormLabel>
                     <Box
                         display="flex"
                         justifyContent="space-between"

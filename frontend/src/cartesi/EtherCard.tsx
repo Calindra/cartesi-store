@@ -51,9 +51,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                     </Typography>
                 </Box> */}
                 <Box display="flex" alignItems={"center"} justifyContent={"flex-start"}>
-                    {/* <SvgIcon sx={{ fontSize: "140px" }} > */}
                     <img src={ethereum} alt="ethereum icon" width={25} />
-                    {/* </SvgIcon> */}
                     <Box>
                         <Typography
                             variant="h4"
@@ -129,7 +127,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
 
 
 
-                <Box
+                {/* <Box
                     sx={{
                         pb: 1
                     }}>
@@ -171,13 +169,13 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                     </Box>
 
                 </Box>
-                <Divider />
+                <Divider /> */}
 
                 <Box
                     sx={{
                         pb: 1
                     }}>
-                    <CustomFormLabel htmlFor="to-address">Destiny Collection Address</CustomFormLabel>
+                    <CustomFormLabel htmlFor="to-address">Transfer Destiny Address</CustomFormLabel>
                     <Box
                         display="flex"
                         justifyContent="space-between"
