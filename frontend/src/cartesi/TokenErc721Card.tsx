@@ -195,7 +195,7 @@ const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, depos
                     sx={{
                         pb: 1
                     }}>
-                    <CustomFormLabel htmlFor="to-address">Destiny Collection Address</CustomFormLabel>
+                    <CustomFormLabel htmlFor="to-address">Transfer Destiny Address</CustomFormLabel>
                     <Box
                         display="flex"
                         justifyContent="space-between"
