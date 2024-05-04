@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@calindra/cartesify':
-    specifier: ^0.1.5
-    version: 0.1.5
+    specifier: ^1.0.0
+    version: 1.0.0
   '@cartesi/rollups':
     specifier: ^1.2.0
     version: 1.2.0
@@ -166,8 +166,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@calindra/cartesify@0.1.5:
-    resolution: {integrity: sha512-/quvZ0JDCWJsXHXyfFpDhJmzlSVSX5XPmFfexi93jH07NdbxfjAEUrFHrQW9G6VMXle0f21ptG7rQIoiv5HjPg==}
+  /@calindra/cartesify@1.0.0:
+    resolution: {integrity: sha512-Zqw/Z3tu9amzX9ZcJlttyQMF9v6+jxu2SAYZ3b+e5N4gipvzLgLklp9pkD4BBfXEtXG/YznqgDHcFGVjHREqDA==}
     engines: {node: '>=20.0.0'}
     dependencies:
       '@cartesi/rollups': 1.2.0
