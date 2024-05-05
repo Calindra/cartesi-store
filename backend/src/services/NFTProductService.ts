@@ -58,8 +58,8 @@ export class NFTProductService {
         }
         const tokenAddress = getAddress(nft.collection.toString())
         const escrow = `${nft.owner}:list`.toLowerCase() as Address
-        const listWallet = await wallet.getWalletOrNew(escrow)
-        console.log(toJSON(listWallet.erc721.get(tokenAddress) || {}))
+        const listWallet = await wallet.getWallet(escrow)
+        console.log(toJSON(listWallet.erc721[tokenAddress] || {}))
         await wallet.transferERC721(
             tokenAddress,
             escrow,

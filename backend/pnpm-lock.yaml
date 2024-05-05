@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1(typescript@5.4.2)
   '@deroll/wallet':
-    specifier: file:deroll-wallet-0.3.7.tgz
-    version: file:deroll-wallet-0.3.7.tgz(typescript@5.4.2)
+    specifier: ^0.7.0
+    version: 0.7.0(typescript@5.4.2)
   express:
     specifier: ^4.18.2
     version: 4.18.3
@@ -111,6 +111,18 @@ packages:
   /@deroll/core@0.1.1(typescript@5.4.2):
     resolution: {integrity: sha512-sYUUai3kXS+rt9uAInawOBeweTPgBnD9X+2jpl1/+UWLRJymn3EibHZf0WVo5VqOxxkvjI42AW1m/nyMnHmn2g==}
     dependencies:
+      viem: 2.9.31(typescript@5.4.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /@deroll/wallet@0.7.0(typescript@5.4.2):
+    resolution: {integrity: sha512-WBLpw8cZN1/gbiSZQjHi6HsAyCYffYwR17u3bVDMXoSspRbyMppwAAQAg6K4Sc99PteVl2ZyjptVPt92FcSenw==}
+    dependencies:
+      '@deroll/core': 0.1.1(typescript@5.4.2)
       viem: 2.9.31(typescript@5.4.2)
     transitivePeerDependencies:
       - bufferutil
@@ -3420,29 +3432,6 @@ packages:
       - zod
     dev: false
 
-  /viem@2.8.10(typescript@5.4.2):
-    resolution: {integrity: sha512-rhIdRXWLPMUPjL2aI7oYNn4PrgEimbf2rxEkTjty0L+ZBIvPgKAOZFUeStpAfdWouTDO4yM84Xk4Hh2hrwiK9A==}
-    peerDependencies:
-      typescript: '>=5.0.4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@adraffy/ens-normalize': 1.10.0
-      '@noble/curves': 1.2.0
-      '@noble/hashes': 1.3.2
-      '@scure/bip32': 1.3.2
-      '@scure/bip39': 1.2.1
-      abitype: 1.0.0(typescript@5.4.2)
-      isows: 1.0.3(ws@8.13.0)
-      typescript: 5.4.2
-      ws: 8.13.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-      - zod
-    dev: false
-
   /viem@2.9.31(typescript@5.4.2):
     resolution: {integrity: sha512-8aJ8Dm/591Czwb/nRayo0z8Ls5KxqC4QYE33fmHwhx2tDUWC/hHcPZqjLRSTWFtAfi0aZKvP7BeB6UZ3ZkTRhQ==}
     peerDependencies:
@@ -3667,17 +3656,3 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
-
-  file:deroll-wallet-0.3.7.tgz(typescript@5.4.2):
-    resolution: {integrity: sha512-Tq8WQH1p/f13X0Hvlm6H3DK/Eiifw7PrM4KnMHrFyogCc270AfADikeGsyclMdcesWKjiIG5MH+djfp67LMQKg==, tarball: file:deroll-wallet-0.3.7.tgz}
-    id: file:deroll-wallet-0.3.7.tgz
-    name: '@deroll/wallet'
-    version: 0.3.7
-    dependencies:
-      viem: 2.8.10(typescript@5.4.2)
-    transitivePeerDependencies:
-      - bufferutil
-      - typescript
-      - utf-8-validate
-      - zod
-    dev: false

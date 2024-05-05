@@ -8,7 +8,7 @@ export class WalletRouter {
 
         app.get("/wallet/:address", async (req, res) => {
             console.log(`Checking balance ${req.params.address}`)
-            const userWallet = await wallet.getWalletOrNew(req.params.address)
+            const userWallet = await wallet.getWallet(req.params.address)
             const json = JSON.stringify(userWallet, (_key, value) => {
                 if (typeof value === 'bigint') {
                     return value.toString()
@@ -71,7 +71,7 @@ export class WalletRouter {
 
         app.post("/wallet/erc-1155/withdraw", async (req, res) => {
             try {
-                const voucher = await wallet.withdrawERC1155(
+                const voucher = await wallet.withdrawBatchERC1155(
                     req.body.token,
                     req.get('x-msg_sender') as Address,
 
@@ -90,6 +90,8 @@ export class WalletRouter {
                         }
                         return BigInt(value)
                     }),
+
+                    '0x'
                 )
 
                 const voucherResult = await dapp.createVoucher(voucher)

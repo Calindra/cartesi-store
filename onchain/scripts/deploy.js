@@ -8,8 +8,10 @@ async function main() {
   const pk = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
   const signer = new ethers.Wallet(pk, provider);
 
+  const dappAddress = '0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e'
+
   const _fetch = Cartesify.createFetch({
-    dappAddress: '0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C',
+    dappAddress,
     endpoints: {
       graphQL: new URL("http://localhost:8080/graphql"),
       inspect: new URL("http://localhost:8080/inspect"),
@@ -18,7 +20,7 @@ async function main() {
     signer,
   })
 
-  const dappAddress = '0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C'
+  
 
   const portalAddress = '0xFfdbe43d4c855BF7e0f105c400A50857f53AB044'
   const etherValue = '10000000000000000'
@@ -66,7 +68,7 @@ async function main() {
           price: 200 + i,
         }),
       })
-      await new Promise(resolve => setTimeout(resolve, 200))
+      await new Promise(resolve => setTimeout(resolve, 300))
       promises.push(res)
     }
     (await Promise.all(promises)).forEach(res => {
@@ -76,7 +78,8 @@ async function main() {
     })
 
     console.log('Buying', collectionIndex)
-    const res = await _fetch(`http://127.0.0.1:8383/erc-721/${erc721address}/listed/${collectionIndex}/buy`,
+    const buyUrl = `http://127.0.0.1:8383/erc-721/${erc721address}/listed/${collectionIndex}/buy`
+    const res = await _fetch(buyUrl,
       {
         method: 'POST',
         headers: {
@@ -85,7 +88,7 @@ async function main() {
         body: JSON.stringify({}),
       })
     if (!res.ok) {
-      console.log(res.status, await res.text())
+      console.log('Buy error', buyUrl, res.status, await res.text())
       return
     }
   }

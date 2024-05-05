@@ -3,13 +3,19 @@
         "brunodo",
         "Brunodo",
         "Cartesify",
+        "clsx",
         "codegen",
+        "heroicons",
         "inversify",
+        "LGBTQIA",
+        "nomiclabs",
         "notistack",
         "openapi",
         "outfile",
         "sqlite",
+        "sunodo",
         "swiper",
+        "tailwindcss",
         "viem"
     ]
 }
