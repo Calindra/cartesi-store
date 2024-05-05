@@ -24,6 +24,12 @@ export class WalletRepository {
         }
     }
 
+    static findOrCreate(derollWallet: WalletApp, address: string) {
+        const userWallet = derollWallet.getWallet(address);
+        (derollWallet as any).wallets[address] = userWallet
+        return userWallet as Wallet
+    }
+
     async load(derollWallet: WalletApp) {
         const json = await this.readWalletJsonFile()
         for (const walletAddress in json.wallets) {

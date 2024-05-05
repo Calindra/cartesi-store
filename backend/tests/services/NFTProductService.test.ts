@@ -50,11 +50,11 @@ describe("NFTProductService", () => {
 
         beforeEach(async () => {
             wallet = createWallet()
-            const sellerList = await wallet.getWalletOrNew(sellerAddress)
-            sellerList.erc721.set('0x0000000000000000000000000000000000000123', new Set([BigInt(1)]))
+            const sellerList = WalletRepository.findOrCreate(wallet, sellerAddress)
+            sellerList.erc721['0x0000000000000000000000000000000000000123'] = new Set([BigInt(1)])
 
             // add some funds in the buyer wallet
-            const buyerWallet = await wallet.getWalletOrNew(buyer)
+            const buyerWallet = WalletRepository.findOrCreate(wallet, buyer)
             buyerWallet.ether = 1000n
 
             await nftProductService.create(nftProduct)
@@ -64,7 +64,7 @@ describe("NFTProductService", () => {
             await nftProductService.buyNFT(nftProduct, buyer, wallet)
 
             // check the ether value on the buyer's wallet
-            const buyerWallet = await wallet.getWalletOrNew(buyer)
+            const buyerWallet = await wallet.getWallet(buyer)
             expect(buyerWallet.ether).toEqual(900n)
         })
 
@@ -72,7 +72,7 @@ describe("NFTProductService", () => {
             await nftProductService.buyNFT(nftProduct, buyer, wallet)
 
             // check the balance on the seller's wallet
-            const sellerWallet = await wallet.getWalletOrNew('seller')
+            const sellerWallet = await wallet.getWallet('seller')
             expect(sellerWallet.ether).toEqual(100n)
         })
 
