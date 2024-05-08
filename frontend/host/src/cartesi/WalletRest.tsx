@@ -1,3 +1,4 @@
+import React from "react"
 import { ChangeEvent, useEffect, useState } from "react"
 import { Grid } from "@mui/material"
 import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
@@ -9,6 +10,8 @@ import WalletInfo from "./WalletInfo"
 import TokenErc20Card from "./TokenErc20Card"
 import EtherCard from "./EtherCard"
 import TokenErc721Card from "./TokenErc721Card"
+
+const App1 = React.lazy(() => import("remoteApp/App"));
 
 
 type WalletRestProps = {
@@ -293,6 +296,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     return (
         <>
+            <App1 />
             <Grid container spacing={2}>
                 <Grid item xs={12} lg={3}>
                     <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
