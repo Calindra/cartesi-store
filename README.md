@@ -6,33 +6,12 @@ Exploring use cases to discover missing functionalities.
 
 ### Backend
 
-Install all dependencies
+Install all dependencies and run
 
 ```shell
 cd backend
 pnpm i
-```
-
-#### Brunodo
-
-```shell
-cd backend
 pnpm run dev
-```
-
-#### Classic nonodo way
-
-Start the nonodo
-
-```shell
-nonodo
-```
-
-Start the backend
-
-```shell
-cd backend
-pnpm start
 ```
 
 ### Database

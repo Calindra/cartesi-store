@@ -5,8 +5,8 @@ import { ConfigService } from "./ConfigService";
 const _fetch = Cartesify.createFetch({
   dappAddress: ConfigService.getDappAddress(),
   endpoints: {
-    graphQL: new URL("http://localhost:8080/graphql"),
-    inspect: new URL("http://localhost:8080/inspect"),
+    graphQL: new URL("http://127.0.0.1:8080/graphql"),
+    inspect: new URL("http://127.0.0.1:8080/inspect"),
   },
 })
 

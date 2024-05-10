@@ -55,7 +55,7 @@ app.get("/trending", async (req: Request, res: Response) => {
  */
 app.get("/wallet/:address/listed", async (req, res) => {
     console.log(`Checking balance [${req.params.address}]`)
-    const userWallet = await wallet.getWalletOrNew(`${req.params.address}:list`.toLowerCase())
+    const userWallet = await wallet.getWallet(`${req.params.address}:list`.toLowerCase())
     const json = toJSON(userWallet)
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
     res.send(json)

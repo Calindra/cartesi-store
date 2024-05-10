@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@calindra/cartesify-backend':
-    specifier: ^0.1.2
-    version: 0.1.2(typescript@5.4.2)
+    specifier: ^1.0.1
+    version: 1.0.1(typescript@5.4.2)
   '@deroll/wallet':
-    specifier: file:deroll-wallet-0.3.7.tgz
-    version: file:deroll-wallet-0.3.7.tgz(typescript@5.4.2)
+    specifier: ^0.7.0
+    version: 0.7.0(typescript@5.4.2)
   express:
     specifier: ^4.18.2
     version: 4.18.3
@@ -29,8 +29,8 @@ dependencies:
 
 devDependencies:
   '@calindra/brunodo':
-    specifier: 0.1.0
-    version: 0.1.0
+    specifier: 0.2.1
+    version: 0.2.1
   '@types/express':
     specifier: ^4.17.21
     version: 4.17.21
@@ -65,15 +65,19 @@ packages:
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
     dev: false
 
-  /@calindra/brunodo@0.1.0:
-    resolution: {integrity: sha512-Q7Z0n3HaYonrefb0k3C16nds9pQoAIxLyWC7ex0Ipluw8BQb9LCAKF787JM21lcjwd4VV4rS5ZQNt2dwMdlmCA==}
+  /@calindra/brunodo@0.2.1:
+    resolution: {integrity: sha512-Q83f9NQ4f7rNoorkrtLgnAObqcIPBjrZD7QAg2YM1UfSWXKhkj+1n4MA0IhESE8BbTVJFKCI9RvuuysJZXHS0g==}
     hasBin: true
+    dependencies:
+      adm-zip: 0.5.12
+      cli-progress: 3.12.0
     dev: true
 
-  /@calindra/cartesify-backend@0.1.2(typescript@5.4.2):
-    resolution: {integrity: sha512-r82SkJWFf296lJSeT7kpVrn0j+RCBP3sNbTnIG8ZUqFWnm8v9i+ygaEZV8PeT7zVf0Js+jGZjdzD+YV27hazpQ==}
+  /@calindra/cartesify-backend@1.0.1(typescript@5.4.2):
+    resolution: {integrity: sha512-7z/iBN4FXN9bLmDiXpHJYsrbKexIQd781QsEUtpAM8h4vdy4bqSxjonm6os9dTMv3mpx6RjJ4azgRT3nTy0qLA==}
     dependencies:
-      '@deroll/app': 0.4.0(typescript@5.4.2)
+      '@deroll/app': 0.6.1(typescript@5.4.2)
+      '@deroll/core': 0.1.1(typescript@5.4.2)
       axios: 1.6.8
       viem: 1.21.4(typescript@5.4.2)
     transitivePeerDependencies:
@@ -91,11 +95,35 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@deroll/app@0.4.0(typescript@5.4.2):
-    resolution: {integrity: sha512-tTgPkndfa++MC/2DiR54D37H1kUhL0bqU/AH7WJhlz5XsPfQlKpJCTXnGtt8UrYq/tKuFze6iLrghowdlR0N6Q==}
+  /@deroll/app@0.6.1(typescript@5.4.2):
+    resolution: {integrity: sha512-5cUeQLlc24bXWVzYK9k9MTbHTg534aWIp8hiZwYsa/XC5PwpxKMOzfr1/xRulgUmHt5N5yQa3kRyIekSLmU8jA==}
     dependencies:
-      openapi-fetch: 0.7.10
-      viem: 1.21.4(typescript@5.4.2)
+      '@deroll/core': 0.1.1(typescript@5.4.2)
+      openapi-fetch: 0.9.5
+      viem: 2.9.31(typescript@5.4.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /@deroll/core@0.1.1(typescript@5.4.2):
+    resolution: {integrity: sha512-sYUUai3kXS+rt9uAInawOBeweTPgBnD9X+2jpl1/+UWLRJymn3EibHZf0WVo5VqOxxkvjI42AW1m/nyMnHmn2g==}
+    dependencies:
+      viem: 2.9.31(typescript@5.4.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /@deroll/wallet@0.7.0(typescript@5.4.2):
+    resolution: {integrity: sha512-WBLpw8cZN1/gbiSZQjHi6HsAyCYffYwR17u3bVDMXoSspRbyMppwAAQAg6K4Sc99PteVl2ZyjptVPt92FcSenw==}
+    dependencies:
+      '@deroll/core': 0.1.1(typescript@5.4.2)
+      viem: 2.9.31(typescript@5.4.2)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -712,6 +740,11 @@ packages:
     hasBin: true
     dev: true
 
+  /adm-zip@0.5.12:
+    resolution: {integrity: sha512-6TVU49mK6KZb4qG6xWaaM4C7sA/sgUMLy/JYMOzkcp3BvVLpW0fXDFQiIzAuxFCt/2+xD7fNIiPFAoLZPhVNLQ==}
+    engines: {node: '>=6.0'}
+    dev: true
+
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -751,8 +784,6 @@ packages:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
     requiresBuild: true
-    dev: false
-    optional: true
 
   /ansi-styles@3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
@@ -1022,6 +1053,13 @@ packages:
     dev: false
     optional: true
 
+  /cli-progress@3.12.0:
+    resolution: {integrity: sha512-tRkV3HJ1ASwm19THiiLIXLO7Im7wlTuKnvkYaTkyoAPefqjNg7W7DHKUlGRxy9vxDvbyCYQkQozvptuMkGCg8A==}
+    engines: {node: '>=4'}
+    dependencies:
+      string-width: 4.2.3
+    dev: true
+
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
     dependencies:
@@ -1202,8 +1240,6 @@ packages:
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     requiresBuild: true
-    dev: false
-    optional: true
 
   /encodeurl@1.0.2:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
@@ -1875,8 +1911,6 @@ packages:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
     requiresBuild: true
-    dev: false
-    optional: true
 
   /is-glob@4.0.3:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
@@ -2416,8 +2450,18 @@ packages:
       openapi-typescript-helpers: 0.0.4
     dev: false
 
+  /openapi-fetch@0.9.5:
+    resolution: {integrity: sha512-ToRnypJB2G5bEUZqJ4mGty/qDVgAZ4BW0znlXQAECxAp4EM8dYtgQ1mrw2Ij6W7knN4VawHvFq8uTqzXyMGNPA==}
+    dependencies:
+      openapi-typescript-helpers: 0.0.8
+    dev: false
+
   /openapi-typescript-helpers@0.0.4:
     resolution: {integrity: sha512-Q0MTapapFAG993+dx8lNw33X6P/6EbFr31yNymJHq56fNc6dODyRm8tWyRnGxuC74lyl1iCRMV6nQCGQsfVNKg==}
+    dev: false
+
+  /openapi-typescript-helpers@0.0.8:
+    resolution: {integrity: sha512-1eNjQtbfNi5Z/kFhagDIaIRj6qqDzhjNJKz8cmMW0CVdGwT6e1GLbAfgI0d28VTJa1A8jz82jm/4dG8qNoNS8g==}
     dev: false
 
   /openapi-typescript@6.7.5:
@@ -3040,8 +3084,6 @@ packages:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
-    dev: false
-    optional: true
 
   /string.prototype.padend@3.1.5:
     resolution: {integrity: sha512-DOB27b/2UTTD+4myKUFh+/fXWcu/UDyASIXfg+7VzoCNNGOfWvoyU/x5pvVHr++ztyt/oSYI1BcWBBG/hmlNjA==}
@@ -3090,8 +3132,6 @@ packages:
     requiresBuild: true
     dependencies:
       ansi-regex: 5.0.1
-    dev: false
-    optional: true
 
   /strip-bom@3.0.0:
     resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
@@ -3392,8 +3432,8 @@ packages:
       - zod
     dev: false
 
-  /viem@2.8.10(typescript@5.4.2):
-    resolution: {integrity: sha512-rhIdRXWLPMUPjL2aI7oYNn4PrgEimbf2rxEkTjty0L+ZBIvPgKAOZFUeStpAfdWouTDO4yM84Xk4Hh2hrwiK9A==}
+  /viem@2.9.31(typescript@5.4.2):
+    resolution: {integrity: sha512-8aJ8Dm/591Czwb/nRayo0z8Ls5KxqC4QYE33fmHwhx2tDUWC/hHcPZqjLRSTWFtAfi0aZKvP7BeB6UZ3ZkTRhQ==}
     peerDependencies:
       typescript: '>=5.0.4'
     peerDependenciesMeta:
@@ -3616,17 +3656,3 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
-
-  file:deroll-wallet-0.3.7.tgz(typescript@5.4.2):
-    resolution: {integrity: sha512-Tq8WQH1p/f13X0Hvlm6H3DK/Eiifw7PrM4KnMHrFyogCc270AfADikeGsyclMdcesWKjiIG5MH+djfp67LMQKg==, tarball: file:deroll-wallet-0.3.7.tgz}
-    id: file:deroll-wallet-0.3.7.tgz
-    name: '@deroll/wallet'
-    version: 0.3.7
-    dependencies:
-      viem: 2.8.10(typescript@5.4.2)
-    transitivePeerDependencies:
-      - bufferutil
-      - typescript
-      - utf-8-validate
-      - zod
-    dev: false

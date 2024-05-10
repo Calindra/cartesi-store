@@ -62,7 +62,7 @@ export class TransactionRepository {
         if (!this.db) {
             throw new Error('Missing db')
         }
-        await this.db.run(`CREATE TABLE transactions (
+        await this.db.run(`CREATE TABLE IF NOT EXISTS transactions (
             _from TEXT,
             _to TEXT,
 

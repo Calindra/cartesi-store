@@ -9,7 +9,7 @@ describe("WalletRepository", () => {
         const wallet = createWallet()
         const walletRepository = new WalletRepository()
         walletRepository.jsonFilePath = './data/wallet-test.json'
-        const userWallet = wallet.getWalletOrNew('some-wallet')
+        const userWallet = WalletRepository.findOrCreate(wallet, 'some-wallet')
         userWallet.ether = BigInt('123123123123')
         await walletRepository.update(wallet)
 
@@ -22,8 +22,8 @@ describe("WalletRepository", () => {
         const wallet = createWallet()
         const walletRepository = new WalletRepository()
         walletRepository.jsonFilePath = './data/wallet-test.json'
-        const userWallet = wallet.getWalletOrNew('some-wallet')
-        userWallet.erc20.set('0x12345', BigInt(1010))
+        const userWallet = WalletRepository.findOrCreate(wallet, 'some-wallet')
+        userWallet.erc20['0x12345'] = BigInt(1010)
         await walletRepository.update(wallet)
 
         const walletRead = createWallet()
@@ -35,8 +35,8 @@ describe("WalletRepository", () => {
         const wallet = createWallet()
         const walletRepository = new WalletRepository()
         walletRepository.jsonFilePath = './data/wallet-test.json'
-        const userWallet = wallet.getWalletOrNew('some-wallet')
-        userWallet.erc721.set('0x123456', new Set([BigInt(101010)]))
+        const userWallet = WalletRepository.findOrCreate(wallet, 'some-wallet')
+        userWallet.erc721['0x123456'] = new Set([BigInt(101010)])
         await walletRepository.update(wallet)
 
         const walletRead = createWallet()
@@ -48,10 +48,10 @@ describe("WalletRepository", () => {
         const wallet = createWallet()
         const walletRepository = new WalletRepository()
         walletRepository.jsonFilePath = './data/wallet-test.json'
-        const userWallet = wallet.getWalletOrNew('some-wallet')
+        const userWallet = WalletRepository.findOrCreate(wallet, 'some-wallet')
         const erc1155tokens = new Map()
         erc1155tokens.set(BigInt(1), BigInt(12))
-        userWallet.erc1155.set('0x123', erc1155tokens)
+        userWallet.erc1155['0x123'] = erc1155tokens
         await walletRepository.update(wallet)
 
         const walletRead = createWallet()
