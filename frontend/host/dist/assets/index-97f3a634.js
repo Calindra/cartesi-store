@@ -68518,7 +68518,27 @@ function WalletRest({ getSigner, fetch, dappAddress }) {
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 2, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { item: true, xs: 12, lg: 3, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(WalletInfoR, { getSigner, dappAddress }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        WalletInfoR,
+        {
+          getSigner,
+          dappAddress,
+          wallet: backendWalletResponse,
+          account: "0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE",
+          cardStyle: {
+            pb: 0,
+            mb: 4,
+            height: "400px"
+          },
+          titleColor: "textSecondary",
+          titleVariant: "h6",
+          titleFontWeight: "400",
+          infoVariant: "subtitle2",
+          infoFontWeight: "500",
+          buttonVariant: "contained",
+          buttonColor: "primary"
+        }
+      ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         TokenErc721Card,
         {

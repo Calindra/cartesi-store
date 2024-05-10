@@ -4,13 +4,27 @@ import WalletIcon from '@mui/icons-material/Wallet';
 import { DAppAddressRelay__factory } from "@cartesi/rollups"
 import { JsonRpcSigner } from 'ethers';
 
+type TitleVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle2";
+type FontWeight = number | "normal" | "bold" | "lighter" | "bolder" | "inherit" | "initial" | "unset";
+type Color = "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning"
+type Variant = "text" | "outlined" | "contained" | undefined
+
 interface WalletInfoProps {
   dappAddress: string,
   getSigner: () => Promise<JsonRpcSigner>,
-  wallet: string
+  wallet: string,
+  account: string,
+  cardStyle: any,
+  titleColor: string,
+  titleVariant: TitleVariant
+  titleFontWeight: FontWeight,
+  infoVariant: TitleVariant,
+  infoFontWeight: FontWeight
+  buttonColor: Color,
+  buttonVariant: Variant
 }
 
-function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
+function WalletInfoR({ getSigner, dappAddress, wallet, account, cardStyle, titleColor, titleVariant, titleFontWeight, buttonColor, buttonVariant, infoVariant, infoFontWeight }: WalletInfoProps) {
 
   const [walletInfo, setWalletInfo] = useState({ ether: "" })
   const [totalCollections, setTotalCollections] = useState(0)
@@ -29,7 +43,7 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
 
   async function callDAppAddressRelay() {
     const signer = await getSigner()
-    const relay = DAppAddressRelay__factory.connect('0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE', signer)
+    const relay = DAppAddressRelay__factory.connect(account, signer)
     console.log("RELAY: ", relay)
     console.log("dappAddress: ", dappAddress)
     const tx = await relay.relayDAppAddress(dappAddress)
@@ -39,11 +53,7 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
   }
 
   return (
-    <Card sx={{
-      pb: 0,
-      mb: 4,
-      height: '400px'
-    }}>
+    <Card sx={cardStyle}>
       <CardContent
         sx={{
           display: 'flex',
@@ -83,10 +93,10 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
                 pb: 2,
               }}
             >
-              <Typography color="textSecondary" variant="h6" fontWeight="400">
+              <Typography color={titleColor} variant={titleVariant} fontWeight={titleFontWeight}>
                 Ether
               </Typography>
-              <Typography variant="subtitle2" fontWeight="500" sx={{
+              <Typography variant={infoVariant} fontWeight={infoFontWeight} sx={{
                 pr: 1,
                 overflow: "hidden",
                 whiteSpace: "nowrap",
@@ -107,10 +117,10 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
                 pl: 1,
               }}
             >
-              <Typography color="textSecondary" variant="h6" fontWeight="400">
+              <Typography color={titleColor} variant={titleVariant} fontWeight={titleFontWeight}>
                 Collections
               </Typography>
-              <Typography variant="subtitle2" fontWeight="500">
+              <Typography variant={infoVariant} fontWeight={infoFontWeight}>
                 {totalCollections}
               </Typography>
             </Grid>
@@ -123,10 +133,10 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
                 pb: 2,
               }}
             >
-              <Typography color="textSecondary" variant="h6" fontWeight="400">
+              <Typography color={titleColor} variant={titleVariant} fontWeight={titleFontWeight}>
                 NFTs
               </Typography>
-              <Typography variant="subtitle2" fontWeight="500">
+              <Typography variant={infoVariant} fontWeight={infoFontWeight}>
                 {totalNfts}
               </Typography>
             </Grid>
@@ -142,7 +152,7 @@ function WalletInfoR({ getSigner, dappAddress, wallet }: WalletInfoProps) {
             pt: 2,
           }}
         >
-          <Button onClick={callDAppAddressRelay} variant="contained" color="primary">
+          <Button onClick={callDAppAddressRelay} variant={buttonVariant} color={buttonColor}>
             Provide DApp Address
           </Button>
         </Box>

@@ -299,7 +299,24 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
             <Grid container spacing={2}>
                 <Grid item xs={12} lg={3}>
                     {/* <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} /> */}
-                    <WalletInfoR getSigner={getSigner} dappAddress={dappAddress} />
+                    <WalletInfoR
+                        getSigner={getSigner}
+                        dappAddress={dappAddress}
+                        wallet={backendWalletResponse} account={'0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE'}
+                        cardStyle={{
+                            pb: 0,
+                            mb: 4,
+                            height: '400px'
+                        }}
+                        titleColor={"textSecondary"}
+                        titleVariant={"h6"}
+                        titleFontWeight={"400"}
+                        infoVariant={"subtitle2"}
+                        infoFontWeight={"500"}
+                        buttonVariant={"contained"}
+                        buttonColor={"primary"}
+
+                    />
                     <TokenErc721Card
                         cardTitle={"ERC-721"}
                         setCurrentInputAddress={changeErc721address}
