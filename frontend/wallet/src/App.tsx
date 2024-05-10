@@ -1,9 +1,11 @@
+import { Card } from "@mui/material"
 
 function App() {
   return (
-    <>
-      Hello from the othet side
-    </>
+    <div>
+      <Card>Teste de Card</Card>
+     Catarino x
+    </div>
   )
 }
 

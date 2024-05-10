@@ -6,12 +6,12 @@ import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import { FormatService } from "@/services/FormatService"
 import Collections from "./Collections"
-import WalletInfo from "./WalletInfo"
+// import WalletInfo from "./WalletInfo"
 import TokenErc20Card from "./TokenErc20Card"
 import EtherCard from "./EtherCard"
 import TokenErc721Card from "./TokenErc721Card"
 
-const App1 = React.lazy(() => import("remoteApp/App"));
+const WalletInfoR = React.lazy(() => import("remoteApp/WalletInfoR"));
 
 
 type WalletRestProps = {
@@ -296,10 +296,10 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     return (
         <>
-            <App1 />
             <Grid container spacing={2}>
                 <Grid item xs={12} lg={3}>
-                    <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} />
+                    {/* <WalletInfo getSigner={getSigner} dappAddress={dappAddress} wallet={backendWalletResponse} /> */}
+                    <WalletInfoR getSigner={getSigner} dappAddress={dappAddress} />
                     <TokenErc721Card
                         cardTitle={"ERC-721"}
                         setCurrentInputAddress={changeErc721address}

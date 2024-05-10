@@ -129,6 +129,7 @@ const WalletInfo = ({ getSigner, dappAddress, wallet }: WalletInfoProps) => {
                     </Grid>
                     <Divider />
                 </Box>
+                
                 <Box
                     display="flex"
                     alignItems="center"

@@ -10718,11 +10718,11 @@ const updateOnVirtualData = swiper => {
   }
 };
 
-const {useEffect: useEffect$a,useLayoutEffect: useLayoutEffect$1} = await importShared('react');
+const {useEffect: useEffect$9,useLayoutEffect: useLayoutEffect$1} = await importShared('react');
 
 function useIsomorphicLayoutEffect(callback, deps) {
   // eslint-disable-next-line
-  if (typeof window === 'undefined') return useEffect$a(callback, deps);
+  if (typeof window === 'undefined') return useEffect$9(callback, deps);
   return useLayoutEffect$1(callback, deps);
 }
 
@@ -10733,7 +10733,7 @@ const SwiperContext = /*#__PURE__*/createContext(null);
 
 function _extends$8() { _extends$8 = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 const React$1j = await importShared('react');
-const {useRef: useRef$3,useState: useState$c,useEffect: useEffect$9,forwardRef: forwardRef$3} = React$1j;
+const {useRef: useRef$3,useState: useState$b,useEffect: useEffect$8,forwardRef: forwardRef$3} = React$1j;
 const Swiper = /*#__PURE__*/forwardRef$3(function (_temp, externalElRef) {
   let {
     className,
@@ -10744,9 +10744,9 @@ const Swiper = /*#__PURE__*/forwardRef$3(function (_temp, externalElRef) {
     ...rest
   } = _temp === void 0 ? {} : _temp;
   let eventsAssigned = false;
-  const [containerClasses, setContainerClasses] = useState$c('swiper');
-  const [virtualData, setVirtualData] = useState$c(null);
-  const [breakpointChanged, setBreakpointChanged] = useState$c(false);
+  const [containerClasses, setContainerClasses] = useState$b('swiper');
+  const [virtualData, setVirtualData] = useState$b(null);
+  const [breakpointChanged, setBreakpointChanged] = useState$b(false);
   const initializedRef = useRef$3(false);
   const swiperElRef = useRef$3(null);
   const swiperRef = useRef$3(null);
@@ -10815,14 +10815,14 @@ const Swiper = /*#__PURE__*/forwardRef$3(function (_temp, externalElRef) {
       swiperRef.current.off(eventName, events[eventName]);
     });
   };
-  useEffect$9(() => {
+  useEffect$8(() => {
     return () => {
       if (swiperRef.current) swiperRef.current.off('_beforeBreakpoint', onBeforeBreakpoint);
     };
   });
 
   // set initialized flag
-  useEffect$9(() => {
+  useEffect$8(() => {
     if (!initializedRef.current && swiperRef.current) {
       swiperRef.current.emitSlidesClasses();
       initializedRef.current = true;
@@ -10920,7 +10920,7 @@ Swiper.displayName = 'Swiper';
 
 function _extends$7() { _extends$7 = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 const React$1i = await importShared('react');
-const {useRef: useRef$2,useState: useState$b,forwardRef: forwardRef$2} = React$1i;
+const {useRef: useRef$2,useState: useState$a,forwardRef: forwardRef$2} = React$1i;
 const SwiperSlide = /*#__PURE__*/forwardRef$2(function (_temp, externalRef) {
   let {
     tag: Tag = 'div',
@@ -10934,8 +10934,8 @@ const SwiperSlide = /*#__PURE__*/forwardRef$2(function (_temp, externalRef) {
     ...rest
   } = _temp === void 0 ? {} : _temp;
   const slideElRef = useRef$2(null);
-  const [slideClasses, setSlideClasses] = useState$b('swiper-slide');
-  const [lazyLoaded, setLazyLoaded] = useState$b(false);
+  const [slideClasses, setSlideClasses] = useState$a('swiper-slide');
+  const [lazyLoaded, setLazyLoaded] = useState$a(false);
   function updateClasses(_s, el, classNames) {
     if (el === slideElRef.current) {
       setSlideClasses(classNames);
@@ -11006,7 +11006,7 @@ function r$2(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else
 let e$2={data:""},t$2=t=>"object"==typeof window?((t?t.querySelector("#_goober"):window._goober)||Object.assign((t||document.head).appendChild(document.createElement("style")),{innerHTML:" ",id:"_goober"})).firstChild:t||e$2,l$2=/(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g,a=/\/\*[^]*?\*\/|  +/g,n$3=/\n+/g,o=(e,t)=>{let r="",l="",a="";for(let n in e){let c=e[n];"@"==n[0]?"i"==n[1]?r=n+" "+c+";":l+="f"==n[1]?o(c,n):n+"{"+o(c,"k"==n[1]?"":t)+"}":"object"==typeof c?l+=o(c,t?t.replace(/([^,])+/g,e=>n.replace(/(^:.*)|([^,])+/g,t=>/&/.test(t)?t.replace(/&/g,e):e?e+" "+t:t)):n):null!=c&&(n=/^--/.test(n)?n:n.replace(/[A-Z]/g,"-$&").toLowerCase(),a+=o.p?o.p(n,c):n+":"+c+";");}return r+(t&&a?t+"{"+a+"}":a)+l},c$2={},s=e=>{if("object"==typeof e){let t="";for(let r in e)t+=r+s(e[r]);return t}return e},i=(e,t,r,i,p)=>{let u=s(e),d=c$2[u]||(c$2[u]=(e=>{let t=0,r=11;for(;t<e.length;)r=101*r+e.charCodeAt(t++)>>>0;return "go"+r})(u));if(!c$2[d]){let t=u!==e?e:(e=>{let t,r,o=[{}];for(;t=l$2.exec(e.replace(a,""));)t[4]?o.shift():t[3]?(r=t[3].replace(n$3," ").trim(),o.unshift(o[0][r]=o[0][r]||{})):o[0][t[1]]=t[2].replace(n$3," ").trim();return o[0]})(e);c$2[d]=o(p?{["@keyframes "+d]:t}:t,r?"":"."+d);}let f=r&&c$2.g?c$2.g:null;return r&&(c$2.g=c$2[d]),((e,t,r,l)=>{l?t.data=t.data.replace(l,e):-1===t.data.indexOf(e)&&(t.data=r?e+t.data:t.data+e);})(c$2[d],t,i,f),d},p$2=(e,t,r)=>e.reduce((e,l,a)=>{let n=t[a];if(n&&n.call){let e=n(r),t=e&&e.props&&e.props.className||/^go/.test(e)&&e;n=t?"."+t:e&&"object"==typeof e?e.props?"":o(e,""):!1===e?"":e;}return e+l+(null==n?"":n)},"");function u$1(e){let r=this||{},l=e.call?e(r.p):e;return i(l.unshift?l.raw?p$2(l,[].slice.call(arguments,1),r.p):l.reduce((e,t)=>Object.assign(e,t&&t.call?t(r.p):t),{}):l,t$2(r.target),r.g,r.o,r.k)}u$1.bind({g:1});u$1.bind({k:1});
 
 const React__default = await importShared('react');
-const {useMemo: useMemo$1,forwardRef: forwardRef$1,useRef: useRef$1,useCallback,useEffect: useEffect$8,createElement,cloneElement: cloneElement$1,useLayoutEffect,memo,useState: useState$a,Component,isValidElement: isValidElement$1,useContext: useContext$1} = React__default;
+const {useMemo: useMemo$1,forwardRef: forwardRef$1,useRef: useRef$1,useCallback,useEffect: useEffect$7,createElement,cloneElement: cloneElement$1,useLayoutEffect,memo,useState: useState$9,Component,isValidElement: isValidElement$1,useContext: useContext$1} = React__default;
 
 const {createPortal} = await importShared('react-dom');
 
@@ -11662,7 +11662,7 @@ var Slide = /*#__PURE__*/forwardRef$1(function (props, ref) {
       setTranslateValue(direction, nodeRef.current);
     }
   }, [direction]);
-  useEffect$8(function () {
+  useEffect$7(function () {
     // Skip configuration where the position is screen size invariant.
     if (inProp || direction === 'down' || direction === 'right') {
       return undefined;
@@ -11680,7 +11680,7 @@ var Slide = /*#__PURE__*/forwardRef$1(function (props, ref) {
       containerWindow.removeEventListener('resize', handleResize);
     };
   }, [direction, inProp]);
-  useEffect$8(function () {
+  useEffect$7(function () {
     if (!inProp) {
       // We need to update the position of the drawer when the direction change and
       // when it's hidden.
@@ -12050,7 +12050,7 @@ function createChainedFunction$1(funcs, snackbarId) {
  * Credit to MUI team @ https://mui.com
  * https://github.com/facebook/react/issues/14099#issuecomment-440013892
  */
-var useEnhancedEffect$2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect$8;
+var useEnhancedEffect$2 = typeof window !== 'undefined' ? useLayoutEffect : useEffect$7;
 function useEventCallback$1(fn) {
   var ref = useRef$1(fn);
   useEnhancedEffect$2(function () {
@@ -12096,7 +12096,7 @@ var Snackbar = /*#__PURE__*/forwardRef$1(function (props, ref) {
       handleClose(null, 'timeout', id);
     }, autoHideDurationParam);
   });
-  useEffect$8(function () {
+  useEffect$7(function () {
     if (open) {
       setAutoHideTimer(autoHideDuration);
     }
@@ -12145,7 +12145,7 @@ var Snackbar = /*#__PURE__*/forwardRef$1(function (props, ref) {
     handleResume();
   };
 
-  useEffect$8(function () {
+  useEffect$7(function () {
     if (!disableWindowBlurListener && open) {
       window.addEventListener('focus', handleResume);
       window.addEventListener('blur', handlePause);
@@ -12281,7 +12281,7 @@ var styles$4 = /*#__PURE__*/makeStyles({
 var SnackbarItem = function SnackbarItem(props) {
   var timeout = useRef$1();
 
-  var _useState = useState$a(true),
+  var _useState = useState$9(true),
       collapsed = _useState[0],
       setCollapsed = _useState[1];
 
@@ -12300,7 +12300,7 @@ var SnackbarItem = function SnackbarItem(props) {
       });
     }, 125);
   }, []);
-  useEffect$8(function () {
+  useEffect$7(function () {
     return function () {
       if (timeout.current) {
         clearTimeout(timeout.current);
@@ -15315,10 +15315,10 @@ function getDefaultConfig() {
 
 var twMerge = /*#__PURE__*/createTailwindMerge(getDefaultConfig);
 
-const {useState: useState$9} = await importShared('react');
+const {useState: useState$8} = await importShared('react');
 function Button$2({ className, disabled: _disabled, onClick, ...rest }) {
   const { enqueueSnackbar } = useSnackbar();
-  const [disabled, setDisabled] = useState$9(false);
+  const [disabled, setDisabled] = useState$8(false);
   async function _onClick(e) {
     try {
       setDisabled(true);
@@ -15429,9 +15429,9 @@ function CollectionsSection({ title }) {
   ] });
 }
 
-const {useState: useState$8} = await importShared('react');
+const {useState: useState$7} = await importShared('react');
 function HeroSection() {
-  const [background, setBackground] = useState$8(0);
+  const [background, setBackground] = useState$7(0);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
@@ -40444,7 +40444,7 @@ function stall(duration) {
  *  raw private key, [[link-bip-39]] mnemonics and encrypte JSON
  *  wallets.
  */
-let Wallet$1 = class Wallet extends BaseWallet {
+class Wallet extends BaseWallet {
     /**
      *  Create a new wallet for the private %%key%%, optionally connected
      *  to %%provider%%.
@@ -40566,7 +40566,7 @@ let Wallet$1 = class Wallet extends BaseWallet {
         }
         return wallet;
     }
-};
+}
 
 const Base64 = ")!@#$%^&*(ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
 /**
@@ -40753,7 +40753,7 @@ const $5oumB$ethers = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.definePrope
   UnmanagedSubscriber,
   Utf8ErrorFuncs,
   VoidSigner,
-  Wallet: Wallet$1,
+  Wallet,
   WebSocketProvider,
   WeiPerEther,
   Wordlist,
@@ -40953,7 +40953,7 @@ const lib_esm = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   UnmanagedSubscriber,
   Utf8ErrorFuncs,
   VoidSigner,
-  Wallet: Wallet$1,
+  Wallet,
   WebSocketProvider,
   WeiPerEther,
   Wordlist,
@@ -49098,14 +49098,14 @@ class TrendingService {
   }
 }
 
-const {useEffect: useEffect$7,useState: useState$7} = await importShared('react');
+const {useEffect: useEffect$6,useState: useState$6} = await importShared('react');
 function StatsTable() {
-  const [trending, setTrending] = useState$7([]);
+  const [trending, setTrending] = useState$6([]);
   async function init() {
     const trending2 = await TrendingService.findAll();
     setTrending(trending2);
   }
-  useEffect$7(() => {
+  useEffect$6(() => {
     init();
   }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container, { className: "pt-12", children: [
@@ -49322,11 +49322,11 @@ Object.defineProperty(background, "__esModule", {
 });
 background.default = void 0;
 
-var _react$3 = _interopRequireDefault$c(reactExports);
+var _react$3 = _interopRequireDefault$b(reactExports);
 
 var _styles$3 = styles$3;
 
-function _interopRequireDefault$c(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$b(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
 
@@ -49654,9 +49654,9 @@ networks.keyFor = keyFor;
 networks.keysFor = keysFor;
 networks.KEYS = networks.DEFAULT_KEY = void 0;
 
-var _networksDb = _interopRequireDefault$b(_networksDb$1);
+var _networksDb = _interopRequireDefault$a(_networksDb$1);
 
-function _interopRequireDefault$b(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$a(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DEFAULT_KEY = 'sharethis';
 networks.DEFAULT_KEY = DEFAULT_KEY;
@@ -49716,15 +49716,15 @@ Object.defineProperty(icon, "__esModule", {
 });
 icon.default = void 0;
 
-var _propTypes$2 = _interopRequireDefault$a(propTypesExports);
+var _propTypes$2 = _interopRequireDefault$9(propTypesExports);
 
-var _react$2 = _interopRequireDefault$a(reactExports);
+var _react$2 = _interopRequireDefault$9(reactExports);
 
 var _networks$2 = networks;
 
 var _styles$2 = styles$3;
 
-function _interopRequireDefault$a(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$9(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
@@ -49772,15 +49772,15 @@ Object.defineProperty(mask, "__esModule", {
 });
 mask.default = void 0;
 
-var _propTypes$1 = _interopRequireDefault$9(propTypesExports);
+var _propTypes$1 = _interopRequireDefault$8(propTypesExports);
 
-var _react$1 = _interopRequireDefault$9(reactExports);
+var _react$1 = _interopRequireDefault$8(reactExports);
 
 var _networks$1 = networks;
 
 var _styles$1 = styles$3;
 
-function _interopRequireDefault$9(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$8(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
 
@@ -49828,21 +49828,21 @@ Object.defineProperty(socialIcon$1, "__esModule", {
 });
 socialIcon$1.default = void 0;
 
-var _propTypes = _interopRequireDefault$8(propTypesExports);
+var _propTypes = _interopRequireDefault$7(propTypesExports);
 
-var _react = _interopRequireDefault$8(reactExports);
+var _react = _interopRequireDefault$7(reactExports);
 
-var _background = _interopRequireDefault$8(background);
+var _background = _interopRequireDefault$7(background);
 
-var _icon = _interopRequireDefault$8(icon);
+var _icon = _interopRequireDefault$7(icon);
 
-var _mask = _interopRequireDefault$8(mask);
+var _mask = _interopRequireDefault$7(mask);
 
 var _networks = networks;
 
 var _styles = styles$3;
 
-function _interopRequireDefault$8(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$7(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
 
@@ -50152,12 +50152,12 @@ function WalletIcon({
 const ForwardRef = React$1d.forwardRef(WalletIcon);
 const WalletIcon$1 = ForwardRef;
 
-const {useEffect: useEffect$6,useRef,useState: useState$6} = await importShared('react');
+const {useEffect: useEffect$5,useRef,useState: useState$5} = await importShared('react');
 function Header() {
   const navigate = useNavigate();
   const ref = useRef(null);
-  const [isSticked, setIsSticked] = useState$6(false);
-  useEffect$6(() => {
+  const [isSticked, setIsSticked] = useState$5(false);
+  useEffect$5(() => {
     const cachedRef = ref.current, observer = new IntersectionObserver(([e]) => setIsSticked(e.intersectionRatio < 1), {
       threshold: [1]
     });
@@ -50299,9 +50299,9 @@ const navigation_min = '';
 
 const index = '';
 
-const {useEffect: useEffect$5,useState: useState$5} = await importShared('react');
+const {useEffect: useEffect$4,useState: useState$4} = await importShared('react');
 function CollectionScreen() {
-  const [items, setItems] = useState$5([]);
+  const [items, setItems] = useState$4([]);
   const fetch = HttpService.getRawCartesifyFetch();
   const { collection } = useParams();
   async function init(collection2) {
@@ -50313,7 +50313,7 @@ function CollectionScreen() {
     const json = await res.json();
     setItems(json.rows);
   }
-  useEffect$5(() => {
+  useEffect$4(() => {
     if (collection) {
       init(collection);
     }
@@ -50436,10 +50436,10 @@ class SignerService {
   }
 }
 
-const {useEffect: useEffect$4,useState: useState$4} = await importShared('react');
+const {useEffect: useEffect$3,useState: useState$3} = await importShared('react');
 function CartesiWallet() {
-  const [balanceL1, setBalanceL1] = useState$4("0");
-  const [balanceL2, setBalanceL2] = useState$4("0");
+  const [balanceL1, setBalanceL1] = useState$3("0");
+  const [balanceL2, setBalanceL2] = useState$3("0");
   const fetch = HttpService.getRawCartesifyFetch();
   async function init() {
     const signer = await SignerService.getSigner();
@@ -50451,7 +50451,7 @@ function CartesiWallet() {
     const formattedL2 = FormatService.formatEther(json.ether);
     setBalanceL2(formattedL2 ?? "");
   }
-  useEffect$4(() => {
+  useEffect$3(() => {
     init();
   }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
@@ -50467,12 +50467,12 @@ function CartesiWallet() {
   ] });
 }
 
-const {useEffect: useEffect$3,useState: useState$3} = await importShared('react');
+const {useEffect: useEffect$2,useState: useState$2} = await importShared('react');
 function NFTProductScreen() {
   const { collection, tokenId } = useParams();
-  const [nftProduct, setNFTProduct] = useState$3({});
-  const [userAddress, setUserAddress] = useState$3("");
-  const [erc721Price, setErc721Price] = useState$3("0");
+  const [nftProduct, setNFTProduct] = useState$2({});
+  const [userAddress, setUserAddress] = useState$2("");
+  const [erc721Price, setErc721Price] = useState$2("0");
   const fetch = HttpService.getRawCartesifyFetch();
   const { enqueueSnackbar } = useSnackbar();
   async function init(collection2, tokenId2) {
@@ -50531,7 +50531,7 @@ function NFTProductScreen() {
       init(collection, tokenId);
     }
   }
-  useEffect$3(() => {
+  useEffect$2(() => {
     if (collection && tokenId) {
       init(collection, tokenId);
     }
@@ -54851,7 +54851,7 @@ const require$$1$1 = /*@__PURE__*/getAugmentedNamespace(formatMuiErrorMessage);
 
 const require$$2 = /*@__PURE__*/getAugmentedNamespace(clamp);
 
-var _interopRequireDefault$7 = interopRequireDefaultExports;
+var _interopRequireDefault$6 = interopRequireDefaultExports;
 Object.defineProperty(colorManipulator, "__esModule", {
   value: true
 });
@@ -54873,8 +54873,8 @@ colorManipulator.private_safeEmphasize = private_safeEmphasize;
 colorManipulator.private_safeLighten = private_safeLighten;
 colorManipulator.recomposeColor = recomposeColor;
 colorManipulator.rgbToHex = rgbToHex;
-var _formatMuiErrorMessage2 = _interopRequireDefault$7(require$$1$1);
-var _clamp = _interopRequireDefault$7(require$$2);
+var _formatMuiErrorMessage2 = _interopRequireDefault$6(require$$1$1);
+var _clamp = _interopRequireDefault$6(require$$2);
 /* eslint-disable @typescript-eslint/naming-convention */
 
 /**
@@ -55773,21 +55773,21 @@ const require$$7 = /*@__PURE__*/getAugmentedNamespace(createTheme$1);
 
 const require$$8 = /*@__PURE__*/getAugmentedNamespace(styleFunctionSx);
 
-var _interopRequireDefault$6 = interopRequireDefaultExports;
+var _interopRequireDefault$5 = interopRequireDefaultExports;
 Object.defineProperty(createStyled$1, "__esModule", {
   value: true
 });
 var _default = createStyled$1.default = createStyled;
 createStyled$1.shouldForwardProp = shouldForwardProp;
 createStyled$1.systemDefaultTheme = void 0;
-var _extends2 = _interopRequireDefault$6(require_extends());
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault$6(requireObjectWithoutPropertiesLoose());
+var _extends2 = _interopRequireDefault$5(require_extends());
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault$5(requireObjectWithoutPropertiesLoose());
 var _styledEngine$1 = _interopRequireWildcard$1(require$$1);
 var _deepmerge = require$$4;
-_interopRequireDefault$6(require$$5);
-_interopRequireDefault$6(require$$6);
-var _createTheme = _interopRequireDefault$6(require$$7);
-var _styleFunctionSx = _interopRequireDefault$6(require$$8);
+_interopRequireDefault$5(require$$5);
+_interopRequireDefault$5(require$$6);
+var _createTheme = _interopRequireDefault$5(require$$7);
+var _styleFunctionSx = _interopRequireDefault$5(require$$8);
 const _excluded$I = ["ownerState"],
   _excluded2$5 = ["variants"],
   _excluded3$2 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
@@ -61150,7 +61150,7 @@ var useThemeWithoutDefault = {};
 Object.defineProperty(useThemeWithoutDefault, "__esModule", {
   value: true
 });
-var default_1$6 = useThemeWithoutDefault.default = void 0;
+var default_1$5 = useThemeWithoutDefault.default = void 0;
 var React$H = _interopRequireWildcard(reactExports);
 var _styledEngine = require$$1;
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
@@ -61162,7 +61162,7 @@ function useTheme(defaultTheme = null) {
   const contextTheme = React$H.useContext(_styledEngine.ThemeContext);
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 }
-default_1$6 = useThemeWithoutDefault.default = useTheme;
+default_1$5 = useThemeWithoutDefault.default = useTheme;
 
 const _excluded$x = ["anchorEl", "component", "components", "componentsProps", "container", "disablePortal", "keepMounted", "modifiers", "open", "placement", "popperOptions", "popperRef", "transition", "slots", "slotProps"];
 const React$G = await importShared('react');
@@ -61186,7 +61186,7 @@ const PopperRoot = styled$1(Popper$2, {
  */
 const Popper = /*#__PURE__*/React$G.forwardRef(function Popper(inProps, ref) {
   var _slots$root;
-  const theme = default_1$6();
+  const theme = default_1$5();
   const props = useThemeProps$1({
     props: inProps,
     name: 'MuiPopper'
@@ -67476,7 +67476,7 @@ const img7 = "/assets/7-920a7641.jpg";
 
 const img8 = "/assets/8-10135496.jpg";
 
-const {useEffect: useEffect$2,useState: useState$2} = await importShared('react');
+const {useEffect: useEffect$1,useState: useState$1} = await importShared('react');
 const bodyBuilding = (element) => {
   if (!element || Object.keys(element).length === 0) {
     return null;
@@ -67521,8 +67521,8 @@ const bodyBuilding = (element) => {
   return rows;
 };
 const Collections = ({ collections }) => {
-  const [erc721, setErc721] = useState$2({});
-  useEffect$2(() => {
+  const [erc721, setErc721] = useState$1({});
+  useEffect$1(() => {
     if (collections) {
       const jsonCollection = JSON.parse(collections);
       setErc721(jsonCollection.erc721);
@@ -67562,7 +67562,7 @@ const Collections = ({ collections }) => {
   ) }) });
 };
 
-var Wallet = {};
+var MoveUp = {};
 
 var createSvgIcon = {};
 
@@ -67589,159 +67589,6 @@ function requireCreateSvgIcon () {
 	} (createSvgIcon));
 	return createSvgIcon;
 }
-
-var _interopRequireDefault$5 = interopRequireDefaultExports;
-Object.defineProperty(Wallet, "__esModule", {
-  value: true
-});
-var default_1$5 = Wallet.default = void 0;
-var _createSvgIcon$5 = _interopRequireDefault$5(requireCreateSvgIcon());
-var _jsxRuntime$5 = jsxRuntimeExports;
-default_1$5 = Wallet.default = (0, _createSvgIcon$5.default)( /*#__PURE__*/(0, _jsxRuntime$5.jsx)("path", {
-  d: "M18 4H6C3.79 4 2 5.79 2 8v8c0 2.21 1.79 4 4 4h12c2.21 0 4-1.79 4-4V8c0-2.21-1.79-4-4-4m-1.86 9.77c-.24.2-.57.28-.88.2L4.15 11.25C4.45 10.52 5.16 10 6 10h12c.67 0 1.26.34 1.63.84zM6 6h12c1.1 0 2 .9 2 2v.55c-.59-.34-1.27-.55-2-.55H6c-.73 0-1.41.21-2 .55V8c0-1.1.9-2 2-2"
-}), 'Wallet');
-
-const {useEffect: useEffect$1,useState: useState$1} = await importShared('react');
-const WalletInfo = ({ getSigner, dappAddress, wallet }) => {
-  const [walletInfo, setWalletInfo] = useState$1({ ether: "" });
-  const [totalCollections, setTotalCollections] = useState$1(0);
-  const [totalNfts, setTotalNfts] = useState$1(0);
-  useEffect$1(() => {
-    if (wallet) {
-      const jsonWallet = JSON.parse(wallet);
-      const totalCollections2 = Object.keys(jsonWallet.erc721).length;
-      const totalNfts2 = Object.values(jsonWallet.erc721).reduce((acc, curr) => acc + curr.length, 0);
-      setTotalCollections(totalCollections2);
-      setTotalNfts(totalNfts2);
-      setWalletInfo(jsonWallet);
-    }
-  }, [wallet]);
-  async function callDAppAddressRelay() {
-    const signer = await getSigner();
-    const relay = types.DAppAddressRelay__factory.connect("0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE", signer);
-    const tx = await relay.relayDAppAddress(dappAddress);
-    const res = await tx.wait();
-    console.log("Executed!", res);
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Card$1,
-    {
-      sx: {
-        pb: 0,
-        mb: 4,
-        height: "400px"
-      },
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        CardContent$1,
-        {
-          sx: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            pb: 0,
-            height: "100%"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { display: "flex", alignItems: "center", justifyContent: "flex-start", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$5, { sx: { fontSize: "40px" } }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Box$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Typography$1,
-                {
-                  variant: "h4",
-                  sx: {
-                    pl: 2
-                  },
-                  children: "Wallet"
-                }
-              ) })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Box$1,
-              {
-                sx: {
-                  mt: 3
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 0, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      Grid$1,
-                      {
-                        item: true,
-                        xs: 4,
-                        lg: 4,
-                        sx: {
-                          borderRight: "1px solid rgba(0,0,0,0.1)",
-                          pb: 2
-                        },
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { color: "textSecondary", variant: "h6", fontWeight: "400", children: "Ether" }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { variant: "subtitle2", fontWeight: "500", sx: {
-                            pr: 1,
-                            overflow: "hidden",
-                            whiteSpace: "nowrap",
-                            textOverflow: "ellipsis"
-                          }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: walletInfo.ether, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: walletInfo.ether }) }) })
-                        ]
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      Grid$1,
-                      {
-                        item: true,
-                        xs: 4,
-                        lg: 4,
-                        sx: {
-                          borderRight: "1px solid rgba(0,0,0,0.1)",
-                          pb: 2,
-                          pl: 1
-                        },
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { color: "textSecondary", variant: "h6", fontWeight: "400", children: "Collections" }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { variant: "subtitle2", fontWeight: "500", children: totalCollections })
-                        ]
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      Grid$1,
-                      {
-                        item: true,
-                        xs: 4,
-                        lg: 4,
-                        sx: {
-                          pl: 1,
-                          pb: 2
-                        },
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { color: "textSecondary", variant: "h6", fontWeight: "400", children: "NFTs" }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { variant: "subtitle2", fontWeight: "500", children: totalNfts })
-                        ]
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {})
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Box$1,
-              {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                sx: {
-                  pt: 2
-                },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$1, { onClick: callDAppAddressRelay, variant: "contained", color: "primary", children: "Provide DApp Address" })
-              }
-            )
-          ]
-        }
-      )
-    }
-  );
-};
-
-var MoveUp = {};
 
 var _interopRequireDefault$4 = interopRequireDefaultExports;
 Object.defineProperty(MoveUp, "__esModule", {
@@ -68428,7 +68275,7 @@ const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, depos
 const React$1 = await importShared('react');
 
 const {useEffect,useState} = await importShared('react');
-const App1 = React$1.lazy(() => __federation_method_getRemote("remoteApp" , "./App").then(module=>__federation_method_wrapDefault(module, true)));
+const WalletInfoR = React$1.lazy(() => __federation_method_getRemote("remoteApp" , "./WalletInfoR").then(module=>__federation_method_wrapDefault(module, true)));
 function WalletRest({ getSigner, fetch, dappAddress }) {
   const [backendWalletResponse, setBackendWalletResponse] = useState("");
   const [erc20address, setErc20Address] = useState(localStorage.getItem("erc20address") ?? "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d");
@@ -68669,75 +68516,72 @@ function WalletRest({ getSigner, fetch, dappAddress }) {
     loadErc721balance();
     console.log("Success!");
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(App1, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 2, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { item: true, xs: 12, lg: 3, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(WalletInfo, { getSigner, dappAddress, wallet: backendWalletResponse }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          TokenErc721Card,
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 2, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { item: true, xs: 12, lg: 3, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(WalletInfoR, { getSigner, dappAddress }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TokenErc721Card,
+        {
+          cardTitle: "ERC-721",
+          setCurrentInputAddress: changeErc721address,
+          currentInputAddress: erc721address,
+          getBalance: getErc721Balance,
+          balanceL1: erc721balanceL1,
+          balanceL2: erc721balanceL2,
+          setIdValue: setErc721id,
+          idValue: erc721id,
+          deposit: depositErc721,
+          withdraw: withdrawErc721,
+          setDestinyAddress: setToAddress,
+          transfer: transferErc721,
+          addressToTransfer: toAddress,
+          price: erc721Price,
+          setPrice: setErc721Price,
+          toList: listErc721,
+          toListed: listedErc721
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { item: true, xs: 12, lg: 9, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Collections, { collections: backendWalletResponse }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 2, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Grid$1, { item: true, xs: 12, lg: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          EtherCard,
           {
-            cardTitle: "ERC-721",
-            setCurrentInputAddress: changeErc721address,
-            currentInputAddress: erc721address,
-            getBalance: getErc721Balance,
-            balanceL1: erc721balanceL1,
-            balanceL2: erc721balanceL2,
-            setIdValue: setErc721id,
-            idValue: erc721id,
-            deposit: depositErc721,
-            withdraw: withdrawErc721,
+            cardTitle: "Ether",
+            getEtherBalance,
+            idValue: etherValue,
+            setIdValue: setEtherValue,
+            depositEther,
+            withdrawEther,
+            transferEther,
+            etherBalanceL1,
+            etherBalanceL2,
             setDestinyAddress: setToAddress,
-            transfer: transferErc721,
-            addressToTransfer: toAddress,
-            price: erc721Price,
-            setPrice: setErc721Price,
-            toList: listErc721,
-            toListed: listedErc721
+            addressToTransfer: toAddress
           }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { item: true, xs: 12, lg: 9, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Collections, { collections: backendWalletResponse }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 2, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Grid$1, { item: true, xs: 12, lg: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            EtherCard,
-            {
-              cardTitle: "Ether",
-              getEtherBalance,
-              idValue: etherValue,
-              setIdValue: setEtherValue,
-              depositEther,
-              withdrawEther,
-              transferEther,
-              etherBalanceL1,
-              etherBalanceL2,
-              setDestinyAddress: setToAddress,
-              addressToTransfer: toAddress
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Grid$1, { item: true, xs: 12, lg: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            TokenErc20Card,
-            {
-              cardTitle: "ERC-20",
-              setCurrentInputAddress: changeErc20Address,
-              currentInputAddress: erc20address,
-              getBalance: getErc20Balance,
-              balanceL1: erc20balanceL1,
-              balanceL2: erc20balanceL2,
-              setIdValue: setErc20value,
-              idValue: erc20value,
-              deposit: depositErc20,
-              withdraw: withdrawErc20,
-              setDestinyAddress: setToAddress,
-              transfer: transferErc20,
-              addressToTransfer: toAddress
-            }
-          ) })
-        ] })
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Grid$1, { item: true, xs: 12, lg: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          TokenErc20Card,
+          {
+            cardTitle: "ERC-20",
+            setCurrentInputAddress: changeErc20Address,
+            currentInputAddress: erc20address,
+            getBalance: getErc20Balance,
+            balanceL1: erc20balanceL1,
+            balanceL2: erc20balanceL2,
+            setIdValue: setErc20value,
+            idValue: erc20value,
+            deposit: depositErc20,
+            withdraw: withdrawErc20,
+            setDestinyAddress: setToAddress,
+            transfer: transferErc20,
+            addressToTransfer: toAddress
+          }
+        ) })
       ] })
     ] })
-  ] });
+  ] }) });
 }
 
 function WalletScreen() {
