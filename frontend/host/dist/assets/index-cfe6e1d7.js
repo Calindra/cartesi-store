@@ -49322,11 +49322,11 @@ Object.defineProperty(background, "__esModule", {
 });
 background.default = void 0;
 
-var _react$3 = _interopRequireDefault$b(reactExports);
+var _react$3 = _interopRequireDefault$9(reactExports);
 
 var _styles$3 = styles$3;
 
-function _interopRequireDefault$b(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$9(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
 
@@ -49654,9 +49654,9 @@ networks.keyFor = keyFor;
 networks.keysFor = keysFor;
 networks.KEYS = networks.DEFAULT_KEY = void 0;
 
-var _networksDb = _interopRequireDefault$a(_networksDb$1);
+var _networksDb = _interopRequireDefault$8(_networksDb$1);
 
-function _interopRequireDefault$a(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$8(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var DEFAULT_KEY = 'sharethis';
 networks.DEFAULT_KEY = DEFAULT_KEY;
@@ -49716,15 +49716,15 @@ Object.defineProperty(icon, "__esModule", {
 });
 icon.default = void 0;
 
-var _propTypes$2 = _interopRequireDefault$9(propTypesExports);
+var _propTypes$2 = _interopRequireDefault$7(propTypesExports);
 
-var _react$2 = _interopRequireDefault$9(reactExports);
+var _react$2 = _interopRequireDefault$7(reactExports);
 
 var _networks$2 = networks;
 
 var _styles$2 = styles$3;
 
-function _interopRequireDefault$9(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$7(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
@@ -49772,15 +49772,15 @@ Object.defineProperty(mask, "__esModule", {
 });
 mask.default = void 0;
 
-var _propTypes$1 = _interopRequireDefault$8(propTypesExports);
+var _propTypes$1 = _interopRequireDefault$6(propTypesExports);
 
-var _react$1 = _interopRequireDefault$8(reactExports);
+var _react$1 = _interopRequireDefault$6(reactExports);
 
 var _networks$1 = networks;
 
 var _styles$1 = styles$3;
 
-function _interopRequireDefault$8(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$6(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
 
@@ -49828,21 +49828,21 @@ Object.defineProperty(socialIcon$1, "__esModule", {
 });
 socialIcon$1.default = void 0;
 
-var _propTypes = _interopRequireDefault$7(propTypesExports);
+var _propTypes = _interopRequireDefault$5(propTypesExports);
 
-var _react = _interopRequireDefault$7(reactExports);
+var _react = _interopRequireDefault$5(reactExports);
 
-var _background = _interopRequireDefault$7(background);
+var _background = _interopRequireDefault$5(background);
 
-var _icon = _interopRequireDefault$7(icon);
+var _icon = _interopRequireDefault$5(icon);
 
-var _mask = _interopRequireDefault$7(mask);
+var _mask = _interopRequireDefault$5(mask);
 
 var _networks = networks;
 
 var _styles = styles$3;
 
-function _interopRequireDefault$7(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault$5(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
 
@@ -54851,7 +54851,7 @@ const require$$1$1 = /*@__PURE__*/getAugmentedNamespace(formatMuiErrorMessage);
 
 const require$$2 = /*@__PURE__*/getAugmentedNamespace(clamp);
 
-var _interopRequireDefault$6 = interopRequireDefaultExports;
+var _interopRequireDefault$4 = interopRequireDefaultExports;
 Object.defineProperty(colorManipulator, "__esModule", {
   value: true
 });
@@ -54873,8 +54873,8 @@ colorManipulator.private_safeEmphasize = private_safeEmphasize;
 colorManipulator.private_safeLighten = private_safeLighten;
 colorManipulator.recomposeColor = recomposeColor;
 colorManipulator.rgbToHex = rgbToHex;
-var _formatMuiErrorMessage2 = _interopRequireDefault$6(require$$1$1);
-var _clamp = _interopRequireDefault$6(require$$2);
+var _formatMuiErrorMessage2 = _interopRequireDefault$4(require$$1$1);
+var _clamp = _interopRequireDefault$4(require$$2);
 /* eslint-disable @typescript-eslint/naming-convention */
 
 /**
@@ -55773,21 +55773,21 @@ const require$$7 = /*@__PURE__*/getAugmentedNamespace(createTheme$1);
 
 const require$$8 = /*@__PURE__*/getAugmentedNamespace(styleFunctionSx);
 
-var _interopRequireDefault$5 = interopRequireDefaultExports;
+var _interopRequireDefault$3 = interopRequireDefaultExports;
 Object.defineProperty(createStyled$1, "__esModule", {
   value: true
 });
 var _default = createStyled$1.default = createStyled;
 createStyled$1.shouldForwardProp = shouldForwardProp;
 createStyled$1.systemDefaultTheme = void 0;
-var _extends2 = _interopRequireDefault$5(require_extends());
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault$5(requireObjectWithoutPropertiesLoose());
+var _extends2 = _interopRequireDefault$3(require_extends());
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault$3(requireObjectWithoutPropertiesLoose());
 var _styledEngine$1 = _interopRequireWildcard$1(require$$1);
 var _deepmerge = require$$4;
-_interopRequireDefault$5(require$$5);
-_interopRequireDefault$5(require$$6);
-var _createTheme = _interopRequireDefault$5(require$$7);
-var _styleFunctionSx = _interopRequireDefault$5(require$$8);
+_interopRequireDefault$3(require$$5);
+_interopRequireDefault$3(require$$6);
+var _createTheme = _interopRequireDefault$3(require$$7);
+var _styleFunctionSx = _interopRequireDefault$3(require$$8);
 const _excluded$B = ["ownerState"],
   _excluded2$4 = ["variants"],
   _excluded3$1 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
@@ -61068,7 +61068,7 @@ var useThemeWithoutDefault = {};
 Object.defineProperty(useThemeWithoutDefault, "__esModule", {
   value: true
 });
-var default_1$5 = useThemeWithoutDefault.default = void 0;
+var default_1$3 = useThemeWithoutDefault.default = void 0;
 var React$z = _interopRequireWildcard(reactExports);
 var _styledEngine = require$$1;
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
@@ -61080,7 +61080,7 @@ function useTheme(defaultTheme = null) {
   const contextTheme = React$z.useContext(_styledEngine.ThemeContext);
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 }
-default_1$5 = useThemeWithoutDefault.default = useTheme;
+default_1$3 = useThemeWithoutDefault.default = useTheme;
 
 const _excluded$r = ["anchorEl", "component", "components", "componentsProps", "container", "disablePortal", "keepMounted", "modifiers", "open", "placement", "popperOptions", "popperRef", "transition", "slots", "slotProps"];
 const React$y = await importShared('react');
@@ -61104,7 +61104,7 @@ const PopperRoot = styled$1(Popper$2, {
  */
 const Popper = /*#__PURE__*/React$y.forwardRef(function Popper(inProps, ref) {
   var _slots$root;
-  const theme = default_1$5();
+  const theme = default_1$3();
   const props = useThemeProps({
     props: inProps,
     name: 'MuiPopper'
@@ -66749,14 +66749,14 @@ function requireCreateSvgIcon () {
 	return createSvgIcon;
 }
 
-var _interopRequireDefault$4 = interopRequireDefaultExports;
+var _interopRequireDefault$2 = interopRequireDefaultExports;
 Object.defineProperty(MoveUp, "__esModule", {
   value: true
 });
-var default_1$4 = MoveUp.default = void 0;
-var _createSvgIcon$4 = _interopRequireDefault$4(requireCreateSvgIcon());
-var _jsxRuntime$4 = jsxRuntimeExports;
-default_1$4 = MoveUp.default = (0, _createSvgIcon$4.default)( /*#__PURE__*/(0, _jsxRuntime$4.jsx)("path", {
+var default_1$2 = MoveUp.default = void 0;
+var _createSvgIcon$2 = _interopRequireDefault$2(requireCreateSvgIcon());
+var _jsxRuntime$2 = jsxRuntimeExports;
+default_1$2 = MoveUp.default = (0, _createSvgIcon$2.default)( /*#__PURE__*/(0, _jsxRuntime$2.jsx)("path", {
   d: "M3 13c0-2.45 1.76-4.47 4.08-4.91l-1.49 1.5L7 11l4-4.01L7 3 5.59 4.41l1.58 1.58v.06C3.7 6.46 1 9.42 1 13c0 3.87 3.13 7 7 7h3v-2H8c-2.76 0-5-2.24-5-5m10 0v7h9v-7zm7 5h-5v-3h5zM13 4h9v7h-9z"
 }), 'MoveUp');
 
@@ -66779,14 +66779,14 @@ const CustomTextField = styled$1((props) => /* @__PURE__ */ jsxRuntimeExports.js
 
 var AccountBalance = {};
 
-var _interopRequireDefault$3 = interopRequireDefaultExports;
+var _interopRequireDefault$1 = interopRequireDefaultExports;
 Object.defineProperty(AccountBalance, "__esModule", {
   value: true
 });
-var default_1$3 = AccountBalance.default = void 0;
-var _createSvgIcon$3 = _interopRequireDefault$3(requireCreateSvgIcon());
-var _jsxRuntime$3 = jsxRuntimeExports;
-default_1$3 = AccountBalance.default = (0, _createSvgIcon$3.default)( /*#__PURE__*/(0, _jsxRuntime$3.jsx)("path", {
+var default_1$1 = AccountBalance.default = void 0;
+var _createSvgIcon$1 = _interopRequireDefault$1(requireCreateSvgIcon());
+var _jsxRuntime$1 = jsxRuntimeExports;
+default_1$1 = AccountBalance.default = (0, _createSvgIcon$1.default)( /*#__PURE__*/(0, _jsxRuntime$1.jsx)("path", {
   d: "M4 10h3v7H4zm6.5 0h3v7h-3zM2 19h20v3H2zm15-9h3v7h-3zm-5-9L2 6v2h20V6z"
 }), 'AccountBalance');
 
@@ -66798,14 +66798,14 @@ const CustomFormLabel = styled$1((props) => /* @__PURE__ */ jsxRuntimeExports.js
 
 var Token = {};
 
-var _interopRequireDefault$2 = interopRequireDefaultExports;
+var _interopRequireDefault = interopRequireDefaultExports;
 Object.defineProperty(Token, "__esModule", {
   value: true
 });
-var default_1$2 = Token.default = void 0;
-var _createSvgIcon$2 = _interopRequireDefault$2(requireCreateSvgIcon());
-var _jsxRuntime$2 = jsxRuntimeExports;
-default_1$2 = Token.default = (0, _createSvgIcon$2.default)( /*#__PURE__*/(0, _jsxRuntime$2.jsx)("path", {
+var default_1 = Token.default = void 0;
+var _createSvgIcon = _interopRequireDefault(requireCreateSvgIcon());
+var _jsxRuntime = jsxRuntimeExports;
+default_1 = Token.default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M19.97 6.43 12 2 4.03 6.43 9.1 9.24C9.83 8.48 10.86 8 12 8s2.17.48 2.9 1.24zM10 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2m1 9.44L3 17V8.14l5.13 2.85c-.09.32-.13.66-.13 1.01 0 1.86 1.27 3.43 3 3.87zm2 0v-5.57c1.73-.44 3-2.01 3-3.87 0-.35-.04-.69-.13-1.01L21 8.14V17z"
 }), 'Token');
 
@@ -66830,7 +66830,7 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
           },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { display: "flex", alignItems: "center", justifyContent: "flex-start", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$2, { sx: { fontSize: "40px" } }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(default_1, { sx: { fontSize: "40px" } }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Box$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Typography$1,
                 {
@@ -66868,7 +66868,7 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                       {
                         onClick: () => getBalance(),
                         sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$3, {})
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$1, {})
                       }
                     ) })
                   ]
@@ -66962,7 +66962,7 @@ const TokenErc20Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposi
                           {
                             onClick: () => transfer(),
                             sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$4, {})
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$2, {})
                           }
                         ) })
                       ]
@@ -67026,7 +67026,7 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                       onClick: () => getEtherBalance(),
                       variant: "contained",
                       color: "primary",
-                      startIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$3, {}),
+                      startIcon: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$1, {}),
                       sx: { width: "100%" },
                       children: "Get Balance"
                     }
@@ -67116,308 +67116,9 @@ const EtherCard = ({ getEtherBalance, depositEther, withdrawEther, transferEther
                           {
                             onClick: () => transferEther(),
                             sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$4, {})
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$2, {})
                           }
                         ) })
-                      ]
-                    }
-                  )
-                ]
-              }
-            )
-          ]
-        }
-      )
-    }
-  );
-};
-
-var CurrencyExchange = {};
-
-var _interopRequireDefault$1 = interopRequireDefaultExports;
-Object.defineProperty(CurrencyExchange, "__esModule", {
-  value: true
-});
-var default_1$1 = CurrencyExchange.default = void 0;
-var _createSvgIcon$1 = _interopRequireDefault$1(requireCreateSvgIcon());
-var _jsxRuntime$1 = jsxRuntimeExports;
-default_1$1 = CurrencyExchange.default = (0, _createSvgIcon$1.default)( /*#__PURE__*/(0, _jsxRuntime$1.jsx)("path", {
-  d: "M12.89 11.1c-1.78-.59-2.64-.96-2.64-1.9 0-1.02 1.11-1.39 1.81-1.39 1.31 0 1.79.99 1.9 1.34l1.58-.67c-.15-.45-.82-1.92-2.54-2.24V5h-2v1.26c-2.48.56-2.49 2.86-2.49 2.96 0 2.27 2.25 2.91 3.35 3.31 1.58.56 2.28 1.07 2.28 2.03 0 1.13-1.05 1.61-1.98 1.61-1.82 0-2.34-1.87-2.4-2.09l-1.66.67c.63 2.19 2.28 2.78 2.9 2.96V19h2v-1.24c.4-.09 2.9-.59 2.9-3.22 0-1.39-.61-2.61-3.01-3.44M3 21H1v-6h6v2H4.52c1.61 2.41 4.36 4 7.48 4 4.97 0 9-4.03 9-9h2c0 6.08-4.92 11-11 11-3.72 0-7.01-1.85-9-4.67zm-2-9C1 5.92 5.92 1 12 1c3.72 0 7.01 1.85 9 4.67V3h2v6h-6V7h2.48C17.87 4.59 15.12 3 12 3c-4.97 0-9 4.03-9 9z"
-}), 'CurrencyExchange');
-
-var Savings = {};
-
-var _interopRequireDefault = interopRequireDefaultExports;
-Object.defineProperty(Savings, "__esModule", {
-  value: true
-});
-var default_1 = Savings.default = void 0;
-var _createSvgIcon = _interopRequireDefault(requireCreateSvgIcon());
-var _jsxRuntime = jsxRuntimeExports;
-default_1 = Savings.default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
-  d: "m19.83 7.5-2.27-2.27c.07-.42.18-.81.32-1.15.08-.18.12-.37.12-.58 0-.83-.67-1.5-1.5-1.5-1.64 0-3.09.79-4 2h-5C4.46 4 2 6.46 2 9.5S4.5 21 4.5 21H10v-2h2v2h5.5l1.68-5.59 2.82-.94V7.5zM13 9H8V7h5zm3 2c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1"
-}), 'Savings');
-
-const TokenErc721Card = ({ setCurrentInputAddress, getBalance, setIdValue, deposit, withdraw, setDestinyAddress, transfer, balanceL1, balanceL2, cardTitle, currentInputAddress, idValue, addressToTransfer, price, toList, toListed, setPrice }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Card$1,
-    {
-      sx: {
-        pb: 0,
-        mb: 4,
-        height: "650px"
-      },
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        CardContent$1,
-        {
-          sx: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            pb: 0,
-            height: "100%"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { display: "flex", alignItems: "center", justifyContent: "flex-start", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$2, { sx: { fontSize: "40px" } }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Box$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Typography$1,
-                {
-                  variant: "h4",
-                  sx: {
-                    pl: 2
-                  },
-                  children: cardTitle
-                }
-              ) })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(CustomFormLabel, { htmlFor: "collection", children: "Collection Address" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Box$1,
-                {
-                  display: "flex",
-                  justifyContent: "space-between",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      CustomTextField,
-                      {
-                        id: "collection",
-                        placeholder: "Current address",
-                        variant: "outlined",
-                        fullWidth: true,
-                        size: "small",
-                        sx: { width: "350px" },
-                        value: currentInputAddress,
-                        onChange: (e) => setCurrentInputAddress(e)
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: "Get Balance", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      IconButton$1,
-                      {
-                        onClick: () => getBalance(),
-                        sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$3, {})
-                      }
-                    ) })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Box$1,
-                {
-                  sx: {
-                    mt: 3
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(Grid$1, { container: true, spacing: 0, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        Grid$1,
-                        {
-                          item: true,
-                          xs: 4,
-                          lg: 6,
-                          sx: {
-                            borderRight: "1px solid rgba(0,0,0,0.1)"
-                            // pb: 1,
-                          },
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { color: "textSecondary", variant: "h6", fontWeight: "400", children: "L1 Balance" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { variant: "subtitle2", fontWeight: "500", sx: {
-                              pr: 1,
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis"
-                            }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: balanceL1, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: balanceL1 }) }) })
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        Grid$1,
-                        {
-                          item: true,
-                          xs: 4,
-                          lg: 6,
-                          sx: {
-                            pb: 2,
-                            pl: 1
-                          },
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { color: "textSecondary", variant: "h6", fontWeight: "400", children: "L2 Balance" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1, { variant: "subtitle2", fontWeight: "500", sx: {
-                              pr: 1,
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              textOverflow: "ellipsis"
-                            }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: balanceL2, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: balanceL2 }) }) })
-                          ]
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {})
-                  ]
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Box$1,
-              {
-                sx: {
-                  pb: 1
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CustomFormLabel, { htmlFor: "id-nft", children: "NFT ID" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Box$1,
-                    {
-                      display: "flex",
-                      justifyContent: "space-between",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomTextField,
-                          {
-                            id: "id-nft",
-                            placeholder: "Enter NFT ID",
-                            variant: "outlined",
-                            fullWidth: true,
-                            size: "small",
-                            value: idValue,
-                            sx: { width: "100px" },
-                            onChange: (e) => setIdValue(e.target.value)
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { display: "flex", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: "Deposit", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            IconButton$1,
-                            {
-                              onClick: () => deposit(),
-                              sx: { backgroundColor: "#1976d2", color: "#FFF", marginRight: "10px" },
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1, {})
-                            }
-                          ) }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: " Voucher withdraw", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            IconButton$1,
-                            {
-                              onClick: () => withdraw(),
-                              sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$1, {})
-                            }
-                          ) })
-                        ] })
-                      ]
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {}),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Box$1,
-              {
-                sx: {
-                  pb: 1
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CustomFormLabel, { htmlFor: "to-address", children: "Transfer Destiny Address" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Box$1,
-                    {
-                      display: "flex",
-                      justifyContent: "space-between",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomTextField,
-                          {
-                            id: "to-address",
-                            placeholder: "Address to transfer",
-                            variant: "outlined",
-                            fullWidth: true,
-                            size: "small",
-                            sx: { width: "350px" },
-                            value: addressToTransfer,
-                            onChange: (e) => setDestinyAddress(e.target.value)
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$1, { title: "L2 Transfer", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          IconButton$1,
-                          {
-                            onClick: () => transfer(),
-                            sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(default_1$4, {})
-                          }
-                        ) })
-                      ]
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {}),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Box$1,
-              {
-                sx: {
-                  pb: 1
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CustomFormLabel, { htmlFor: "price", children: "Price" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    Box$1,
-                    {
-                      display: "flex",
-                      justifyContent: "space-between",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          CustomTextField,
-                          {
-                            id: "price",
-                            placeholder: "Enter NFT ID",
-                            variant: "outlined",
-                            fullWidth: true,
-                            size: "small",
-                            value: price,
-                            sx: { width: "100px" },
-                            onChange: (e) => setPrice(e.target.value)
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Box$1, { display: "flex", children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Button$1,
-                            {
-                              onClick: () => toList(),
-                              sx: { backgroundColor: "#1976d2", color: "#FFF", marginRight: "10px" },
-                              children: "L2 List"
-                            }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Button$1,
-                            {
-                              onClick: () => toListed(),
-                              sx: { backgroundColor: "#1976d2", color: "#FFF" },
-                              children: "L2 Listed"
-                            }
-                          )
-                        ] })
                       ]
                     }
                   )
@@ -67436,6 +67137,7 @@ const React$1 = await importShared('react');
 const {useEffect,useState} = await importShared('react');
 const WalletInfoR = React$1.lazy(() => __federation_method_getRemote("remoteApp" , "./WalletInfoR").then(module=>__federation_method_wrapDefault(module, true)));
 const CollectionsR = React$1.lazy(() => __federation_method_getRemote("remoteApp" , "./CollectionsR").then(module=>__federation_method_wrapDefault(module, true)));
+const TokenErc721CardR = React$1.lazy(() => __federation_method_getRemote("remoteApp" , "./TokenErc721CardR").then(module=>__federation_method_wrapDefault(module, true)));
 function WalletRest({ getSigner, fetch, dappAddress }) {
   const [backendWalletResponse, setBackendWalletResponse] = useState("");
   const [erc20address, setErc20Address] = useState(localStorage.getItem("erc20address") ?? "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d");
@@ -67700,11 +67402,15 @@ function WalletRest({ getSigner, fetch, dappAddress }) {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
-        TokenErc721Card,
+        TokenErc721CardR,
         {
-          cardTitle: "ERC-721",
-          setCurrentInputAddress: changeErc721address,
+          cardStyle: {
+            pb: 0,
+            mb: 4,
+            height: "600px"
+          },
           currentInputAddress: erc721address,
+          setCurrentInputAddress: changeErc721address,
           getBalance: getErc721Balance,
           balanceL1: erc721balanceL1,
           balanceL2: erc721balanceL2,
