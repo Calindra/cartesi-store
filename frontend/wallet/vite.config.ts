@@ -11,7 +11,8 @@ export default defineConfig({
       filename: "remoteEntry.js",
       exposes: {
         './App': './src/App',
-        './WalletInfoR': './src/WalletInfoR'
+        './WalletInfoR': './src/WalletInfoR',
+        './CollectionsR': './src/CollectionsR'
       },
       shared: ['react', 'react-dom']
     })
