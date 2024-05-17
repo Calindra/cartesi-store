@@ -48,7 +48,11 @@ function TokenErc721CardR({
 }: TokenErc721CardProps) {
     return (
         <Card
-            sx={cardStyle}
+            sx={cardStyle ? cardStyle : {
+                pb: 0,
+                mb: 4,
+                height: '700px'
+            }}
         >
             <CardContent
                 sx={{
@@ -67,10 +71,12 @@ function TokenErc721CardR({
                         value={currentInputAddress}
                         inputChange={setCurrentInputAddress}
                         onclick={getBalance}
+                        id="collection"
                     />
                     <BalanceBoard balanceL1={balanceL1} balanceL2={balanceL2} />
                     <InputWithTwoButtons
                         inputLabel={"NFT ID"}
+                        id="id-nft"
                         idValue={idValue}
                         inputChange={(e: ChangeEvent<HTMLInputElement>) => setIdValue(e.target.value)}
                         onclickFirstButton={deposit}
@@ -87,6 +93,7 @@ function TokenErc721CardR({
                             setDestinyAddress(e.target.value)
                         }}
                         onclick={transfer}
+                        id="l2transfer"
                     />
                     &nbsp;
                     <Divider />
@@ -98,6 +105,7 @@ function TokenErc721CardR({
                         onclickSecondButton={toListed}
                         firstButtonLabel="L2 List"
                         secondButtonLabel="L2 Listed"
+                        id="price"
                     />
 
                 </Box>

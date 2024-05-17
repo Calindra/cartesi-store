@@ -9,22 +9,25 @@ interface InputWithButtonProps {
     onclick: () => void
     inputLabel: string
     buttonLabel: string
+    id: string
 }
-function InputWithButton({ inputLabel, buttonLabel, value, inputChange, onclick }: InputWithButtonProps) {
+function InputWithButton({ inputLabel, buttonLabel, value, id, inputChange, onclick }: InputWithButtonProps) {
     return (
         <>
-            <CustomFormLabel htmlFor="collection">{inputLabel}</CustomFormLabel>
+            <CustomFormLabel htmlFor={id}>{inputLabel}</CustomFormLabel>
             <Box
                 display="flex"
+                flexDirection="column"
                 justifyContent="space-between"
+                sx={{ height: "100px" }}
             >
                 <CustomTextField
-                    id="collection"
+                    id={id}
                     placeholder="Current address"
                     variant="outlined"
                     fullWidth
                     size="small"
-                    sx={{ width: "350px" }}
+                    sx={{ width: "100%" }}
                     value={value}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => inputChange(e)}
                 />

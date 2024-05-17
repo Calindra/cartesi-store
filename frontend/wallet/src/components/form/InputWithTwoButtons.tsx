@@ -8,6 +8,7 @@ interface InputWithTwoButtonsProps {
     idValue: string
     firstButtonLabel: string
     secondButtonLabel: string
+    id: string
     inputChange: (e: ChangeEvent<HTMLInputElement>) => void
     onclickFirstButton: () => void
     onclickSecondButton: () => void
@@ -18,6 +19,7 @@ function InputWithTwoButtons({
     idValue,
     firstButtonLabel,
     secondButtonLabel,
+    id,
     inputChange,
     onclickFirstButton,
     onclickSecondButton
@@ -27,14 +29,14 @@ function InputWithTwoButtons({
             sx={{
                 pb: 1
             }}>
-            <CustomFormLabel htmlFor="id-nft">{inputLabel}</CustomFormLabel>
+            <CustomFormLabel htmlFor={id}>{inputLabel}</CustomFormLabel>
             <Box
                 display="flex"
                 justifyContent="space-between"
             >
 
                 <CustomTextField
-                    id="id-nft"
+                    id={id}
                     placeholder="Enter NFT ID"
                     variant="outlined"
                     fullWidth

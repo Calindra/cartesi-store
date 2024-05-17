@@ -1,5 +1,7 @@
 .sunodo
 dist/
+frontend/host/dist/
+frontend/wallet/dist/
 node_modules/
 src/schema.d.ts
 .DS_Store

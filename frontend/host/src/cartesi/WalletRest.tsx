@@ -316,11 +316,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                         buttonColor={"primary"}
 
                     />
-                    <TokenErc721CardR cardStyle={{
-                        pb: 0,
-                        mb: 4,
-                        height: '600px'
-                    }}
+                    <TokenErc721CardR 
                         currentInputAddress={erc721address}
                         setCurrentInputAddress={changeErc721address}
                         getBalance={getErc721Balance}
