@@ -5,14 +5,12 @@ import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
 import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import { FormatService } from "@/services/FormatService"
-import Collections from "./Collections"
-// import WalletInfo from "./WalletInfo"
 import TokenErc20Card from "./TokenErc20Card"
 import EtherCard from "./EtherCard"
-import TokenErc721Card from "./TokenErc721Card"
 
 const WalletInfoR = React.lazy(() => import("remoteApp/WalletInfoR"));
 const CollectionsR = React.lazy(() => import("remoteApp/CollectionsR"));
+const TokenErc721CardR = React.lazy(() => import("remoteApp/TokenErc721CardR"))
 
 
 type WalletRestProps = {
@@ -318,7 +316,28 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                         buttonColor={"primary"}
 
                     />
-                    <TokenErc721Card
+                    <TokenErc721CardR 
+                        currentInputAddress={erc721address}
+                        setCurrentInputAddress={changeErc721address}
+                        getBalance={getErc721Balance}
+                        balanceL1={erc721balanceL1}
+                        balanceL2={erc721balanceL2}
+                        
+                        setIdValue={setErc721id}
+                        idValue={erc721id}
+                        deposit={depositErc721}
+                        withdraw={withdrawErc721}
+                        
+                        setDestinyAddress={setToAddress}
+                        transfer={transferErc721}
+                        addressToTransfer={toAddress}
+
+                        price={erc721Price}
+                        setPrice={setErc721Price}
+                        toList={listErc721}
+                        toListed={listedErc721}
+                    />
+                    {/* <TokenErc721Card
                         cardTitle={"ERC-721"}
                         setCurrentInputAddress={changeErc721address}
                         currentInputAddress={erc721address}
@@ -336,7 +355,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                         setPrice={setErc721Price}
                         toList={listErc721}
                         toListed={listedErc721}
-                    />
+                    /> */}
 
                 </Grid>
                 <Grid item xs={12} lg={9}>

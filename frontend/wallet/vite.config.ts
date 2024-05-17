@@ -12,7 +12,8 @@ export default defineConfig({
       exposes: {
         './App': './src/App',
         './WalletInfoR': './src/WalletInfoR',
-        './CollectionsR': './src/CollectionsR'
+        './CollectionsR': './src/CollectionsR',
+        './TokenErc721CardR': './src/TokenErc721CardR'
       },
       shared: ['react', 'react-dom']
     })
