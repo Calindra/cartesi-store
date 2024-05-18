@@ -12,6 +12,7 @@ const WalletInfoR = React.lazy(() => import("remoteApp/WalletInfoR"));
 const CollectionsR = React.lazy(() => import("remoteApp/CollectionsR"));
 const TokenErc721CardR = React.lazy(() => import("remoteApp/TokenErc721CardR"))
 const TokenErc20CardR = React.lazy(() => import("remoteApp/TokenErc20CardR"))
+const EtherCardR = React.lazy(() => import("remoteApp/EtherCardR"))
 
 
 type WalletRestProps = {
@@ -373,7 +374,15 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                     {/* <Collections collections={backendWalletResponse} /> */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} lg={4}>
-                            <EtherCard
+                            <EtherCardR
+                                getBalance={getEtherBalance}
+                                balanceL1={etherBalanceL1}
+                                balanceL2={etherBalanceL2}
+                                setDestinyAddress={setToAddress}
+                                addressToTransfer={toAddress}
+                                transfer={transferEther}
+                            />
+                            {/* <EtherCard
                                 cardTitle={"Ether"}
                                 getEtherBalance={getEtherBalance}
                                 idValue={etherValue}
@@ -385,7 +394,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                                 etherBalanceL2={etherBalanceL2}
                                 setDestinyAddress={setToAddress}
                                 addressToTransfer={toAddress}
-                            />
+                            /> */}
                         </Grid>
                         <Grid item xs={12} lg={4}>
                             <TokenErc20CardR

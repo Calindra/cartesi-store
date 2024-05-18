@@ -14,7 +14,8 @@ export default defineConfig({
         './WalletInfoR': './src/WalletInfoR',
         './CollectionsR': './src/CollectionsR',
         './TokenErc721CardR': './src/TokenErc721CardR',
-        './TokenErc20CardR': './src/TokenErc20CardR'
+        './TokenErc20CardR': './src/TokenErc20CardR',
+        './EtherCardR': './src/EtherCardR'
       },
       shared: ['react', 'react-dom']
     })
