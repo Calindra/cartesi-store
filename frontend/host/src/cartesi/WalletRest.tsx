@@ -5,12 +5,13 @@ import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
 import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import { FormatService } from "@/services/FormatService"
-import TokenErc20Card from "./TokenErc20Card"
+// import TokenErc20Card from "./TokenErc20Card"
 import EtherCard from "./EtherCard"
 
 const WalletInfoR = React.lazy(() => import("remoteApp/WalletInfoR"));
 const CollectionsR = React.lazy(() => import("remoteApp/CollectionsR"));
 const TokenErc721CardR = React.lazy(() => import("remoteApp/TokenErc721CardR"))
+const TokenErc20CardR = React.lazy(() => import("remoteApp/TokenErc20CardR"))
 
 
 type WalletRestProps = {
@@ -316,18 +317,18 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                         buttonColor={"primary"}
 
                     />
-                    <TokenErc721CardR 
+                    <TokenErc721CardR
                         currentInputAddress={erc721address}
                         setCurrentInputAddress={changeErc721address}
                         getBalance={getErc721Balance}
                         balanceL1={erc721balanceL1}
                         balanceL2={erc721balanceL2}
-                        
+
                         setIdValue={setErc721id}
                         idValue={erc721id}
                         deposit={depositErc721}
                         withdraw={withdrawErc721}
-                        
+
                         setDestinyAddress={setToAddress}
                         transfer={transferErc721}
                         addressToTransfer={toAddress}
@@ -387,21 +388,35 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                             />
                         </Grid>
                         <Grid item xs={12} lg={4}>
-                            <TokenErc20Card
+                            <TokenErc20CardR
+                                setCurrentInputAddress={changeErc20Address}
+                                currentInputAddress={erc20address}
+
+                                getBalance={getErc20Balance}
+                                balanceL1={erc20balanceL1}
+                                balanceL2={erc20balanceL2}
+
+                                setDestinyAddress={setToAddress}
+                                transfer={transferErc20}
+                                addressToTransfer={toAddress}
+                            />
+                            {/* <TokenErc20Card
                                 cardTitle={"ERC-20"}
                                 setCurrentInputAddress={changeErc20Address}
                                 currentInputAddress={erc20address}
                                 getBalance={getErc20Balance}
                                 balanceL1={erc20balanceL1}
                                 balanceL2={erc20balanceL2}
+
                                 setIdValue={setErc20value}
                                 idValue={erc20value}
+
                                 deposit={depositErc20}
                                 withdraw={withdrawErc20}
                                 setDestinyAddress={setToAddress}
                                 transfer={transferErc20}
                                 addressToTransfer={toAddress}
-                            />
+                            /> */}
                         </Grid>
                     </Grid>
                 </Grid>
