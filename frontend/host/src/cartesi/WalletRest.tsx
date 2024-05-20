@@ -5,8 +5,6 @@ import { FetchFun } from "@calindra/cartesify/src/cartesify/FetchLikeClient"
 import { JsonRpcSigner } from "ethers"
 import { BaseLayerWalletService } from "./services/BaseLayerWalletService"
 import { FormatService } from "@/services/FormatService"
-// import TokenErc20Card from "./TokenErc20Card"
-import EtherCard from "./EtherCard"
 
 const WalletInfoR = React.lazy(() => import("remoteApp/WalletInfoR"));
 const CollectionsR = React.lazy(() => import("remoteApp/CollectionsR"));
