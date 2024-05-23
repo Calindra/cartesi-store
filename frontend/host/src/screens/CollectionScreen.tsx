@@ -385,11 +385,10 @@ function CollectionScreen() {
         return
       }
       const json = await res.json()
-      const image = json.image
+      const imageUrl = json.image
       const prefix = "ipfs://"
-      if(image.startsWith(prefix)){
-        const hash = image.slice(prefix.length)
-        json.image = `https://ipfs.io/ipfs/${hash}`
+      if (imageUrl.startsWith(prefix)) {
+        json.image = FormatService.convertIpfsToHttp(imageUrl, prefix)
       }
       nftDataList.push(json)
     }
