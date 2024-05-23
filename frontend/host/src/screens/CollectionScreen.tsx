@@ -1,43 +1,10 @@
 import BaseLayout from "@/components/layouts/BaseLayout"
 import { FormatService } from "@/services/FormatService";
-import { EthereumClient } from "@/services/EthereumClient";
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
-
-const ethereumClient = new EthereumClient()
-const contract = await ethereumClient.getContract('0x0724F18B2aA7D6413D3fDcF6c0c27458a8170Dd9') 
-
+import { useNavigate, useLoaderData } from "react-router-dom";
 
 function CollectionScreen() {
-  const { collection } = useParams();
-  const [metadatas, setMetadatas] = useState([] as any)
-
-
-  useEffect(() => {
-    getUri()
-  }, [collection])
-
-  async function getUri() {
-    const nftDataList = []
-    for (let idx = 0; idx < 11; idx++) {
-      const uri: any = await contract.read.tokenURI([idx])
-      const res = await fetch(uri)
-
-      if (!res.ok) {
-        console.log(res.status, res.text())
-        return
-      }
-      const json = await res.json()
-      const imageUrl = json.image
-      const prefix = "ipfs://"
-      if (imageUrl.startsWith(prefix)) {
-        json.image = FormatService.convertIpfsToHttp(imageUrl, prefix)
-      }
-      nftDataList.push(json)
-    }
-    setMetadatas(nftDataList)
-  }
-
+  const metadatas: any = useLoaderData();
+  
   return (
     <BaseLayout>
       <HeaderSection bgImage={"1.png"} />

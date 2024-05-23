@@ -13,6 +13,7 @@ import CollectionScreen from './screens/CollectionScreen.tsx';
 import NFTProductScreen from './screens/NFTProductScreen.tsx';
 import WalletScreen from './screens/WalletScreen.tsx';
 import { SnackbarProvider } from 'notistack';
+import { metadataLoader } from './loaders/metadata-loader.ts';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/collection/:collection",
     element: <CollectionScreen />,
+    loader: metadataLoader
   },
   {
     path: "/collection/:collection/:tokenId",
