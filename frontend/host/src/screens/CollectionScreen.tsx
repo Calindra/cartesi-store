@@ -1,37 +1,15 @@
 import BaseLayout from "@/components/layouts/BaseLayout"
 import { FormatService } from "@/services/FormatService";
-import { HttpService } from "@/services/HttpService";
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 
 function CollectionScreen() {
-  const [items, setItems] = useState([])
-  const fetch = HttpService.getRawCartesifyFetch();
-  const { collection } = useParams();
-
-
-  async function init(collection: string) {
-    const res = await fetch(`http://127.0.0.1:8383/erc-721/${collection}/listed`)
-    if (!res.ok) {
-      console.log(res.status, res.text())
-      return
-    }
-    const json = await res.json()
-    // console.log('Success!', JSON.stringify(json, null, 4))
-    setItems(json.rows)
-  }
-
-  useEffect(() => {
-    if (collection) {
-      init(collection)
-    }
-  }, [collection])
-
+  const metadatas: any = useLoaderData();
+  
   return (
     <BaseLayout>
       <HeaderSection bgImage={"1.png"} />
       <div className="grid grid-cols-3 gap-4 p-4">
-        {items.map((item: any) => {
+        {metadatas.map((item: any) => {
           return <NFTProductView key={`${item.collection}-${item.tokenId}`} item={item} />
         })}
       </div>
@@ -66,7 +44,7 @@ function NFTProductView({ item }: any) {
       }}
     >
       <div className="relative aspect-square">
-        <img src={`/carousel/${item.tokenId}.png`} className="absolute inset-0 h-full w-full object-cover object-top" />
+        <img src={item.image} className="absolute inset-0 h-full w-full object-cover object-top" />
       </div>
       <div className="p-4">
         <div className="mt-1 flex gap-x-8 relative">
