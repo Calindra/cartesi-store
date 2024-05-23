@@ -370,7 +370,6 @@ function CollectionScreen() {
   const [items, setItems] = useState([])
   const fetchCartesi = HttpService.getRawCartesifyFetch();
   const { collection } = useParams();
-  const [imgSrc, setImgSrc] = useState('')
   const [metadatas, setMetadatas] = useState([] as any)
 
 
@@ -419,9 +418,8 @@ function CollectionScreen() {
   return (
     <BaseLayout>
       <HeaderSection bgImage={"1.png"} />
-      <img src={imgSrc} />
       <div className="grid grid-cols-3 gap-4 p-4">
-        {items.map((item: any) => {
+        {metadatas.map((item: any) => {
           return <NFTProductView key={`${item.collection}-${item.tokenId}`} item={item} />
         })}
       </div>
@@ -456,7 +454,7 @@ function NFTProductView({ item }: any) {
       }}
     >
       <div className="relative aspect-square">
-        <img src={`/carousel/${item.tokenId}.png`} className="absolute inset-0 h-full w-full object-cover object-top" />
+        <img src={item.image} className="absolute inset-0 h-full w-full object-cover object-top" />
       </div>
       <div className="p-4">
         <div className="mt-1 flex gap-x-8 relative">
