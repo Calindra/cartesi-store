@@ -1,6 +1,5 @@
 import BaseLayout from "@/components/layouts/BaseLayout"
 import { FormatService } from "@/services/FormatService";
-import { HttpService } from "@/services/HttpService";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { createPublicClient, http, getContract } from 'viem'
@@ -360,46 +359,25 @@ const client = createPublicClient({
 })
 
 const contract = await getContract({
-  address: '0x1343248Cbd4e291C6979e70a138f4c774e902561',
+  address: '0x0724F18B2aA7D6413D3fDcF6c0c27458a8170Dd9',
   abi: wagmiAbi,
   client: client,
 })
 
 
 function CollectionScreen() {
-  const [items, setItems] = useState([])
-  const fetchCartesi = HttpService.getRawCartesifyFetch();
   const { collection } = useParams();
   const [metadatas, setMetadatas] = useState([] as any)
 
 
-  async function init(collection: string) {
-    const res = await fetchCartesi(`http://127.0.0.1:8383/erc-721/${collection}/listed`)
-    if (!res.ok) {
-      console.log(res.status, res.text())
-      return
-    }
-    const json = await res.json()
-    // console.log('Success!', JSON.stringify(json, null, 4))
-    setItems(json.rows)
-  }
-
   useEffect(() => {
-    if (collection) {
-      init(collection)
-    }
-  }, [collection])
-  useEffect(() => {
-    console.log("wagmiAbi: ", wagmiAbi)
-    console.log("client: ", client)
     getUri()
-  }, [])
+  }, [collection])
 
   async function getUri() {
     const nftDataList = []
     for (let idx = 0; idx < 10; idx++) {
       const uri: any = await contract.read.tokenURI([idx])
-      console.log("URI: ", uri)
       const res = await fetch(uri)
 
       if (!res.ok) {
@@ -412,7 +390,6 @@ function CollectionScreen() {
     }
     console.log(nftDataList)
     setMetadatas(nftDataList)
-    // setImgSrc(json.image)
   }
 
   return (
