@@ -376,7 +376,7 @@ function CollectionScreen() {
 
   async function getUri() {
     const nftDataList = []
-    for (let idx = 0; idx < 10; idx++) {
+    for (let idx = 0; idx < 11; idx++) {
       const uri: any = await contract.read.tokenURI([idx])
       const res = await fetch(uri)
 
@@ -385,10 +385,14 @@ function CollectionScreen() {
         return
       }
       const json = await res.json()
-
+      const image = json.image
+      const prefix = "ipfs://"
+      if(image.startsWith(prefix)){
+        const hash = image.slice(prefix.length)
+        json.image = `https://ipfs.io/ipfs/${hash}`
+      }
       nftDataList.push(json)
     }
-    console.log(nftDataList)
     setMetadatas(nftDataList)
   }
 
