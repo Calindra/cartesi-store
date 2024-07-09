@@ -40,7 +40,7 @@ async function main() {
     const address = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
     for (let i = 0; i < 15; i++) {
       console.log(`mint ${i}`)
-      let tx = await nonFunToken.mintNFT(address, `${i}`, "http://localhost:5173/carousel/");
+      let tx = await nonFunToken.mintNFT(address, `${i}`, "http://localhost:3000/nft-metadata/");
       await tx.wait();
     }
     for (let i = 0; i < 10; i++) {
@@ -49,7 +49,7 @@ async function main() {
     }
     console.log(`Mint NFT to ${address}`)
 
-    const url = await nonFunToken.tokenURI("0")
+    const url = await nonFunToken.tokenURI("1")
     console.log(url)
 
     const erc721address = token.address
