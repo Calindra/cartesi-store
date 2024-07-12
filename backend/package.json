@@ -4,7 +4,7 @@
   "description": "TypeScript DApp",
   "private": true,
   "dependencies": {
-    "@calindra/cartesify-backend": "^0.1.2",
+    "@calindra/cartesify-backend": "^1.0.1",
     "@deroll/wallet": "file:deroll-wallet-0.3.7.tgz",
     "express": "^4.18.2",
     "openapi-fetch": "^0.7",
@@ -37,5 +37,8 @@
     "cartesi"
   ],
   "license": "MIT",
-  "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589"
+  "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589",
+  "volta": {
+    "node": "21.7.1"
+  }
 }

@@ -7,9 +7,9 @@ async function main() {
   const provider = ethers.getDefaultProvider("http://localhost:8545");
   const pk = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'
   const signer = new ethers.Wallet(pk, provider);
-
+  const dappAddress = '0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e'
   const _fetch = Cartesify.createFetch({
-    dappAddress: '0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C',
+    dappAddress,
     endpoints: {
       graphQL: new URL("http://localhost:8080/graphql"),
       inspect: new URL("http://localhost:8080/inspect"),
@@ -18,11 +18,9 @@ async function main() {
     signer,
   })
 
-  const dappAddress = '0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C'
-
-  const portalAddress = '0xFfdbe43d4c855BF7e0f105c400A50857f53AB044'
+  const etherPortalAddress = '0x1733b13aAbcEcf3464157Bd7954Bd7e4Cf91Ce22'
   const etherValue = '10000000000000000'
-  const portal = EtherPortal__factory.connect(portalAddress, signer)
+  const portal = EtherPortal__factory.connect(etherPortalAddress, signer)
   const tx = await portal.depositEther(dappAddress, '0x', { value: etherValue })
   await tx.wait()
 
@@ -55,7 +53,7 @@ async function main() {
     for (let i = 0; i < 10; i++) {
       console.log('Listing', i)
 
-      const res = _fetch(`http://127.0.0.1:8383/erc-721/list`, {
+      const res = await _fetch(`http://127.0.0.1:8383/erc-721/list`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -66,10 +64,11 @@ async function main() {
           price: 200 + i,
         }),
       })
-      await new Promise(resolve => setTimeout(resolve, 200))
+      await new Promise(resolve => setTimeout(resolve, 250))
       promises.push(res)
     }
     (await Promise.all(promises)).forEach(res => {
+      console.log('...')
       if (!res.ok) {
         console.log(res.status, res.text())
       }
@@ -101,7 +100,7 @@ main()
 
 
 async function depositERC721(dappAddress, erc721address, erc721id, signer) {
-  const portalAddress = '0x237F8DD094C0e47f4236f12b4Fa01d6Dae89fb87'
+  const portalAddress = '0x2e2f6166170A9C7f8b95cC5400A39b62C46e401f'
   const contract = IERC721__factory.connect(erc721address, signer)
   await contract.approve(portalAddress, erc721id)
   const portal = ERC721Portal__factory.connect(portalAddress, signer)
