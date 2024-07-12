@@ -33,6 +33,7 @@ function WalletInfoR({ getSigner, dappAddress, wallet, account, cardStyle, title
   useEffect(() => {
     if (wallet) {
       const jsonWallet = JSON.parse(wallet)
+      console.log("JSON: ", jsonWallet)
       const totalCollections = Object.keys(jsonWallet.erc721).length;
       const totalNfts: number = Object.values(jsonWallet.erc721).reduce((acc, curr: any) => acc + curr.length, 0) as number;
       setTotalCollections(totalCollections)

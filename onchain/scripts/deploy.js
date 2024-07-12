@@ -38,16 +38,19 @@ async function main() {
     const nonFunToken = await ethers.getContractAt('NonFunToken', token.address);
 
     const address = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 3; i++) {
       console.log(`mint ${i}`)
       let tx = await nonFunToken.mintNFT(address, `${i}`, "http://localhost:5173/carousel/");
       await tx.wait();
     }
-    for (let i = 0; i < 10; i++) {
+
+    for (let i = 0; i < 2; i++) {
       console.log(`deposit ${i}`)
       await depositERC721(dappAddress, token.address, `${i}`, signer);
     }
-    console.log(`Mint NFT to ${address}`)
+    const balance = await nonFunToken.balanceOf(address)
+    
+    console.log(`Mint NFT to ${address}`, "Balance: ", balance)
 
     const url = await nonFunToken.tokenURI("0")
     console.log(url)

@@ -21,6 +21,7 @@ export class BaseLayerWalletService {
             console.warn(`The contract erc-721 ${erc721address} does not exist`)
             return 0n
         }
+        console.log("Signer: ", signer.provider, signer)
         const contract = IERC721__factory.connect(erc721address, signer)
         const balance = await contract.balanceOf(signer.address)
         return balance

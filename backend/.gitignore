@@ -132,3 +132,4 @@ dist
 # database and wallets
 data/sqlite3-*.db
 data/wallet*.json
+.cartesi

@@ -40,15 +40,26 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     useEffect(() => {
         if (!isEffectExecuted) {
+            console.log("effect")
+
             getWallet();
             setIsEffectExecuted(true);
         }
     }, [isEffectExecuted]);
 
+    useEffect(() => {
+        console.log("WWWW")
+        getWallet();
+    }, []);
+
+    
+
     async function getWallet() {
+        console.log("wallet")
         const signer = await getSigner()
         const res = await fetch(`http://127.0.0.1:8383/wallet/${signer?.address}`)
         const json = await res.json()
+        console.log("json: ", json)
         const strResp = JSON.stringify(json, null, 4)
         setBackendWalletResponse(strResp)
     }
@@ -69,6 +80,7 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
 
     async function loadErc721balance() {
         const signer = await getSigner()
+        console.log("SIGNER: ", signer)
         const balance = await BaseLayerWalletService.balanceERC721(erc721address, signer)
         setErc721balanceL1(balance.toString())
     }
@@ -311,9 +323,9 @@ export function WalletRest({ getSigner, fetch, dappAddress }: WalletRestProps) {
                         titleVariant={"h6"}
                         titleFontWeight={"400"}
                         infoVariant={"subtitle2"}
-                        infoFontWeight={"500"}
+                        infoFontWeight={"700"}
                         buttonVariant={"contained"}
-                        buttonColor={"primary"}
+                        buttonColor={"secondary"}
 
                     />
                     <TokenErc721CardR

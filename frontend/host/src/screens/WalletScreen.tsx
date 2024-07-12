@@ -3,7 +3,8 @@ import BaseLayout from "@/components/layouts/BaseLayout";
 import { ConfigService } from "@/services/ConfigService";
 import { HttpService } from "@/services/HttpService";
 import { SignerService } from "@/services/SignerService";
-// import VoucherView from "@/cartesi/VoucherView";
+import VoucherView from "@/cartesi/VoucherView";
+import { Epoch } from "@/cartesi/Epoch";
 
 export default function WalletScreen() {
     const dappAddress = ConfigService.getDappAddress();
@@ -13,7 +14,8 @@ export default function WalletScreen() {
             <HeaderSection bgImage={"1.png"} />
             {/* <div style={{ color: '#000000' }} className="p-4"> */}
             <WalletRest dappAddress={dappAddress} fetch={fetch} getSigner={SignerService.getSigner} />
-            {/* <VoucherView dappAddress={dappAddress} fetch={fetch} getSigner={SignerService.getSigner}/> */}
+            <VoucherView dappAddress={dappAddress} fetch={fetch} getSigner={SignerService.getSigner}/>
+            <Epoch/>
             {/* </div> */}
         </BaseLayout>
     )
