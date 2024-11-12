@@ -7,3 +7,4 @@ node_modules/
 src/schema.d.ts
 .DS_Store
 .direnv/
+yarn.lock
